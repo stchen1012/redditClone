@@ -31,7 +31,7 @@ function handleResponse(response) {
         console.log(postObject);
         let newPost = document.createElement('div');
         newPost.setAttribute('class', 'postDiv');
-        newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2>, Post Description: ${postObject.postDescription}, User: ${postObject.postUser}`
+        newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2>, Post Description: ${postObject.postDescription}, <h4 id="usernamePost">User: ${postObject.postUser}</h4>`
         postDiv.appendChild(newPost);
     }
 }
@@ -44,11 +44,12 @@ function Post(postId, postTitle, postDescription, postUser) {
 }
 
 // list of user posts
-//const usernameTextElement = document.querySelectorAll('h4').item(0);
-const usernameTextElement = document.getElementById('usernamePost');
+const usernameTextElement = document.querySelectorAll('h4');
+// const usernameTextElement = document.getElementById('usernamePost');
+console.log(usernameTextElement);
 
 
-usernameTextElement.addEventListener('click', onUsernameClick);
+// usernameTextElement.addEventListener('click', onUsernameClick);
 
 function onUsernameClick(event) {
     //event.preventDefault();
@@ -66,6 +67,8 @@ function onUsernameClick(event) {
     //   .catch((err) => {
     //     console.log(err);
     //   })
+}
+
 
 //Attempt to get the element using document.getElementById
 var loginForm = document.querySelector('.form-login');
@@ -126,27 +129,6 @@ function signupUser(event){
     let inputPassword = document.getElementById('inputPassword').value;
     console.log(inputPassword);
 
-//  login
-// fetch("http://thesi.generalassemb.ly:8080/login", {
-//            method: 'post',
-//            headers:{
-//             'Accept': 'application/json',
-//             'Content-Type': 'application/json'
-//         },
-//            body: JSON.stringify({
-//                email: "grabber@grabber.com",
-//                password: "grab",
-//            })
-//        })
-//            .then((response )=> {
-//                return response.json();
-//            })
-//            .then((json) =>{
-//                console.log(json);
-//            })
-//            .catch(function(error){
-//                alert("Please Try Again");
-//            })
         fetch("http://thesi.generalassemb.ly:8080/signup", {
            method: 'post',
            headers:{
