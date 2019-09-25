@@ -30,7 +30,7 @@ function handleResponse(response) {
         console.log(postObject);
         let newPost = document.createElement('div');
         newPost.setAttribute('class', 'postDiv');
-        newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2>, Post Description: ${postObject.postDescription}, User: ${postObject.postUser}`
+        newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2> Description: ${postObject.postDescription} <br> <h4 id="usernamePost">Username: ${postObject.postUser}</h4>`
         postDiv.appendChild(newPost);
     }
 }
@@ -41,6 +41,31 @@ function Post(postId, postTitle, postDescription, postUser) {
     this.postDescription = postDescription;
     this.postUser = postUser;
 }
+
+// list of user posts
+const usernameTextElement = document.getElementById('usernamePost');
+
+usernameTextElement.addEventListener('click', onUsernameClick);
+
+function onUsernameClick(event) {
+    event.preventDefault();
+    console.log('click');
+    let userId = document.getElementById('usernamePost').value;
+    //need to retrieve the generated token from password creation
+    fetch(`http://thesi.generalassemb.ly:8080/user/post`)
+    .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        console.log(response);
+        removeGifs();
+        handleResponse(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+}
+
 
 // signup
 function signUpUser(){
