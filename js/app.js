@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function(e){
     fetchPost('');
 });
 
+document.querySelector('.form-signin').addEventListener('submit', loginUser);
+
 //  get all post
 function fetchPost(){
     fetch("http://thesi.generalassemb.ly:8080/post/list", {
@@ -17,7 +19,7 @@ function fetchPost(){
         handleResponse(response);
     })
     .catch(function(error){
-        alert("Please Try Again");
+        console.log("Please Try Again");
     })
 }
 
@@ -42,13 +44,15 @@ function Post(postId, postTitle, postDescription, postUser) {
     this.postUser = postUser;
 }
 
-// signup
-function signUpUser(){
+
+
+// login
+function loginUser(){
     let userEmail = document.getElementById('inputEmail').value;
     let userInputName = document.getElementById('inputUsername').value;
     let userPassword = document.getElementById('inputPassword').value;
 
-        fetch("http://thesi.generalassemb.ly:8080/signup", {
+        fetch("http://thesi.generalassemb.ly:8080/login", {
            method: 'post',
            headers:{
             'Accept': 'application/json',
@@ -73,8 +77,8 @@ function signUpUser(){
 }
 
 
-//  login
-// fetch("http://thesi.generalassemb.ly:8080/login", {
+//  signup
+// fetch("http://thesi.generalassemb.ly:8080/signup", {
 //            method: 'post',
 //            headers:{
 //             'Accept': 'application/json',
