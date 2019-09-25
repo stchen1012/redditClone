@@ -41,31 +41,31 @@ function Post(postId, postTitle, postDescription, postUser) {
     this.postTitle = postTitle;
     this.postDescription = postDescription;
     this.postUser = postUser;
-<<<<<<< HEAD
 }
 
 // list of user posts
+//const usernameTextElement = document.querySelectorAll('h4').item(0);
 const usernameTextElement = document.getElementById('usernamePost');
+
 
 usernameTextElement.addEventListener('click', onUsernameClick);
 
 function onUsernameClick(event) {
-    event.preventDefault();
+    //event.preventDefault();
     console.log('click');
-    let userId = document.getElementById('usernamePost').value;
+    //let userId = document.getElementById('usernamePost').value;
     //need to retrieve the generated token from password creation
-    fetch(`http://thesi.generalassemb.ly:8080/user/post`)
-    .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        console.log(response);
-        removeGifs();
-        handleResponse(response);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+    // fetch(`http://thesi.generalassemb.ly:8080/user/post`)
+    // .then((response) => {
+    //     return response.json();
+    //   })
+    //   .then((response) => {
+    //     console.log(response);
+    //     handleResponse(response);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   })
 }
 
 
@@ -121,7 +121,3 @@ function signUpUser(){
 //            .catch(function(error){
 //                alert("Please Try Again");
 //            })
-
-=======
-}
->>>>>>> 1186c6fb42323748e8052219f2f0a5c8a15160df
