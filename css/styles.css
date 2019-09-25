@@ -18,7 +18,7 @@ body {
       width: 250px;
   }
 
-  .form-signin {
+  .form-signup, .form-login {
     position: relative;
     left: 60rem;
     top: 25rem;;

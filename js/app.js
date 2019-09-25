@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function(e){
     fetchPost('');
 });
 
-document.querySelector('.form-signin').addEventListener('submit', loginUser);
 
 //  get all post
 function fetchPost(){
@@ -43,59 +42,3 @@ function Post(postId, postTitle, postDescription, postUser) {
     this.postDescription = postDescription;
     this.postUser = postUser;
 }
-
-
-
-// login
-function loginUser(){
-    let userEmail = document.getElementById('inputEmail').value;
-    let userInputName = document.getElementById('inputUsername').value;
-    let userPassword = document.getElementById('inputPassword').value;
-
-        fetch("http://thesi.generalassemb.ly:8080/login", {
-           method: 'post',
-           headers:{
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-           body: JSON.stringify({
-               email: userEmail,
-               username: userInputName,
-               password: userPassword,
-           })
-       })
-           .then((response )=> {
-               return response.json();
-           })
-           .then((json) =>{
-               console.log(json);
-               alert("Sign in Successful");
-           })
-           .catch(function(error){
-               alert("User Failed To Sign");
-           })
-}
-
-
-//  signup
-// fetch("http://thesi.generalassemb.ly:8080/signup", {
-//            method: 'post',
-//            headers:{
-//             'Accept': 'application/json',
-//             'Content-Type': 'application/json'
-//         },
-//            body: JSON.stringify({
-//                email: "grabber@grabber.com",
-//                password: "grab",
-//            })
-//        })
-//            .then((response )=> {
-//                return response.json();
-//            })
-//            .then((json) =>{
-//                console.log(json);
-//            })
-//            .catch(function(error){
-//                alert("Please Try Again");
-//            })
-
