@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function(e){
     fetchPost('');
 });
 
+
 //  get all post
 function fetchPost(){
     fetch("http://thesi.generalassemb.ly:8080/post/list", {
@@ -17,7 +18,7 @@ function fetchPost(){
         handleResponse(response);
     })
     .catch(function(error){
-        alert("Please Try Again");
+        console.log("Please Try Again");
     })
 }
 
@@ -40,6 +41,7 @@ function Post(postId, postTitle, postDescription, postUser) {
     this.postTitle = postTitle;
     this.postDescription = postDescription;
     this.postUser = postUser;
+<<<<<<< HEAD
 }
 
 // list of user posts
@@ -120,3 +122,6 @@ function signUpUser(){
 //                alert("Please Try Again");
 //            })
 
+=======
+}
+>>>>>>> 1186c6fb42323748e8052219f2f0a5c8a15160df
