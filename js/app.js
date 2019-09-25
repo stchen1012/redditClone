@@ -12,12 +12,34 @@ function fetchPost(){
     .then((response )=> {
         return response.json();
     })
-    .then((json) =>{
-        console.log(json);
+    .then((response) =>{
+        console.log(response);
+        handleResponse(response);
     })
     .catch(function(error){
         alert("Please Try Again");
     })
+}
+
+//Listing posts for homepage
+const postDiv = document.getElementById('postDiv');
+
+function handleResponse(response) {
+    for (let i =0; i < 11; i++) {
+        let postObject = new Post(response[i].id, response[i].title, response[i].description, response[i].user.username);
+        console.log(postObject);
+        let newPost = document.createElement('div');
+        newPost.setAttribute('class', 'postDiv');
+        newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2>, Post Description: ${postObject.postDescription}, User: ${postObject.postUser}`
+        postDiv.appendChild(newPost);
+    }
+}
+
+function Post(postId, postTitle, postDescription, postUser) {
+    this.postId = postId;
+    this.postTitle = postTitle;
+    this.postDescription = postDescription;
+    this.postUser = postUser;
 }
 
 // signup
@@ -73,12 +95,3 @@ function signUpUser(){
 //                alert("Please Try Again");
 //            })
 
-
-const postDiv = document.getElementById('postDiv');
-
-// for(let i = 0; i < 11; i++){
-//     const newPost = document.createElement('div');
-//     newPost.setAttribute('class', 'postDiv');
-//     newPost.innerHTML = "Lorem ipsum dolor amet pinterest umami woke, kogi +1 flexitarian brooklyn coloring book narwhal. PBR&B marfa hell of messenger bag. Keffiyeh slow-carb messenger bag cronut. Meh affogato you probably haven't heard of them, flannel gluten-free polaroid tattooed edison bulb enamel pin. Shoreditch keffiyeh quinoa dreamcatcher, raclette la croix williamsburg succulents heirloom direct trade.";
-//     postDiv.appendChild(newPost);
-// }
