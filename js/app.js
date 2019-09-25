@@ -31,7 +31,7 @@ function handleResponse(response) {
         console.log(postObject);
         let newPost = document.createElement('div');
         newPost.setAttribute('class', 'postDiv');
-        newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2> Description: ${postObject.postDescription} <br> <h4 id="usernamePost">Username: ${postObject.postUser}</h4>`
+        newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2>, Post Description: ${postObject.postDescription}, User: ${postObject.postUser}`
         postDiv.appendChild(newPost);
     }
 }
@@ -41,7 +41,6 @@ function Post(postId, postTitle, postDescription, postUser) {
     this.postTitle = postTitle;
     this.postDescription = postDescription;
     this.postUser = postUser;
-<<<<<<< HEAD
 }
 
 
@@ -69,57 +68,14 @@ function loginUser(event){
     console.log(inputPassword);
 
         fetch("http://thesi.generalassemb.ly:8080/login", {
-=======
-<<<<<<< HEAD
-}
-
-// list of user posts
-const usernameTextElement = document.getElementById('usernamePost');
-
-usernameTextElement.addEventListener('click', onUsernameClick);
-
-function onUsernameClick(event) {
-    event.preventDefault();
-    console.log('click');
-    let userId = document.getElementById('usernamePost').value;
-    //need to retrieve the generated token from password creation
-    fetch(`http://thesi.generalassemb.ly:8080/user/post`)
-    .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        console.log(response);
-        removeGifs();
-        handleResponse(response);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-}
-
-
-// signup
-function signUpUser(){
-    let userEmail = document.getElementById('inputEmail').value;
-    let userInputName = document.getElementById('inputUsername').value;
-    let userPassword = document.getElementById('inputPassword').value;
-
-        fetch("http://thesi.generalassemb.ly:8080/signup", {
->>>>>>> b1cb4d94e297827a995d4a3426979aef15b13a16
            method: 'post',
            headers:{
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
            body: JSON.stringify({
-<<<<<<< HEAD
                email: logEmail,
                password: logPassword,
-=======
-               email: userEmail,
-               username: userInputName,
-               password: userPassword,
->>>>>>> b1cb4d94e297827a995d4a3426979aef15b13a16
            })
        })
            .then((response )=> {
@@ -128,20 +84,14 @@ function signUpUser(){
            .then((json) =>{
                console.log(json);
                alert("Sign in Successful");
-<<<<<<< HEAD
                window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
            })
            .catch(function(error){
                console.log(error);
-=======
-           })
-           .catch(function(error){
->>>>>>> b1cb4d94e297827a995d4a3426979aef15b13a16
                alert("User Failed To Sign");
            })
 }
 
-<<<<<<< HEAD
 //  signup
 function signupUser(event){
     console.log('signupUser called');
@@ -178,31 +128,3 @@ function signupUser(event){
                alert("Failed To Create User");
            })
 }
-=======
-
-//  login
-// fetch("http://thesi.generalassemb.ly:8080/login", {
-//            method: 'post',
-//            headers:{
-//             'Accept': 'application/json',
-//             'Content-Type': 'application/json'
-//         },
-//            body: JSON.stringify({
-//                email: "grabber@grabber.com",
-//                password: "grab",
-//            })
-//        })
-//            .then((response )=> {
-//                return response.json();
-//            })
-//            .then((json) =>{
-//                console.log(json);
-//            })
-//            .catch(function(error){
-//                alert("Please Try Again");
-//            })
-
-=======
-}
->>>>>>> 1186c6fb42323748e8052219f2f0a5c8a15160df
->>>>>>> b1cb4d94e297827a995d4a3426979aef15b13a16
