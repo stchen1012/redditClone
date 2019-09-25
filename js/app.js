@@ -21,27 +21,34 @@ function fetchPost(){
 }
 
 // signup
-// fetch("http://thesi.generalassemb.ly:8080/signup", {
-//            method: 'post',
-//            headers:{
-//             'Accept': 'application/json',
-//             'Content-Type': 'application/json'
-//         },
-//            body: JSON.stringify({
-//                email: "mcnugget@mcnugget.com",
-//                username: "mcnugget",
-//                password: "mcnugget",
-//            })
-//        })
-//            .then((response )=> {
-//                return response.json();
-//            })
-//            .then((json) =>{
-//                console.log(json);
-//            })
-//            .catch(function(error){
-//                alert("Please Try Again);
-//            })
+function signUpUser(){
+
+    let email = "";
+    let username = "";
+    let password = "";
+
+        fetch("http://thesi.generalassemb.ly:8080/signup", {
+           method: 'post',
+           headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+           body: JSON.stringify({
+               email: "mcnugget@mcnugget.com",
+               username: "mcnugget",
+               password: "mcnugget",
+           })
+       })
+           .then((response )=> {
+               return response.json();
+           })
+           .then((json) =>{
+               console.log(json);
+           })
+           .catch(function(error){
+               alert("Please Try Again");
+           })
+}
 
 
 //  login
@@ -67,7 +74,7 @@ function fetchPost(){
 //            })
 
 
-// const postDiv = document.getElementById('postDiv');
+const postDiv = document.getElementById('postDiv');
 
 // for(let i = 0; i < 11; i++){
 //     const newPost = document.createElement('div');

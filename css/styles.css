@@ -12,3 +12,14 @@ body {
     display: block;
   }
     
+/* sign in page */
+
+  .customWidth {
+      width: 250px;
+  }
+
+  .form-signin {
+    position: relative;
+    left: 60rem;
+    top: 25rem;;
+  }
