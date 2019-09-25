@@ -1,0 +1,14 @@
+body {
+    background-color: papayawhip;
+  }
+  
+  .postDiv {
+    background-color: whitesmoke;
+    border: 2px black solid;
+    font-size: 1.2rem;
+    width: 25rem;
+    padding: 180px;
+    margin-left: 5rem;
+    display: block;
+  }
+    
