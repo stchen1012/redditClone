@@ -44,10 +44,9 @@ function Post(postId, postTitle, postDescription, postUser) {
 
 // signup
 function signUpUser(){
-
-    let email = "";
-    let username = "";
-    let password = "";
+    let userEmail = document.getElementById('inputEmail').value;
+    let userInputName = document.getElementById('inputUsername').value;
+    let userPassword = document.getElementById('inputPassword').value;
 
         fetch("http://thesi.generalassemb.ly:8080/signup", {
            method: 'post',
@@ -56,9 +55,9 @@ function signUpUser(){
             'Content-Type': 'application/json'
         },
            body: JSON.stringify({
-               email: "mcnugget@mcnugget.com",
-               username: "mcnugget",
-               password: "mcnugget",
+               email: userEmail,
+               username: userInputName,
+               password: userPassword,
            })
        })
            .then((response )=> {
@@ -66,9 +65,10 @@ function signUpUser(){
            })
            .then((json) =>{
                console.log(json);
+               alert("Sign in Successful");
            })
            .catch(function(error){
-               alert("Please Try Again");
+               alert("User Failed To Sign");
            })
 }
 
