@@ -31,7 +31,7 @@ function handleResponse(response) {
         console.log(postObject);
         let newPost = document.createElement('div');
         newPost.setAttribute('class', 'postDiv');
-        newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2> Description: ${postObject.postDescription} <br> <h4 id="usernamePost">Username: ${postObject.postUser}</h4>`
+        newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2>, Post Description: ${postObject.postDescription}, User: ${postObject.postUser}`
         postDiv.appendChild(newPost);
     }
 }
@@ -66,25 +66,39 @@ function onUsernameClick(event) {
     //   .catch((err) => {
     //     console.log(err);
     //   })
+
+//Attempt to get the element using document.getElementById
+var loginForm = document.querySelector('.form-login');
+var signupForm = document.querySelector('.form-signup');
+ 
+//If it isn't "undefined" and it isn't "null", then it exists.
+if(typeof(loginForm) != 'undefined' && loginForm != null){
+    loginForm.addEventListener('submit', loginUser);
+    console.log('login page');
+} else if(typeof(signupForm) != 'undefined' && signupForm != null) {
+    document.querySelector('.form-signup').addEventListener('submit', signupUser);
+    console.log('signup page');
+} else {
+    console.log('none');
 }
 
+// login
+function loginUser(event){
+    event.preventDefault();
+    let logEmail = document.getElementById('inputEmail').value;
+    console.log(inputEmail);
+    let logPassword = document.getElementById('inputPassword').value;
+    console.log(inputPassword);
 
-// signup
-function signUpUser(){
-    let userEmail = document.getElementById('inputEmail').value;
-    let userInputName = document.getElementById('inputUsername').value;
-    let userPassword = document.getElementById('inputPassword').value;
-
-        fetch("http://thesi.generalassemb.ly:8080/signup", {
+        fetch("http://thesi.generalassemb.ly:8080/login", {
            method: 'post',
            headers:{
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
            body: JSON.stringify({
-               email: userEmail,
-               username: userInputName,
-               password: userPassword,
+               email: logEmail,
+               password: logPassword,
            })
        })
            .then((response )=> {
@@ -93,12 +107,24 @@ function signUpUser(){
            .then((json) =>{
                console.log(json);
                alert("Sign in Successful");
+               window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
            })
            .catch(function(error){
+               console.log(error);
                alert("User Failed To Sign");
            })
 }
 
+//  signup
+function signupUser(event){
+    console.log('signupUser called');
+    event.preventDefault();
+    let inputEmail = document.getElementById('inputEmail').value;
+    console.log(inputEmail);
+    let inputUsername = document.getElementById('inputUsername').value;
+    console.log(inputUsername);
+    let inputPassword = document.getElementById('inputPassword').value;
+    console.log(inputPassword);
 
 //  login
 // fetch("http://thesi.generalassemb.ly:8080/login", {
@@ -121,3 +147,28 @@ function signUpUser(){
 //            .catch(function(error){
 //                alert("Please Try Again");
 //            })
+        fetch("http://thesi.generalassemb.ly:8080/signup", {
+           method: 'post',
+           headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+           body: JSON.stringify({
+               email: inputEmail,
+               username: inputUsername,
+               password: inputPassword,
+           })
+       })
+           .then((response )=> {
+               return response.json();
+           })
+           .then((json) =>{
+               console.log(json);
+               alert("New User Created");
+               window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
+           })
+           .catch(function(error){
+               console.log(error);
+               alert("Failed To Create User");
+           })
+}
