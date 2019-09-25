@@ -16,6 +16,7 @@ function fetchPost(){
     .then((response) =>{
         console.log(response);
         handleResponse(response);
+        onUserClick();
     })
     .catch(function(error){
         console.log("Please Try Again");
@@ -44,12 +45,18 @@ function Post(postId, postTitle, postDescription, postUser) {
 }
 
 // list of user posts
-const usernameTextElement = document.querySelectorAll('h4');
-// const usernameTextElement = document.getElementById('usernamePost');
-console.log(usernameTextElement);
+function onUserClick() {
+    const usernameTextElement = document.querySelectorAll('h4');
+    console.log(document.querySelectorAll('h4'), 'entire query selector');
+    // const usernameTextElement = document.getElementById('usernamePost')
+    console.log(usernameTextElement, 'from variable name');
+    for (let i=0; i < usernameTextElement.length; i++) {
+        console.log(i);
+        usernameTextElement[i].addEventListener('click', onUsernameClick);
+    }
+}
 
 
-// usernameTextElement.addEventListener('click', onUsernameClick);
 
 function onUsernameClick(event) {
     //event.preventDefault();
