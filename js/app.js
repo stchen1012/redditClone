@@ -35,8 +35,8 @@ if (postButton && signOutButton) {
 
 document.addEventListener('DOMContentLoaded', function(e){
     fetchPost('');
-    if(localStorage == undefined){
-        loggedInUsername.innerHTML += ' Guest';
+    if(localStorage.username == undefined){
+        loggedInUsername.innerHTML = 'Hi Guest';
     } else {
     loggedInUsername.innerHTML = 'Hi ' + localStorage.username;
     }
@@ -160,7 +160,7 @@ function loginUser(event){
                 //    window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
                 //userLoggedIn = true;
                 sessionStorage.setItem("userLoginStatus", true);
-                localStorage.setItem('username', json.username);;
+                localStorage.setItem('username', json.username);
                 window.location.replace("index.html");
                 //document.getElementById('createPostButton').style.visibility != "hidden";
                 //    let loginButton = document.getElementById("loginButton");
@@ -231,6 +231,7 @@ function signUserOut(){
     console.log('sign User Out');
     sessionStorage.setItem("userLoginStatus", false);
     console.log(sessionStorage);
+    localStorage.clear();
     location.reload();
 }
 
