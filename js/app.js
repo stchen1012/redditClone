@@ -9,6 +9,8 @@ const postButton = document.getElementById('createPostButton');
 const signOutButton = document.getElementById('signOutButton');
 const signUpButton = document.getElementById('signupButton');
 
+let loggedInUsername = document.getElementById('usernameDisplay');
+
 
 
 if (postButton && signOutButton) {
@@ -33,6 +35,11 @@ if (postButton && signOutButton) {
 
 document.addEventListener('DOMContentLoaded', function(e){
     fetchPost('');
+    if(localStorage == undefined){
+        loggedInUsername.innerHTML += ' Guest';
+    } else {
+    loggedInUsername.innerHTML = 'Hi ' + localStorage.username;
+    }
 });
 
 // if(!isset($_SESSION['user'])) die('false');
@@ -153,6 +160,7 @@ function loginUser(event){
                 //    window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
                 //userLoggedIn = true;
                 sessionStorage.setItem("userLoginStatus", true);
+                localStorage.setItem('username', json.username);;
                 window.location.replace("index.html");
                 //document.getElementById('createPostButton').style.visibility != "hidden";
                 //    let loginButton = document.getElementById("loginButton");
@@ -168,6 +176,7 @@ function loginUser(event){
                alert("User Failed To Sign");
            })
 }
+
 
 
 //  signup
@@ -220,8 +229,8 @@ function signupUser(event){
 
 function signUserOut(){
     console.log('sign User Out');
-    // console.log("json.token   " + json.token);
     sessionStorage.setItem("userLoginStatus", false);
     console.log(sessionStorage);
     location.reload();
 }
+
