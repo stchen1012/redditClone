@@ -65,6 +65,9 @@ function handleResponse(response) {
         newPost.setAttribute('class', 'postDiv');
         newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2>, Post Description: ${postObject.postDescription}, <h4>User: ${postObject.postUser}</h4>`
         postDiv.appendChild(newPost);
+        let createCommentButton = document.createElement('button');
+        createCommentButton.innerHTML = "comment";
+        newPost.appendChild(createCommentButton);
     }
 }
 
