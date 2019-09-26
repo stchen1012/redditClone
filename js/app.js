@@ -4,15 +4,32 @@ let userLoggedInStatus;
 let userToken;
 let myStorage = window.localStorage;
 
+let userJWT;
+
+const loginButton = document.getElementById('loginButton');
+const postButton = document.getElementById('createPostButton');
+const signOutButton = document.getElementById('signOutButton');
+const signUpButton = document.getElementById('signupButton');
+
+let loggedInUsername = document.getElementById('usernameDisplay');
 
 
 
-if (document.getElementById('createPostButton')) {
-    if (sessionStorage.getItem("userLoginStatus") == null || false ) {
-        document.getElementById('createPostButton').style.visibility = "hidden";
+if (postButton && signOutButton) {
+    if (sessionStorage.getItem("userLoginStatus") ==  "false" ) {
+        console.log('user not logged in');
+        console.log(sessionStorage);
+        loginButton.style.visibility != "hidden";
+        postButton.style.visibility = "hidden";
+        signOutButton.style.visibility = "hidden";
+        signUpButton.style.visibility != "hidden";
     } else {
         console.log("logged in statement");
-        document.getElementById('createPostButton').style.visibility != "hidden";
+        console.log(sessionStorage);
+        loginButton.style.visibility = "hidden";
+        postButton.style.visibility != "hidden";
+        signOutButton.style.visibility != "hidden";
+        signUpButton.style.visibility = "hidden";
     }
 }
 
@@ -20,6 +37,11 @@ if (document.getElementById('createPostButton')) {
 
 document.addEventListener('DOMContentLoaded', function(e){
     fetchPost('');
+    if(localStorage == undefined){
+        loggedInUsername.innerHTML += ' Guest';
+    } else {
+    loggedInUsername.innerHTML = 'Hi ' + localStorage.username;
+    }
 });
 
 // if(!isset($_SESSION['user'])) die('false');
@@ -106,7 +128,6 @@ function onUsernameClick(event) {
 }
 
 
-//Attempt to get the element using document.getElementById
 var loginForm = document.querySelector('.form-login');
 var signupForm = document.querySelector('.form-signup');
  
@@ -150,15 +171,16 @@ function loginUser(event){
             //    sessionStorage.setItem('userToken', `${json.token}`);
             //    console.log(sessionStorage.getItem(userToken));
             //    console.log("this is the sessionStorage" + sessionStorage.getItem(userToken));
-               if (json.httpStatus != "BAD_REQUEST") {
+               if(json.httpStatus != "BAD_REQUEST"){
                 alert("Sign in Successful");
                 //    window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
                 //userLoggedIn = true;
                 sessionStorage.setItem("userLoginStatus", true);
-                
+                localStorage.setItem('username', json.username);;
                 window.location.replace("index.html");
                } else {
                    alert("Please try again. Your username or password may be incorrect")
+                   location.reload();
                }
            })
            .catch(function(error){
@@ -169,6 +191,7 @@ function loginUser(event){
 }
 
 console.log(userToken = localStorage.getItem(`${userToken}`))
+
 
 
 //  signup
@@ -198,12 +221,21 @@ function signupUser(event){
                return response.json();
                
            })
-           .then((json) =>{
-               console.log(json);
-               alert("New User Created");
-            //    window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
-            window.location.replace("index.html");
-           })
+           .then(function(json){
+            console.log(json);
+            if(json.httpStatus != "BAD_REQUEST"){
+             alert("New User Created");
+             //    window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
+             window.location.replace("index.html");
+             userLoggedIn = true;
+             //document.getElementById('createPostButton').style.visibility != "hidden";
+             //    let loginButton = document.getElementById("loginButton");
+             //    loginButton.innerHTML = "Sign Out"
+            } else {
+                alert("Failed To Create User")
+                location.reload();
+            }
+        })
            .catch(function(error){
                console.log(error);
                alert("Failed To Create User");
@@ -259,3 +291,12 @@ function onCreatePostClick(event) {
                alert("Failed to create post");
            })
 }
+}
+
+function signUserOut(){
+    console.log('sign User Out');
+    sessionStorage.setItem("userLoginStatus", false);
+    console.log(sessionStorage);
+    location.reload();
+}
+
