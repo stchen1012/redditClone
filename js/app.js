@@ -1,7 +1,9 @@
 console.log('hello world');
-//let userLoggedIn = false;
 let userLoggedInStatus;
 //console.log(userLoggedIn);
+let userToken;
+let myStorage = window.localStorage;
+
 
 
 
@@ -62,7 +64,6 @@ function Post(postId, postTitle, postDescription, postUser) {
 }
 
 // list of user posts
-<<<<<<< HEAD
 const usernameTextElement = document.getElementsByTagName('h4');
 console.log(usernameTextElement);
 // usernameTextElement.setAttribute('onclick', 'you got username');
@@ -72,7 +73,6 @@ for(let i = 0; i < usernameTextElement.length; i++){
     console.log(usernameTextElement.innerHTML);
 }
 // const usernameTextElement = document.getElementById('usernamePost');
-=======
 function onUserClick() {
     const usernameTextElement = document.querySelectorAll('h4');
     console.log(document.querySelectorAll('h4'), 'entire query selector');
@@ -83,7 +83,6 @@ function onUserClick() {
         usernameTextElement[i].addEventListener('click', onUsernameClick);
     }
 }
->>>>>>> 52e04fb11cdb4161b19d183b106932b1af5b48d5
 
 
 
@@ -145,25 +144,22 @@ function loginUser(event){
                return response.json();
            })
            .then(function(json){
-               console.log(json);
-<<<<<<< HEAD
-               console.log(json.httpStatus);
-               alert("Sign in Successful");
-               window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
-=======
+               //console.log(json);
+               localStorage.setItem(userToken, json.token);
+               console.log(userToken = localStorage.getItem(`${userToken}`));
+            //    sessionStorage.setItem('userToken', `${json.token}`);
+            //    console.log(sessionStorage.getItem(userToken));
+            //    console.log("this is the sessionStorage" + sessionStorage.getItem(userToken));
                if (json.httpStatus != "BAD_REQUEST") {
                 alert("Sign in Successful");
                 //    window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
                 //userLoggedIn = true;
                 sessionStorage.setItem("userLoginStatus", true);
+                
                 window.location.replace("index.html");
-                //document.getElementById('createPostButton').style.visibility != "hidden";
-                //    let loginButton = document.getElementById("loginButton");
-                //    loginButton.innerHTML = "Sign Out"
                } else {
                    alert("Please try again. Your username or password may be incorrect")
                }
->>>>>>> 52e04fb11cdb4161b19d183b106932b1af5b48d5
            })
            .catch(function(error){
                console.log('.catch')
@@ -171,6 +167,8 @@ function loginUser(event){
                alert("User Failed To Sign");
            })
 }
+
+console.log(userToken = localStorage.getItem(`${userToken}`))
 
 
 //  signup
@@ -209,5 +207,55 @@ function signupUser(event){
            .catch(function(error){
                console.log(error);
                alert("Failed To Create User");
+           })
+
+}
+
+let postButtonOnHomePage = document.getElementById('createPostButton');
+
+//create Post
+postButtonOnHomePage.addEventListener('click', onPostButtonClick);
+
+function onPostButtonClick(event) {
+    event.preventDefault();
+    window.location.replace('createPost.html')
+}
+
+let titleOfPost = document.getElementById('titleOfPost');
+let descriptionOfPost = document.getElementById('descriptionOfPost');
+let createPostButton = document.getElementById('createPostButton');
+
+createPostButton.addEventListener('click', onCreatePostClick);
+
+
+function onCreatePostClick(event) {
+    event.preventDefault();
+    console.log(titleOfPost.value);
+    userToken = localStorage.getItem(`${userToken}`);
+    console.log("THIS IS THE USERTOKEN" + userToken);
+    fetch("http://thesi.generalassemb.ly:8080/post", {
+           method: 'POST',
+           headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + userToken,
+        },
+           body: JSON.stringify({
+               title: titleOfPost.value,
+               description: descriptionOfPost.value,
+           })
+       })
+           .then((response )=> {
+                return response.json();
+           })
+           .then((response ) =>{
+               //console.log(json);
+               console.log(response);
+               alert("Post created!");
+               window.location.replace("index.html");
+           })
+           .catch(function(error){
+               console.log(error);
+               alert("Failed to create post");
            })
 }
