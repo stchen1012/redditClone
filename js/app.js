@@ -1,4 +1,17 @@
 console.log('hello world');
+let userLoggedIn = false;
+console.log(userLoggedIn)
+
+if (document.getElementById('createPostButton')) {
+    if (userLoggedIn == false ) {
+        console.log("if statement");
+        document.getElementById('createPostButton').style.visibility = "hidden";
+    } else {
+        document.getElementById('createPostButton').style.display != "none";
+    }
+}
+
+
 
 document.addEventListener('DOMContentLoaded', function(e){
     fetchPost('');
@@ -17,6 +30,7 @@ function fetchPost(){
     .then((response) =>{
         console.log(response);
         handleResponse(response);
+        //onUserClick();
     })
     .catch(function(error){
         console.log("Please Try Again");
@@ -45,6 +59,7 @@ function Post(postId, postTitle, postDescription, postUser) {
 }
 
 // list of user posts
+<<<<<<< HEAD
 const usernameTextElement = document.getElementsByTagName('h4');
 console.log(usernameTextElement);
 // usernameTextElement.setAttribute('onclick', 'you got username');
@@ -54,15 +69,27 @@ for(let i = 0; i < usernameTextElement.length; i++){
     console.log(usernameTextElement.innerHTML);
 }
 // const usernameTextElement = document.getElementById('usernamePost');
+=======
+function onUserClick() {
+    const usernameTextElement = document.querySelectorAll('h4');
+    console.log(document.querySelectorAll('h4'), 'entire query selector');
+    // const usernameTextElement = document.getElementById('usernamePost')
+    console.log(usernameTextElement, 'from variable name');
+    for (let i=0; i < usernameTextElement.length; i++) {
+        console.log(i);
+        usernameTextElement[i].addEventListener('click', onUsernameClick);
+    }
+}
+>>>>>>> 52e04fb11cdb4161b19d183b106932b1af5b48d5
 
 
-// usernameTextElement.addEventListener('click', onUsernameClick);
 
 function onUsernameClick(event) {
     //event.preventDefault();
     console.log('click');
     //let userId = document.getElementById('usernamePost').value;
     //need to retrieve the generated token from password creation
+    //does the backend expect the bearer token is stored in cookie or in post body
     // fetch(`http://thesi.generalassemb.ly:8080/user/post`)
     // .then((response) => {
     //     return response.json();
@@ -116,9 +143,23 @@ function loginUser(event){
            })
            .then(function(json){
                console.log(json);
+<<<<<<< HEAD
                console.log(json.httpStatus);
                alert("Sign in Successful");
                window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
+=======
+               if (json.httpStatus != "BAD_REQUEST") {
+                alert("Sign in Successful");
+                //    window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
+                window.location.replace("index.html");
+                userLoggedIn = true;
+                //document.getElementById('createPostButton').style.visibility != "hidden";
+                //    let loginButton = document.getElementById("loginButton");
+                //    loginButton.innerHTML = "Sign Out"
+               } else {
+                   alert("Please try again. Your username or password may be incorrect")
+               }
+>>>>>>> 52e04fb11cdb4161b19d183b106932b1af5b48d5
            })
            .catch(function(error){
                console.log('.catch')
@@ -126,6 +167,7 @@ function loginUser(event){
                alert("User Failed To Sign");
            })
 }
+
 
 //  signup
 function signupUser(event){
@@ -152,11 +194,13 @@ function signupUser(event){
        })
            .then((response )=> {
                return response.json();
+               
            })
            .then((json) =>{
                console.log(json);
                alert("New User Created");
-               window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
+            //    window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
+            window.location.replace("index.html");
            })
            .catch(function(error){
                console.log(error);
