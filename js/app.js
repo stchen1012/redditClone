@@ -1,5 +1,7 @@
 console.log('hello world');
 
+//document.getElementById('createPostButton').style.visibility = "hidden";
+
 document.addEventListener('DOMContentLoaded', function(e){
     fetchPost('');
 });
@@ -63,6 +65,7 @@ function onUsernameClick(event) {
     console.log('click');
     //let userId = document.getElementById('usernamePost').value;
     //need to retrieve the generated token from password creation
+    //does the backend expect the bearer token is stored in cookie or in post body
     // fetch(`http://thesi.generalassemb.ly:8080/user/post`)
     // .then((response) => {
     //     return response.json();
@@ -116,14 +119,23 @@ function loginUser(event){
            })
            .then((json) =>{
                console.log(json);
-               alert("Sign in Successful");
-               window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
+               if (json.httpStatus != "BAD_REQUEST") {
+                alert("Sign in Successful");
+                //    window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
+                window.location.replace("index.html");
+                //document.getElementById('createPostButton').style.visibility != "hidden";
+                //    let loginButton = document.getElementById("loginButton");
+                //    loginButton.innerHTML = "Sign Out"
+               } else {
+                   alert("Please try again. Your username or password may be incorrect")
+               }
            })
            .catch(function(error){
                console.log(error);
                alert("User Failed To Sign");
            })
 }
+
 
 //  signup
 function signupUser(event){
@@ -150,11 +162,13 @@ function signupUser(event){
        })
            .then((response )=> {
                return response.json();
+               
            })
            .then((json) =>{
                console.log(json);
                alert("New User Created");
-               window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
+            //    window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
+            window.location.replace("index.html");
            })
            .catch(function(error){
                console.log(error);
