@@ -1,13 +1,16 @@
 console.log('hello world');
-let userLoggedIn = false;
-console.log(userLoggedIn)
+//let userLoggedIn = false;
+let userLoggedInStatus;
+//console.log(userLoggedIn);
+
+
 
 if (document.getElementById('createPostButton')) {
-    if (userLoggedIn == false ) {
-        console.log("if statement");
+    if (sessionStorage.getItem("userLoginStatus") == null || false ) {
         document.getElementById('createPostButton').style.visibility = "hidden";
     } else {
-        document.getElementById('createPostButton').style.display != "none";
+        console.log("logged in statement");
+        document.getElementById('createPostButton').style.visibility != "hidden";
     }
 }
 
@@ -133,8 +136,9 @@ function loginUser(event){
                if (json.httpStatus != "BAD_REQUEST") {
                 alert("Sign in Successful");
                 //    window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
+                //userLoggedIn = true;
+                sessionStorage.setItem("userLoginStatus", true);
                 window.location.replace("index.html");
-                userLoggedIn = true;
                 //document.getElementById('createPostButton').style.visibility != "hidden";
                 //    let loginButton = document.getElementById("loginButton");
                 //    loginButton.innerHTML = "Sign Out"
