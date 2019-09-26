@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function(e){
     fetchPost('');
 });
 
+// if(!isset($_SESSION['user'])) die('false');
 
 //  get all post
 function fetchPost(){
@@ -48,7 +49,7 @@ function handleResponse(response) {
         console.log(postObject);
         let newPost = document.createElement('div');
         newPost.setAttribute('class', 'postDiv');
-        newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2>, Post Description: ${postObject.postDescription}, <h4 id="usernamePost">User: ${postObject.postUser}</h4>`
+        newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2>, Post Description: ${postObject.postDescription}, <h4>User: ${postObject.postUser}</h4>`
         postDiv.appendChild(newPost);
     }
 }
@@ -61,6 +62,17 @@ function Post(postId, postTitle, postDescription, postUser) {
 }
 
 // list of user posts
+<<<<<<< HEAD
+const usernameTextElement = document.getElementsByTagName('h4');
+console.log(usernameTextElement);
+// usernameTextElement.setAttribute('onclick', 'you got username');
+
+for(let i = 0; i < usernameTextElement.length; i++){
+    console.log('start loop');
+    console.log(usernameTextElement.innerHTML);
+}
+// const usernameTextElement = document.getElementById('usernamePost');
+=======
 function onUserClick() {
     const usernameTextElement = document.querySelectorAll('h4');
     console.log(document.querySelectorAll('h4'), 'entire query selector');
@@ -71,6 +83,7 @@ function onUserClick() {
         usernameTextElement[i].addEventListener('click', onUsernameClick);
     }
 }
+>>>>>>> 52e04fb11cdb4161b19d183b106932b1af5b48d5
 
 
 
@@ -128,11 +141,16 @@ function loginUser(event){
                password: logPassword,
            })
        })
-           .then((response )=> {
+           .then((response)=> {
                return response.json();
            })
-           .then((json) =>{
+           .then(function(json){
                console.log(json);
+<<<<<<< HEAD
+               console.log(json.httpStatus);
+               alert("Sign in Successful");
+               window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
+=======
                if (json.httpStatus != "BAD_REQUEST") {
                 alert("Sign in Successful");
                 //    window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
@@ -145,8 +163,10 @@ function loginUser(event){
                } else {
                    alert("Please try again. Your username or password may be incorrect")
                }
+>>>>>>> 52e04fb11cdb4161b19d183b106932b1af5b48d5
            })
            .catch(function(error){
+               console.log('.catch')
                console.log(error);
                alert("User Failed To Sign");
            })
