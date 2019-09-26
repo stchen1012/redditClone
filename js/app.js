@@ -75,6 +75,7 @@ function handleResponse(response) {
         newPost.setAttribute('class', 'postDiv');
         newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2>, Post Description: ${postObject.postDescription}, <h4>User: ${postObject.postUser}</h4>`
         postDiv.appendChild(newPost);
+        
     }
 }
 
@@ -246,7 +247,7 @@ function signupUser(event){
 let postButtonOnHomePage = document.getElementById('createPostButton');
 
 //create Post
-postButtonOnHomePage.addEventListener('click', onPostButtonClick);
+// postButtonOnHomePage.addEventListener('click', onPostButtonClick);
 
 function onPostButtonClick(event) {
     event.preventDefault();
@@ -257,7 +258,7 @@ let titleOfPost = document.getElementById('titleOfPost');
 let descriptionOfPost = document.getElementById('descriptionOfPost');
 let createPostButton = document.getElementById('createPostButton');
 
-createPostButton.addEventListener('click', onCreatePostClick);
+// createPostButton.addEventListener('click', onCreatePostClick);
 
 
 function onCreatePostClick(event) {
@@ -290,6 +291,10 @@ function onCreatePostClick(event) {
                console.log(error);
                alert("Failed to create post");
            })
+}
+
+function loadUserPost(){
+    
 }
 
 function signUserOut(){
