@@ -59,17 +59,6 @@ function Post(postId, postTitle, postDescription, postUser) {
 }
 
 // list of user posts
-<<<<<<< HEAD
-const usernameTextElement = document.getElementsByTagName('h4');
-console.log(usernameTextElement);
-// usernameTextElement.setAttribute('onclick', 'you got username');
-
-for(let i = 0; i < usernameTextElement.length; i++){
-    console.log('start loop');
-    console.log(usernameTextElement.innerHTML);
-}
-// const usernameTextElement = document.getElementById('usernamePost');
-=======
 function onUserClick() {
     const usernameTextElement = document.querySelectorAll('h4');
     console.log(document.querySelectorAll('h4'), 'entire query selector');
@@ -80,7 +69,6 @@ function onUserClick() {
         usernameTextElement[i].addEventListener('click', onUsernameClick);
     }
 }
->>>>>>> 52e04fb11cdb4161b19d183b106932b1af5b48d5
 
 
 
@@ -143,12 +131,7 @@ function loginUser(event){
            })
            .then(function(json){
                console.log(json);
-<<<<<<< HEAD
-               console.log(json.httpStatus);
-               alert("Sign in Successful");
-               window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
-=======
-               if (json.httpStatus != "BAD_REQUEST") {
+               if(json.httpStatus != "BAD_REQUEST"){
                 alert("Sign in Successful");
                 //    window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
                 window.location.replace("index.html");
@@ -158,8 +141,8 @@ function loginUser(event){
                 //    loginButton.innerHTML = "Sign Out"
                } else {
                    alert("Please try again. Your username or password may be incorrect")
+                   location.reload();
                }
->>>>>>> 52e04fb11cdb4161b19d183b106932b1af5b48d5
            })
            .catch(function(error){
                console.log('.catch')
@@ -196,12 +179,21 @@ function signupUser(event){
                return response.json();
                
            })
-           .then((json) =>{
-               console.log(json);
-               alert("New User Created");
-            //    window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
-            window.location.replace("index.html");
-           })
+           .then(function(json){
+            console.log(json);
+            if(json.httpStatus != "BAD_REQUEST"){
+             alert("New User Created");
+             //    window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
+             window.location.replace("index.html");
+             userLoggedIn = true;
+             //document.getElementById('createPostButton').style.visibility != "hidden";
+             //    let loginButton = document.getElementById("loginButton");
+             //    loginButton.innerHTML = "Sign Out"
+            } else {
+                alert("Failed To Create User")
+                location.reload();
+            }
+        })
            .catch(function(error){
                console.log(error);
                alert("Failed To Create User");
