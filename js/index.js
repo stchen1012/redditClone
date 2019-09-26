@@ -7,6 +7,7 @@ let loggedInUsername = document.getElementById('usernameDisplay');
 
 
 
+
 if (postButton && signOutButton) {
     if (sessionStorage.getItem("userLoginStatus") ==  "false" ) {
         console.log('user not logged in');
