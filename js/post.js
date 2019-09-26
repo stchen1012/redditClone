@@ -23,10 +23,11 @@ createPostButton.addEventListener('click', (event) => {
     }).then(function(json){
         console.log(json);
         if(json.httpStatus != "BAD_REQUEST"){
+            alert("Post created!")
             window.location.replace("index.html");
         }
         else{
-            //error msg
+            alert("Post not created")
         }
     }).catch(function(error){
             console.error(error, "error message");

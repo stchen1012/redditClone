@@ -54,9 +54,12 @@ function fetchPost(){
 const postDiv = document.getElementById('postDiv');
 
 function handleResponse(response) {
-    for (let i =0; i < 11; i++) {
-        let postObject = new Post(response[i].id, response[i].title, response[i].description, response[i].user.username);
+    let reverseArray = response.reverse();
+    console.log(reverseArray);
+    for (let i =0; i < 20; i++) {
+        //let postObject = new Post(response[i].id, response[i].title, response[i].description, response[i].user.username);
         // console.log(postObject);
+        let postObject = new Post(reverseArray[i].id, reverseArray[i].title, reverseArray[i].description, reverseArray[i].user.username);
         let newPost = document.createElement('div');
         newPost.setAttribute('class', 'postDiv');
         newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2>, Post Description: ${postObject.postDescription}, <h4>User: ${postObject.postUser}</h4>`
