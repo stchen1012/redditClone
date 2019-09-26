@@ -1,3 +1,30 @@
+const loginButton = document.getElementById('loginButton');
+const postButton = document.getElementById('createPostButton');
+const signOutButton = document.getElementById('signOutButton');
+const signUpButton = document.getElementById('signupButton');
+
+let loggedInUsername = document.getElementById('usernameDisplay');
+
+
+
+if (postButton && signOutButton) {
+    if (sessionStorage.getItem("userLoginStatus") ==  "false" ) {
+        console.log('user not logged in');
+        console.log(sessionStorage);
+        loginButton.style.visibility != "hidden";
+        postButton.style.visibility = "hidden";
+        signOutButton.style.visibility = "hidden";
+        signUpButton.style.visibility != "hidden";
+    } else {
+        console.log("logged in statement");
+        console.log(sessionStorage);
+        loginButton.style.visibility = "hidden";
+        postButton.style.visibility != "hidden";
+        signOutButton.style.visibility != "hidden";
+        signUpButton.style.visibility = "hidden";
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function(e){
     fetchPost('');
     if(localStorage.username == undefined){
@@ -42,4 +69,13 @@ function Post(postId, postTitle, postDescription, postUser) {
     this.postTitle = postTitle;
     this.postDescription = postDescription;
     this.postUser = postUser;
+}
+
+//signOut
+function signUserOut(){
+    console.log('sign User Out');
+    sessionStorage.setItem("userLoginStatus", false);
+    console.log(sessionStorage);
+    localStorage.clear();
+    location.reload();
 }
