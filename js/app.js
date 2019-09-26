@@ -1,6 +1,4 @@
-console.log('hello world');
 let userLoggedInStatus;
-//console.log(userLoggedIn);
 let userToken;
 let myStorage = window.localStorage;
 
@@ -60,7 +58,7 @@ function fetchPost(){
         //onUserClick();
     })
     .catch(function(error){
-        console.log("Please Try Again");
+        // console.log("Please Try Again");
     })
 }
 
@@ -70,7 +68,7 @@ const postDiv = document.getElementById('postDiv');
 function handleResponse(response) {
     for (let i =0; i < 11; i++) {
         let postObject = new Post(response[i].id, response[i].title, response[i].description, response[i].user.username);
-        console.log(postObject);
+        // console.log(postObject);
         let newPost = document.createElement('div');
         newPost.setAttribute('class', 'postDiv');
         newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2>, Post Description: ${postObject.postDescription}, <h4>User: ${postObject.postUser}</h4>`
@@ -88,7 +86,7 @@ function Post(postId, postTitle, postDescription, postUser) {
 
 // list of user posts
 const usernameTextElement = document.getElementsByTagName('h4');
-console.log(usernameTextElement);
+// console.log(usernameTextElement);
 // usernameTextElement.setAttribute('onclick', 'you got username');
 
 for(let i = 0; i < usernameTextElement.length; i++){
@@ -140,7 +138,7 @@ if(typeof(loginForm) != 'undefined' && loginForm != null){
     document.querySelector('.form-signup').addEventListener('submit', signupUser);
     console.log('signup page');
 } else {
-    console.log('none');
+    // console.log('none');
 }
 
 // login
@@ -166,8 +164,8 @@ function loginUser(event){
                return response.json();
            })
            .then(function(json){
-               //console.log(json);
-               localStorage.setItem(userToken, json.token);
+               console.log(json);
+               localStorage.setItem("userToken", json.token);
                console.log(userToken = localStorage.getItem(`${userToken}`));
             //    sessionStorage.setItem('userToken', `${json.token}`);
             //    console.log(sessionStorage.getItem(userToken));
@@ -191,7 +189,7 @@ function loginUser(event){
            })
 }
 
-console.log(userToken = localStorage.getItem(`${userToken}`))
+// console.log(userToken = localStorage.getItem(`${userToken}`))
 
 
 
@@ -249,41 +247,104 @@ let postButtonOnHomePage = document.getElementById('createPostButton');
 //create Post
 // postButtonOnHomePage.addEventListener('click', onPostButtonClick);
 
-function onPostButtonClick(event) {
-    event.preventDefault();
-    window.location.replace('createPost.html')
-}
+if(postButtonOnHomePage!=null){
+    postButtonOnHomePage.addEventListener('click', onPostButtonClick);
 
-let titleOfPost = document.getElementById('titleOfPost');
-let descriptionOfPost = document.getElementById('descriptionOfPost');
-let createPostButton = document.getElementById('createPostButton');
+    function onPostButtonClick(event) {
+        event.preventDefault();
+        window.location.replace('createPost.html')
+    }
+
+}
 
 // createPostButton.addEventListener('click', onCreatePostClick);
 
+let createPostButton = document.getElementById('createPostButton');
 
-function onCreatePostClick(event) {
+createPostButton.addEventListener('click', (event) => {
     event.preventDefault();
-    console.log(titleOfPost.value);
+    let titleOfPost = document.getElementById('titleOfPost').value;
+    console.log(titleOfPost);
+    let descriptionOfPost = document.getElementById('descriptionOfPost').value;
+    console.log(descriptionOfPost);
     userToken = localStorage.getItem(`${userToken}`);
     console.log("THIS IS THE USERTOKEN" + userToken);
+
+    // fetch("http://thesi.generalassemb.ly:8080/post", {
+    //        method: 'post',
+    //        headers:{
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json',
+    //         'Authorization': `Bearer ${userToken}`
+    //     },
+    //        body: JSON.stringify({
+    //            title: titleOfPost,
+    //            description: descriptionOfPost,
+    //        })
+    // }).then((response )=> {
+    //     console.log('first then');
+    //     return response.json();    
+    // }).then(function(json){
+    //     console.log(json);
+    //     // window.location.replace("index.html");
+    // }).catch(function(error){
+    //         console.error(error, "error message");
+    // })
+})
+
+// async function onCreatePostClick(){
+//     event.preventDefault();
+//     //console.log(titleOfPost.value);
+//     let titleOfPost = document.getElementById('titleOfPost').value;
+//     console.log(titleOfPost);
+//     let descriptionOfPost = document.getElementById('descriptionOfPost').value;
+//     console.log(descriptionOfPost);
+//     userToken = localStorage.getItem(`${userToken}`);
+//     console.log("THIS IS THE USERTOKEN" + userToken);
+
+//     // try {
+//         const res = await fetch("http://thesi.generalassemb.ly:8080/post", {
+//             method: 'post',
+//             headers:{
+//              'Accept': 'application/json',
+//              'Content-Type': 'application/json',
+//              // 'Authorization': "Bearer " + userToken,
+//              'Authorization': `Bearer ${userToken}`
+//          },
+//             body: JSON.stringify({
+//                 title: titleOfPost,
+//                 description: descriptionOfPost,
+//             })
+//         })
+//         console.log(res.json());
+//         console.log('thing');
+//         alert("Post created!");
+//      window.location.replace("index.html");
+//     // } catch(e) {
+//         // console.error(e);
+//         // alert("Post not created");
+//     // }
+// }
+
+           /*
     fetch("http://thesi.generalassemb.ly:8080/post", {
            method: 'POST',
            headers:{
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': "Bearer " + userToken,
+            'Authorization': "Bearer " + userToken
         },
            body: JSON.stringify({
-               title: titleOfPost.value,
-               description: descriptionOfPost.value,
+               title: titleOfPost,
+               description: descriptionOfPost,
            })
        })
            .then((response )=> {
                 return response.json();
            })
-           .then((response ) =>{
+           .then(function(json){
                //console.log(json);
-               console.log(response);
+               //console.log(response);
                alert("Post created!");
                window.location.replace("index.html");
            })
@@ -292,6 +353,7 @@ function onCreatePostClick(event) {
                alert("Failed to create post");
            })
 }
+*/
 
 function loadUserPost(){
     
