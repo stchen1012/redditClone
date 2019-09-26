@@ -73,6 +73,7 @@ function handleResponse(response) {
         newPost.setAttribute('class', 'postDiv');
         newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2>, Post Description: ${postObject.postDescription}, <h4>User: ${postObject.postUser}</h4>`
         postDiv.appendChild(newPost);
+        
     }
 }
 
@@ -244,6 +245,7 @@ function signupUser(event){
 let postButtonOnHomePage = document.getElementById('createPostButton');
 
 //create Post
+// postButtonOnHomePage.addEventListener('click', onPostButtonClick);
 
 if(postButtonOnHomePage!=null){
     postButtonOnHomePage.addEventListener('click', onPostButtonClick);
@@ -255,6 +257,7 @@ if(postButtonOnHomePage!=null){
 
 }
 
+// createPostButton.addEventListener('click', onCreatePostClick);
 
 let createPostButton = document.getElementById('createPostButton');
 
@@ -351,6 +354,10 @@ createPostButton.addEventListener('click', (event) => {
            })
 }
 */
+
+function loadUserPost(){
+    
+}
 
 function signUserOut(){
     console.log('sign User Out');
