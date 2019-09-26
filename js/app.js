@@ -1,5 +1,4 @@
 let userLoggedInStatus;
-//console.log(userLoggedIn);
 let userToken;
 let myStorage = window.localStorage;
 
@@ -164,8 +163,8 @@ function loginUser(event){
                return response.json();
            })
            .then(function(json){
-               //console.log(json);
-               localStorage.setItem(userToken, json.token);
+               console.log(json);
+               localStorage.setItem("userToken", json.token);
                console.log(userToken = localStorage.getItem(`${userToken}`));
             //    sessionStorage.setItem('userToken', `${json.token}`);
             //    console.log(sessionStorage.getItem(userToken));
@@ -245,20 +244,52 @@ function signupUser(event){
 let postButtonOnHomePage = document.getElementById('createPostButton');
 
 //create Post
-postButtonOnHomePage.addEventListener('click', onPostButtonClick);
 
-function onPostButtonClick(event) {
-    event.preventDefault();
-    window.location.replace('createPost.html')
+if(postButtonOnHomePage!=null){
+    postButtonOnHomePage.addEventListener('click', onPostButtonClick);
+
+    function onPostButtonClick(event) {
+        event.preventDefault();
+        window.location.replace('createPost.html')
+    }
+
 }
 
 
 let createPostButton = document.getElementById('createPostButton');
 
-createPostButton.addEventListener('click', onCreatePostClick);
+createPostButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    let titleOfPost = document.getElementById('titleOfPost').value;
+    console.log(titleOfPost);
+    let descriptionOfPost = document.getElementById('descriptionOfPost').value;
+    console.log(descriptionOfPost);
+    userToken = localStorage.getItem(`${userToken}`);
+    console.log("THIS IS THE USERTOKEN" + userToken);
 
+    // fetch("http://thesi.generalassemb.ly:8080/post", {
+    //        method: 'post',
+    //        headers:{
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json',
+    //         'Authorization': `Bearer ${userToken}`
+    //     },
+    //        body: JSON.stringify({
+    //            title: titleOfPost,
+    //            description: descriptionOfPost,
+    //        })
+    // }).then((response )=> {
+    //     console.log('first then');
+    //     return response.json();    
+    // }).then(function(json){
+    //     console.log(json);
+    //     // window.location.replace("index.html");
+    // }).catch(function(error){
+    //         console.error(error, "error message");
+    // })
+})
 
-// function onCreatePostClick(event) {
+// async function onCreatePostClick(){
 //     event.preventDefault();
 //     //console.log(titleOfPost.value);
 //     let titleOfPost = document.getElementById('titleOfPost').value;
@@ -268,67 +299,29 @@ createPostButton.addEventListener('click', onCreatePostClick);
 //     userToken = localStorage.getItem(`${userToken}`);
 //     console.log("THIS IS THE USERTOKEN" + userToken);
 
-//     fetch("http://thesi.generalassemb.ly:8080/post", {
-//            method: 'post',
-//            headers:{
-//             'Accept': 'application/json',
-//             'Content-Type': 'application/json',
-//             // 'Authorization': "Bearer " + userToken,
-//             'Authorization': `Bearer ${userToken}`
-//         },
-//            body: JSON.stringify({
-//                title: titleOfPost,
-//                description: descriptionOfPost,
-//            })
-//        })
-//            .then((response )=> {
-//                return response.json();
-               
-//            })
-//            .then(function(json){
-//             console.log(json);
-//             alert("Post created!");
-//             window.location.replace("index.html");
+//     // try {
+//         const res = await fetch("http://thesi.generalassemb.ly:8080/post", {
+//             method: 'post',
+//             headers:{
+//              'Accept': 'application/json',
+//              'Content-Type': 'application/json',
+//              // 'Authorization': "Bearer " + userToken,
+//              'Authorization': `Bearer ${userToken}`
+//          },
+//             body: JSON.stringify({
+//                 title: titleOfPost,
+//                 description: descriptionOfPost,
+//             })
 //         })
-//            .catch(function(error){
-//                console.error(error, "error message");
-//                alert("Failed to create post");
-//            })
-//         }
-
-async function onCreatePostClick(){
-    event.preventDefault();
-    //console.log(titleOfPost.value);
-    let titleOfPost = document.getElementById('titleOfPost').value;
-    console.log(titleOfPost);
-    let descriptionOfPost = document.getElementById('descriptionOfPost').value;
-    console.log(descriptionOfPost);
-    userToken = localStorage.getItem(`${userToken}`);
-    console.log("THIS IS THE USERTOKEN" + userToken);
-
-    // try {
-        const res = await fetch("http://thesi.generalassemb.ly:8080/post", {
-            method: 'post',
-            headers:{
-             'Accept': 'application/json',
-             'Content-Type': 'application/json',
-             // 'Authorization': "Bearer " + userToken,
-             'Authorization': `Bearer ${userToken}`
-         },
-            body: JSON.stringify({
-                title: titleOfPost,
-                description: descriptionOfPost,
-            })
-        })
-        console.log(res.json());
-        console.log('thing');
-        alert("Post created!");
-     window.location.replace("index.html");
-    // } catch(e) {
-        // console.error(e);
-        // alert("Post not created");
-    // }
-}
+//         console.log(res.json());
+//         console.log('thing');
+//         alert("Post created!");
+//      window.location.replace("index.html");
+//     // } catch(e) {
+//         // console.error(e);
+//         // alert("Post not created");
+//     // }
+// }
 
            /*
     fetch("http://thesi.generalassemb.ly:8080/post", {
@@ -357,10 +350,7 @@ async function onCreatePostClick(){
                alert("Failed to create post");
            })
 }
-<<<<<<< HEAD
 */
-=======
->>>>>>> 43069f7d51fb4859aa8f9530139ed3f58722458d
 
 function signUserOut(){
     console.log('sign User Out');
