@@ -36,8 +36,8 @@ if (postButton && signOutButton) {
 
 document.addEventListener('DOMContentLoaded', function(e){
     fetchPost('');
-    if(localStorage == undefined){
-        loggedInUsername.innerHTML += ' Guest';
+    if(localStorage.username == undefined){
+        loggedInUsername.innerHTML = 'Hi Guest';
     } else {
     loggedInUsername.innerHTML = 'Hi ' + localStorage.username;
     }
@@ -175,7 +175,7 @@ function loginUser(event){
                 //    window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
                 //userLoggedIn = true;
                 sessionStorage.setItem("userLoginStatus", true);
-                localStorage.setItem('username', json.username);;
+                localStorage.setItem('username', json.username);
                 window.location.replace("index.html");
                } else {
                    alert("Please try again. Your username or password may be incorrect")
@@ -357,12 +357,16 @@ async function onCreatePostClick(){
                alert("Failed to create post");
            })
 }
+<<<<<<< HEAD
 */
+=======
+>>>>>>> 43069f7d51fb4859aa8f9530139ed3f58722458d
 
 function signUserOut(){
     console.log('sign User Out');
     sessionStorage.setItem("userLoginStatus", false);
     console.log(sessionStorage);
+    localStorage.clear();
     location.reload();
 }
 
