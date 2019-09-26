@@ -2,14 +2,18 @@ console.log('hello world');
 //let userLoggedIn = false;
 let userLoggedInStatus;
 //console.log(userLoggedIn);
+let userJWT;
 
 
 
 if (document.getElementById('createPostButton')) {
-    if (sessionStorage.getItem("userLoginStatus") == null || false ) {
+    if (sessionStorage.getItem("userLoginStatus") ==  "false" ) {
+        console.log('user not logged in');
+        console.log(sessionStorage);
         document.getElementById('createPostButton').style.visibility = "hidden";
     } else {
         console.log("logged in statement");
+        console.log(sessionStorage);
         document.getElementById('createPostButton').style.visibility != "hidden";
     }
 }
@@ -95,7 +99,6 @@ function onUsernameClick(event) {
 }
 
 
-//Attempt to get the element using document.getElementById
 var loginForm = document.querySelector('.form-login');
 var signupForm = document.querySelector('.form-signup');
  
@@ -202,4 +205,12 @@ function signupUser(event){
                console.log(error);
                alert("Failed To Create User");
            })
+}
+
+function signUserOut(){
+    console.log('sign User Out');
+    // console.log("json.token   " + json.token);
+    sessionStorage.setItem("userLoginStatus", false);
+    console.log(sessionStorage);
+    location.reload();
 }
