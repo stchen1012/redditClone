@@ -4,17 +4,28 @@ let userLoggedInStatus;
 //console.log(userLoggedIn);
 let userJWT;
 
+const loginButton = document.getElementById('loginButton');
+const postButton = document.getElementById('createPostButton');
+const signOutButton = document.getElementById('signOutButton');
+const signUpButton = document.getElementById('signupButton');
 
 
-if (document.getElementById('createPostButton')) {
+
+if (postButton && signOutButton) {
     if (sessionStorage.getItem("userLoginStatus") ==  "false" ) {
         console.log('user not logged in');
         console.log(sessionStorage);
-        document.getElementById('createPostButton').style.visibility = "hidden";
+        loginButton.style.visibility != "hidden";
+        postButton.style.visibility = "hidden";
+        signOutButton.style.visibility = "hidden";
+        signUpButton.style.visibility != "hidden";
     } else {
         console.log("logged in statement");
         console.log(sessionStorage);
-        document.getElementById('createPostButton').style.visibility != "hidden";
+        loginButton.style.visibility = "hidden";
+        postButton.style.visibility != "hidden";
+        signOutButton.style.visibility != "hidden";
+        signUpButton.style.visibility = "hidden";
     }
 }
 
