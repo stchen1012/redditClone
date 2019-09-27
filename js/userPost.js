@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function(e){
         window.location.replace('index.html')
     } else {
         loadUserPost('');
+        loadUserComments();
         if(localStorage.username == undefined){
             loggedInUsername.innerHTML = 'Hi Guest';
         } else {
@@ -115,6 +116,39 @@ function loadUserPost(){
         console.log("Please Try Again");
     })
 
+}
+
+const commentPostDiv = document.getElementById('commentDiv');
+
+function loadUserComments(){
+    console.log('you loaded the user comments');
+    fetch(`http://thesi.generalassemb.ly:8080/user/comment`, {
+        method: 'GET',
+        headers:{
+            'Authorization': `Bearer ${localStorage.userToken}`
+        },
+    })
+    .then((response )=> {
+        return response.json();
+    })
+    .then((response) => {
+        console.log(response);
+        onCommentResponse(response);
+    })
+    .catch(function(error){
+        console.log("Please Try Again");
+    })
+}
+
+function onCommentResponse(response) {
+    for (let i=0; i < response.length; i++) {
+        console.log(response.length);
+        let userCommentDiv = document.createElement('div');
+        userCommentDiv.setAttribute('class', 'commentDiv');
+        //userCommentDiv.innerHTML = "<h2>Comment text:" + response.text + "username:" + response.user.username + "</h2>";
+        userCommentDiv.innerHTML = `<h2><u>Comment</u><br><br>${response[i].text}</h2> <br> <h4>User: ${response[i].user.username} </h4> <br><br><button type="button">Delete</button>`
+        commentPostDiv.appendChild(userCommentDiv);
+    }
 }
 
 //signOut
