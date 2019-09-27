@@ -8,7 +8,6 @@ let loggedInUsername = document.getElementById('usernameDisplay');
 
 
 let specificPost;
-document.querySelector('#signOutButton').addEventListener('submit', loadUserPost);
 
 var postObjectArray = [];
 var commentsObjectArray = [];
@@ -54,7 +53,8 @@ function fetchPost(){
     .then((response) =>{
         console.log(response);
         handleResponse(response);
-        fetchComments();
+        //fetchComments();
+        //checkPostForComments();
     })
     .catch(function(error){
         console.log("Please Try Again");
@@ -92,12 +92,57 @@ function handleResponse(response) {
         createCommentButton.type = "submit";
         commentForm.appendChild(createCommentButton);
         createCommentButton.addEventListener('click', postComment);
-        // if (commentsObjectArray[i].postId === postObjectArray[i].postId) {
-        //     console.log('this is a match')
-        // }
+        fetchComments(postObject.postId);
+        console.log(postObject.postId);
     }
 }
 
+
+function fetchComments(postid) {
+        fetch(`http://thesi.generalassemb.ly:8080/post/${postid}/comment`, {
+            method: 'GET',
+        })
+        .then((response )=> {
+            return response.json();
+        })
+        .then((response) =>{
+            console.log(response);
+            if (response.length === 0) {
+
+            } else {
+                let commentPostDiv = document.createElement('div');
+                commentPostDiv.setAttribute('class', 'postDiv');
+                commentPostDiv.innerHTML = `<h4>Comment: ${response.text}</h4>`
+                postDiv.appendChild(commentPostDiv);
+            } 
+        })
+        .catch(function(error){
+            console.log(error, "error message");
+        })
+    }
+
+//function to check if comments match to post
+
+// function checkPostForComments() {
+//     console.log(`THIS IS THE COMMENTSOBJECTARRAY: ${commentsObjectArray}`);
+//     console.log(`THIS IS THE POSTOBJECTARRAY: ${postObjectArray}`);
+//     if (commentsObjectArray.length === 0) {
+//         console.log('HI NOTHING HERE');
+//     } else {
+//         for (let i =0; i < postObjectArray.length; i++) {
+//             for (let i =0; i < commentsObjectArray.length; i++) {
+//                 if (commentsObjectArray[i].postId === postObjectArray[i].postId) {
+//                     console.log(`this is a match here is the comment text ${commentsObjectArray[i].commentText}`)
+//                 }
+//             }
+//         }
+//     }
+    // if (commentsObjectArray[i].postId === postObjectArray[i].postId) {
+    //         console.log(`this is a match here is the comment text ${commentsObjectArray[i].commentText}`)
+    //     }
+// }
+
+/* to delete
 function fetchComments() {
     for (let i=0; i < postObjectArray.length; i++) {
         fetch(`http://thesi.generalassemb.ly:8080/post/${postObjectArray[i].postId}/comment`, {
@@ -113,7 +158,7 @@ function fetchComments() {
             } else {
                 for (let i =0; i < response.length; i++) {
                     let commentObject = new Comments(response[i].id, response[i].text, response[i].user.username, response[i].post.id);
-                    console.log("THIS IS THE OBJECT" + commentObject.commentId)
+                    console.log("THIS IS THE OBJECT" + commentObject.commentId);
                     commentsObjectArray.push(commentObject);
                     console.log(commentObject.postId);
             }
@@ -124,13 +169,16 @@ function fetchComments() {
         })
     }
 }
+*/
 
-function Comments(commentId, commentText, commentUsername, postId) {
-    this.commentId= commentId;
-    this.commentText = commentText;
-    this.commentUsername = commentUsername;
-    this.postId = postId;
-}
+// console.log(`THIS IS THE COMMENTSOBJECTARRAY: ${commentsObjectArray}`);
+
+// function Comments(commentId, commentText, commentUsername, postId) {
+//     this.commentId= commentId;
+//     this.commentText = commentText;
+//     this.commentUsername = commentUsername;
+//     this.postId = postId;
+// }
 
 
 
