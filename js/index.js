@@ -5,8 +5,6 @@ const signUpButton = document.getElementById('signupButton');
 
 let loggedInUsername = document.getElementById('usernameDisplay');
 
-let specificPost;
-document.querySelector('#signOutButton').addEventListener('submit', loadUserPost);
 
 
 if (postButton && signOutButton) {
@@ -129,26 +127,6 @@ function Post(postId, postTitle, postDescription, postUser) {
     this.postUser = postUser;
 }
 
-function loadUserPost(){
-    console.log('you loaded the user post');
-    fetch(`http://thesi.generalassemb.ly:8080/user/post`, {
-        method: 'GET',
-        headers:{
-            'Authorization': `Bearer ${localStorage.userToken}`
-        },
-    })
-    .then((response )=> {
-        return response.json();
-    })
-    .then((response) =>{
-        console.log(response);
-        // window.location.replace("userPost.html");
-    })
-    .catch(function(error){
-        console.log("Please Try Again");
-    })
-
-}
 
 //signOut
 function signUserOut(){
