@@ -19,6 +19,7 @@ body {
     float: right;
     padding-right: 2rem;
     font-weight: bold;
+    font-size: 30px;
   }
 
   #usernameDisplay:hover {

@@ -355,9 +355,6 @@ createPostButton.addEventListener('click', (event) => {
 }
 */
 
-function loadUserPost(){
-    
-}
 
 function signUserOut(){
     console.log('sign User Out');
