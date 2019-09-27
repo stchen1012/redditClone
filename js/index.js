@@ -6,6 +6,14 @@ const signUpButton = document.getElementById('signupButton');
 let loggedInUsername = document.getElementById('usernameDisplay');
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+var postObjectArray = [];
+=======
+>>>>>>> 7b1f0db9b51efa09484893ebe6c044e981cf7720
+>>>>>>> e982f6aca61c6e0e7c0a364dd1d9d92b32a75e9a
+>>>>>>> 9b3245996575f036b1ca363d5f9f6b26cf358226
 
 if (postButton && signOutButton) {
     if (sessionStorage.getItem("userLoginStatus") ==  "false" ) {
@@ -44,7 +52,7 @@ function fetchPost(){
     .then((response) =>{
         console.log(response);
         handleResponse(response);
-        //onUserClick();
+        fetchComments();
     })
     .catch(function(error){
         console.log("Please Try Again");
@@ -61,9 +69,10 @@ function handleResponse(response) {
         // console.log(postObject);
         //let postObject = new Post(reverseArray[i].id, reverseArray[i].title, reverseArray[i].description, reverseArray[i].user.username);
         let postObject = new Post(reverseArray[i].id, reverseArray[i].title, reverseArray[i].description, reverseArray[i].user.username);
+        postObjectArray.push(postObject);
         let newPost = document.createElement('div');
         newPost.setAttribute('class', 'postDiv');
-        newPost.setAttribute('id', reverseArray[i].id)
+        newPost.setAttribute('id', reverseArray[i].id);
         newPost.innerHTML = `<h2>Id: ${postObject.postId} Post Title: ${postObject.postTitle}</h2>, Post Description: ${postObject.postDescription}, <h4>User: ${postObject.postUser}</h4>`;
         postDiv.appendChild(newPost);
         let commentForm = document.createElement('form');
@@ -83,6 +92,25 @@ function handleResponse(response) {
         createCommentButton.addEventListener('click', postComment);
     }
 }
+
+function fetchComments() {
+    for (let i=0; i < postObjectArray.length; i++) {
+        fetch(`http://thesi.generalassemb.ly:8080/post/${postObjectArray[i].postId}/comment`, {
+            method: 'GET',
+        })
+        .then((response )=> {
+            return response.json();
+        })
+        .then((response) =>{
+            console.log(response);
+        })
+        .catch(function(error){
+            console.log("Please Try Again");
+        })
+    }
+}
+
+//let postDivClass = document.getElementsByClassName('postDiv');
 
 function postComment(event) {
     event.preventDefault();
@@ -104,11 +132,11 @@ function postComment(event) {
     }).then(function(json){
         console.log(json);
         if(json.httpStatus != "BAD_REQUEST"){
-            alert("Comment created!")
-            let newCommentDisplay = document.createElement('div');
-            //newCommentDisplay.setAttribute('class', 'commentDisplay'); 
-            //newCommentDisplay.innerHTML = `<h4>Comment: ${commentBoxText} </h4>`;
-            //postDiv.appendChild(newCommentDisplay);
+            alert("Comment created!");
+            // let newCommentDisplay = document.createElement('div');
+            // newCommentDisplay.setAttribute('class', 'commentDisplay'); 
+            // newCommentDisplay.innerHTML = `<h4>Comment: ${commentBoxText} </h4>`;
+            // postDivClass.appendChild(newCommentDisplay);
             //need to append to specific post that user created comment on
         }
         else{
