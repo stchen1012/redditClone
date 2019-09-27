@@ -1,12 +1,20 @@
 body {
     background-color: papayawhip;
+    /* background-image: url("../image/unsplashPhoto.jpeg"); */
   }
+
+
 
   /* Index page */
 
+  nav {
+    float: left;
+  }
+
   .postDiv {
-    background-color: whitesmoke;
+    background-color: white;
     border: 2px black solid;
+    color: darkolivegreen;
     font-size: 1.2rem;
     width: 40%;
     padding: 50px;
@@ -16,15 +24,16 @@ body {
   }
 
   #usernameDisplay {
-    float: right;
-    padding-right: 2rem;
+    padding-right: 20px;;
     font-weight: bold;
     font-size: 30px;
   }
 
- /* #createPostButton, #userPostButton {
-
- } */
+ #createPostButton, #userPostButton {
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 8px;
+ }
 
   #usernameDisplay a:link, a:visited{
     color: black;
@@ -47,7 +56,7 @@ body {
 
 
   .fas {
-    font-size: 3.5rem;
+    font-size: 80px;
     padding: 2rem;
   }
 
