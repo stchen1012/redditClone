@@ -93,7 +93,9 @@ function handleResponse(response) {
         commentForm.appendChild(createCommentButton);
         createCommentButton.addEventListener('click', postComment);
         fetchComments(postObject.postId);
-        console.log(postObject.postId);
+        //console.log(postObject.postId);
+        //var postIdValue = postObject.postId;
+
     }
 }
 
@@ -106,15 +108,17 @@ function fetchComments(postid) {
             return response.json();
         })
         .then((response) =>{
-            console.log(response);
-            if (response.length === 0) {
-
-            } else {
-                let commentPostDiv = document.createElement('div');
-                commentPostDiv.setAttribute('class', 'postDiv');
-                commentPostDiv.innerHTML = `<h4>Comment: ${response.text}</h4>`
-                postDiv.appendChild(commentPostDiv);
-            } 
+            console.log(`THIS IS THE RESPONSE HERE: ${response}`);
+        //     //if (response.length === 0) {
+        //         //console.log(`This is postid = ${postid}`);
+        //         console.log(`This is the response.post.id = ${response[0].post.id}`)
+        //     } else if (response.length > 0 && postid == response.post.id) {
+                
+        //         // let commentPostDiv = document.createElement('div');
+        //         // commentPostDiv.setAttribute('class', 'postDiv');
+        //         // commentPostDiv.innerHTML = `<h4>Comment: ${response.text}</h4>`
+        //         // postDiv.appendChild(commentPostDiv);
+        //     } 
         })
         .catch(function(error){
             console.log(error, "error message");
