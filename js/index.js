@@ -99,16 +99,20 @@ function handleResponse(response) {
         createCommentButton.type = "submit";
         commentForm.appendChild(createCommentButton);
         createCommentButton.addEventListener('click', postComment);
-        fetchComments(postObject.postId);
+        // let a = fetchComments(postObject.postId).then(res=>res);
+        console.log(fetchComments(postObject.postId));
         //console.log(postObject.postId);
         //var postIdValue = postObject.postId;
-
     }
 }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 352384734a429148f19960224faebcb1a29e037f
 function fetchComments(postid) {
+    let thing;
         fetch(`http://thesi.generalassemb.ly:8080/post/${postid}/comment`, {
             method: 'GET',
         })
@@ -116,7 +120,15 @@ function fetchComments(postid) {
             return response.json();
         })
         .then((response) =>{
+<<<<<<< HEAD
             console.log(response);
+=======
+            response.forEach(item => {
+                let commentDiv = document.createElement('div');
+                commentDiv.innerHTML = `<h4>Comment Text: ${item.text}</h4> <h5>User:${item.user.username}</h5>`;
+                //thing = commentDiv;
+            });
+>>>>>>> 352384734a429148f19960224faebcb1a29e037f
         })
         .catch(function(error){
             console.log(error, "error message");
