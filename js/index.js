@@ -72,6 +72,8 @@ function handleResponse(response) {
         commentForm.setAttribute('method',"post");
         let commentBox = document.createElement("input");
         commentBox.name = postObject.postId;
+        commentBox.setAttribute('id', "commentBoxId");
+        commentBox.setAttribute('class', "commentBoxClass");
         newPost.appendChild(commentForm);
         commentForm.appendChild(commentBox);
         let createCommentButton = document.createElement('button');
@@ -84,10 +86,14 @@ function handleResponse(response) {
     }
 }
 
+let postDivElements = document.getElementsByClassName('postDiv');
+
 function postComment(event) {
     event.preventDefault();
     console.log(event);
     let specificPostId = event.target.dataset.id;
+    let commentBoxText = document.getElementById('commentBoxId').value;
+    // let commentBoxes = document.getElementsByClassName('commentBoxClass');
     fetch(`http://thesi.generalassemb.ly:8080/comment/${specificPostId}`, {
            method: 'post',
            headers:{
@@ -96,7 +102,7 @@ function postComment(event) {
             'Authorization': `Bearer ${localStorage.getItem('userToken')}`
         },
            body: JSON.stringify({
-               text: "test" //Need to update this value,
+               text: commentBoxText //Need to update this value,
            })
     }).then((response )=> {
         return response.json();    
@@ -104,6 +110,11 @@ function postComment(event) {
         console.log(json);
         if(json.httpStatus != "BAD_REQUEST"){
             alert("Comment created!")
+            let newCommentDisplay = document.createElement('div');
+            //newCommentDisplay.setAttribute('class', 'commentDisplay'); 
+            //newCommentDisplay.innerHTML = `<h4>Comment: ${commentBoxText} </h4>`;
+            //postDiv.appendChild(newCommentDisplay);
+            //need to append to specific post that user created comment on
         }
         else{
             alert("Comment not created")
