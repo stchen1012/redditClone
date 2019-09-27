@@ -1,12 +1,24 @@
 body {
     background-color: papayawhip;
+    /* background-image: url("../image/unsplashPhoto.jpeg"); */
   }
+
+
 
   /* Index page */
 
+  nav {
+    float: left;
+  }
+
+  nav li {
+    list-style-type: disc;
+  }
+
   .postDiv {
-    background-color: whitesmoke;
+    background-color: white;
     border: 2px black solid;
+    color: darkolivegreen;
     font-size: 1.2rem;
     width: 40%;
     padding: 50px;
@@ -16,15 +28,15 @@ body {
   }
 
   #usernameDisplay {
-    float: right;
-    padding-right: 2rem;
     font-weight: bold;
     font-size: 30px;
   }
 
- /* #createPostButton, #userPostButton {
-
- } */
+ #createPostButton, #userPostButton {
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 8px;
+ }
 
   #usernameDisplay a:link, a:visited{
     color: black;
@@ -41,14 +53,14 @@ body {
 
   .form-signup, .form-login {
     position: relative;
-    left: 60rem;
-    top: 20rem;;
+    left: 500px;
+    top: 200px;
   }
 
 
   .fas {
-    font-size: 3.5rem;
-    padding: 2rem;
+    font-size: 80px;
+    padding: 30px;
   }
 
   /* create post page */
