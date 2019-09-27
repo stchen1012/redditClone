@@ -91,7 +91,6 @@ function handleResponse(response) {
         commentBox.setAttribute('class', "commentBoxClass");
         newPost.appendChild(commentForm);
         commentForm.appendChild(commentBox);
-        console.log(fetchComments(postObject.postId));
         let createCommentButton = document.createElement('button');
         createCommentButton.setAttribute("id", "createCommentButton");
         createCommentButton.setAttribute('data-id', reverseArray[i].id);
@@ -103,7 +102,7 @@ function handleResponse(response) {
        
         //console.log(postObject.postId);
         //var postIdValue = postObject.postId;
-        //console.log(fetchComments(postObject.postId));
+        console.log(fetchComments(postObject.postId));
     }
 }
 
@@ -118,10 +117,7 @@ function fetchComments(postid) {
             return response.json();
         })
         .then((response) =>{
-<<<<<<< HEAD
             console.log(response);
-=======
->>>>>>> c6e452b2cc65333afceb3f371fc49cc8860226a7
             response.forEach(item => {
                 let commentDiv = document.createElement('div');
                 commentDiv.setAttribute('class', 'commentPostDiv');

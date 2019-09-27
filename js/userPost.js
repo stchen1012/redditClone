@@ -117,6 +117,28 @@ function loadUserPost(){
 
 }
 
+function loadUserPost(){
+    console.log('you loaded the user post');
+    fetch(`http://thesi.generalassemb.ly:8080/user/post`, {
+        method: 'GET',
+        headers:{
+            'Authorization': `Bearer ${localStorage.userToken}`
+        },
+    })
+    .then((response )=> {
+        return response.json();
+    })
+    .then((response) =>{
+        console.log(response);
+        handleResponse(response);
+        // window.location.replace("userPost.html");
+    })
+    .catch(function(error){
+        console.log("Please Try Again");
+    })
+
+}
+
 //signOut
 function signUserOut(){
     console.log('sign User Out');
