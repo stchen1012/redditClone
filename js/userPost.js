@@ -146,12 +146,48 @@ function onCommentResponse(response) {
         console.log(response.length);
         let userCommentDiv = document.createElement('div');
         userCommentDiv.setAttribute('class', 'commentDiv');
+        userCommentDiv.setAttribute('id', response[i].id);
         //userCommentDiv.innerHTML = "<h2>Comment text:" + response.text + "username:" + response.user.username + "</h2>";
         userCommentDiv.innerHTML = `<h2><u>Comment</u><br><br>${response[i].text}</h2> <br> <h4>User: ${response[i].user.username} </h4> <br><br><button type="button">Delete</button>`
         commentPostDiv.appendChild(userCommentDiv);
+        let formButton = document.querySelectorAll('button');
+        formButton.addEventListener('click', deleteComment);
     }
 
 }
+
+function deleteComment(event) {
+    event.preventDefault();
+    console.log(event);
+    //console.log(event.srcElement.previousSibling.value);
+    let commentId = event.target.dataset.id;
+    let commentBoxText = event.srcElement.previousSibling.value;
+    //console.log("THIS IS THE COMMENTBOXTEXT" + commentBoxText)
+    fetch(`http://thesi.generalassemb.ly:8080/comment/${commentId}`, {
+           method: 'delete',
+           headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+        },
+        //    body: JSON.stringify({
+        //        text: commentBoxText,
+        //    })
+    }).then((response )=> {
+        return response.json();    
+    }).then(function(json){
+        console.log(json);
+        if(json.httpStatus != "BAD_REQUEST"){
+            alert("Comment created!");
+        }
+        else{
+            alert("Comment not created")
+        }
+    }).catch(function(error){
+            console.error(error, "error message");
+    })
+}
+
 
 //signOut
 function signUserOut(){
