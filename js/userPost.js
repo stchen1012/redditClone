@@ -140,6 +140,7 @@ function loadUserComments(){
     })
 }
 
+
 function onCommentResponse(response) {
     for (let i=0; i < response.length; i++) {
         console.log(response.length);
@@ -149,6 +150,7 @@ function onCommentResponse(response) {
         userCommentDiv.innerHTML = `<h2><u>Comment</u><br><br>${response[i].text}</h2> <br> <h4>User: ${response[i].user.username} </h4> <br><br><button type="button">Delete</button>`
         commentPostDiv.appendChild(userCommentDiv);
     }
+
 }
 
 //signOut
