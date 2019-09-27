@@ -97,6 +97,7 @@ function handleResponse(response) {
 }
 
 
+
 function fetchComments(postid) {
         fetch(`http://thesi.generalassemb.ly:8080/post/${postid}/comment`, {
             method: 'GET',
@@ -105,6 +106,7 @@ function fetchComments(postid) {
             return response.json();
         })
         .then((response) =>{
+            console.log(response);
             response.forEach(item => {
                 let commentDiv = document.createElement('div');
                 commentDiv.setAttribute('class', 'commentPostDiv');
