@@ -6,11 +6,8 @@ const userPostButton = document.getElementById('userPostButton');
 
 let loggedInUsername = document.getElementById('usernameDisplay');
 
-
 let specificPostId;
 
-let commentUser;
-let commentText;
 
 var postObjectArray = [];
 var commentsObjectArray = [];
@@ -56,8 +53,6 @@ function fetchPost(){
     .then((response) =>{
         console.log(response);
         handleResponse(response);
-        // fetchComments();
-        //checkPostForComments();
     })
     .catch(function(error){
         console.log("Please Try Again");
@@ -80,18 +75,16 @@ function handleResponse(response) {
         newPost.setAttribute('class', 'postDiv');
         newPost.setAttribute('id', reverseArray[i].id);
         newPost.innerHTML = `<h2>Id: ${postObject.postId} Post Title: ${postObject.postTitle}</h2>, Post Description: ${postObject.postDescription}, <h4>User: ${postObject.postUser}</h4>`;
-
         postDiv.appendChild(newPost);
         let commentForm = document.createElement('form');
         commentForm.setAttribute('method',"post");
-
         let commentBox = document.createElement("input");
         commentBox.name = postObject.postId;
         commentBox.setAttribute('id', "commentBoxId");
         commentBox.setAttribute('class', "commentBoxClass");
         newPost.appendChild(commentForm);
         commentForm.appendChild(commentBox);
-        console.log(fetchComments(postObject.postId));
+        //console.log(fetchComments(postObject.postId));
         let createCommentButton = document.createElement('button');
         createCommentButton.setAttribute("id", "createCommentButton");
         createCommentButton.setAttribute('data-id', reverseArray[i].id);
@@ -99,21 +92,12 @@ function handleResponse(response) {
         createCommentButton.type = "submit";
         commentForm.appendChild(createCommentButton);
         createCommentButton.addEventListener('click', postComment);
-        // let a = fetchComments(postObject.postId).then(res=>res);
-       
-        //console.log(postObject.postId);
-        //var postIdValue = postObject.postId;
-        //console.log(fetchComments(postObject.postId));
+        fetchComments(postObject.postId);
     }
 }
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 352384734a429148f19960224faebcb1a29e037f
 function fetchComments(postid) {
-    let thing;
         fetch(`http://thesi.generalassemb.ly:8080/post/${postid}/comment`, {
             method: 'GET',
         })
@@ -125,9 +109,8 @@ function fetchComments(postid) {
                 let commentDiv = document.createElement('div');
                 commentDiv.setAttribute('class', 'commentPostDiv');
                 // commentDiv.setAttribute('id', item.post.id);
-                commentDiv.innerHTML = `<h4>Comment Text: ${item.text}</h4> <h5>User:${item.user.username}</h5>`;
+                commentDiv.innerHTML = `<h4><u>Comment</u><br><br> ${item.text}</h4> <h5>User: ${item.user.username}</h5>`;
                 postDiv.appendChild(commentDiv);
-                //thing = commentDiv;
                 const post = document.getElementById(`${item.post.id}`);
                 post.appendChild(commentDiv);
             });
@@ -137,76 +120,14 @@ function fetchComments(postid) {
         })
     }
 
-
-//function to check if comments match to post
-
-// function checkPostForComments() {
-//     console.log(`THIS IS THE COMMENTSOBJECTARRAY: ${commentsObjectArray}`);
-//     console.log(`THIS IS THE POSTOBJECTARRAY: ${postObjectArray}`);
-//     if (commentsObjectArray.length === 0) {
-//         console.log('HI NOTHING HERE');
-//     } else {
-//         for (let i =0; i < postObjectArray.length; i++) {
-//             for (let i =0; i < commentsObjectArray.length; i++) {
-//                 if (commentsObjectArray[i].postId === postObjectArray[i].postId) {
-//                     console.log(`this is a match here is the comment text ${commentsObjectArray[i].commentText}`)
-//                 }
-//             }
-//         }
-//     }
-    // if (commentsObjectArray[i].postId === postObjectArray[i].postId) {
-    //         console.log(`this is a match here is the comment text ${commentsObjectArray[i].commentText}`)
-    //     }
-// }
-
-/* to delete
-function fetchComments() {
-    for (let i=0; i < postObjectArray.length; i++) {
-        fetch(`http://thesi.generalassemb.ly:8080/post/${postObjectArray[i].postId}/comment`, {
-            method: 'GET',
-        })
-        .then((response )=> {
-            return response.json();
-        })
-        .then((response) =>{
-            console.log(response);
-            if (response.length === 0) {
-                console.log('nothing here')
-            } else {
-                for (let i =0; i < response.length; i++) {
-                    let commentObject = new Comments(response[i].id, response[i].text, response[i].user.username, response[i].post.id);
-                    console.log("THIS IS THE OBJECT" + commentObject.commentId);
-                    commentsObjectArray.push(commentObject);
-                    console.log(commentObject.postId);
-            }
-        }
-        })
-        .catch(function(error){
-            console.log(error, "error message");
-        })
-    }
-}
-*/
-
-// console.log(`THIS IS THE COMMENTSOBJECTARRAY: ${commentsObjectArray}`);
-
-// function Comments(commentId, commentText, commentUsername, postId) {
-//     this.commentId= commentId;
-//     this.commentText = commentText;
-//     this.commentUsername = commentUsername;
-//     this.postId = postId;
-// }
-
-
-
-//let postDivClass = document.getElementsByClassName('postDiv');
-
+// function to post a comment
 function postComment(event) {
     event.preventDefault();
     //console.log(event.srcElement.previousSibling.value);
     let specificPostId = event.target.dataset.id;
-    // console.log(specificPostId);
+    //console.log("THIS IS THE SPECIFIC ID" + specificPostId);
     let commentBoxText = event.srcElement.previousSibling.value;
+    //console.log("THIS IS THE COMMENTBOXTEXT" + commentBoxText)
     fetch(`http://thesi.generalassemb.ly:8080/comment/${specificPostId}`, {
            method: 'post',
            headers:{
@@ -223,11 +144,6 @@ function postComment(event) {
         console.log(json);
         if(json.httpStatus != "BAD_REQUEST"){
             alert("Comment created!");
-            // let newCommentDisplay = document.createElement('div');
-            // newCommentDisplay.setAttribute('class', 'commentDisplay'); 
-            // newCommentDisplay.innerHTML = `<h4>Comment: ${commentBoxText} </h4>`;
-            // postDivClass.appendChild(newCommentDisplay);
-            //need to append to specific post that user created comment on
         }
         else{
             alert("Comment not created")
