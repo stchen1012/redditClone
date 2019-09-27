@@ -7,8 +7,6 @@ const userPostButton = document.getElementById('userPostButton');
 let loggedInUsername = document.getElementById('usernameDisplay');
 
 
-let specificPost;
-document.querySelector('#signOutButton').addEventListener('submit', loadUserPost);
 
 var postObjectArray = [];
 var commentsObjectArray = [];

@@ -11,6 +11,10 @@ body {
     float: left;
   }
 
+  nav li {
+    list-style-type: disc;
+  }
+
   .postDiv {
     background-color: white;
     border: 2px black solid;
@@ -24,7 +28,6 @@ body {
   }
 
   #usernameDisplay {
-    padding-right: 20px;;
     font-weight: bold;
     font-size: 30px;
   }
@@ -50,14 +53,14 @@ body {
 
   .form-signup, .form-login {
     position: relative;
-    left: 60rem;
-    top: 20rem;;
+    left: 500px;
+    top: 200px;
   }
 
 
   .fas {
     font-size: 80px;
-    padding: 2rem;
+    padding: 30px;
   }
 
   /* create post page */
