@@ -3,7 +3,7 @@ body {
   }
 
   /* Index page */
-  
+
   .postDiv {
     background-color: whitesmoke;
     border: 2px black solid;
@@ -22,25 +22,14 @@ body {
     font-size: 30px;
   }
 
-  #usernameDisplay:hover {
-    /* text-decoration: underline; */
-    color: blue;
-  }
+ /* #createPostButton, #userPostButton {
+
+ } */
 
   #usernameDisplay a:link, a:visited{
     color: black;
   } 
- 
 
-  /* h2 {
-    position: top;
-  }
-
-  h4 {
-    color: blue;
-    font-size: 11px;  
-    position: absolute;
-  }
 
   
     
@@ -60,4 +49,19 @@ body {
   .fas {
     font-size: 3.5rem;
     padding: 2rem;
+  }
+
+  /* create post page */
+  #titleOfPost{
+    width: 300px;
+  }
+
+  #descriptionOfPost {
+    width: 500px;
+    height: 200px;
+  }
+
+  .createPostDiv {
+    margin: 0 auto;
+    width: 20%;
   }

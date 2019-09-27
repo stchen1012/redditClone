@@ -2,6 +2,7 @@ const loginButton = document.getElementById('loginButton');
 const postButton = document.getElementById('createPostButton');
 const signOutButton = document.getElementById('signOutButton');
 const signUpButton = document.getElementById('signupButton');
+const userPostButton = document.getElementById('userPostButton');
 
 let loggedInUsername = document.getElementById('usernameDisplay');
 
@@ -17,15 +18,19 @@ if (postButton && signOutButton) {
         console.log('user not logged in');
         console.log(sessionStorage);
         loginButton.style.visibility != "hidden";
+        signUpButton.style.visibility != "hidden";
+
         postButton.style.visibility = "hidden";
         signOutButton.style.visibility = "hidden";
-        signUpButton.style.visibility != "hidden";
+        userPostButton.style.visibility = "hidden";
     } else {
         console.log("logged in statement");
         console.log(sessionStorage);
-        loginButton.style.visibility = "hidden";
         postButton.style.visibility != "hidden";
         signOutButton.style.visibility != "hidden";
+        userPostButton.style.visibility != "hidden";
+
+        loginButton.style.visibility = "hidden";
         signUpButton.style.visibility = "hidden";
     }
 }
@@ -33,7 +38,7 @@ if (postButton && signOutButton) {
 document.addEventListener('DOMContentLoaded', function(e){
     fetchPost('');
     if(localStorage.username == undefined){
-        loggedInUsername.innerHTML = 'Hi Guest';
+        loggedInUsername.innerHTML = '';
     } else {
     loggedInUsername.innerHTML = 'Hi ' + localStorage.username;
     }
@@ -174,27 +179,6 @@ function Post(postId, postTitle, postDescription, postUser) {
     this.postUser = postUser;
 }
 
-function loadUserPost(){
-    console.log('you loaded the user post');
-    fetch(`http://thesi.generalassemb.ly:8080/user/post`, {
-        method: 'GET',
-        headers:{
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${userToken}`
-        },
-    })
-    .then((response )=> {
-        return response.json();
-    })
-    .then((response) =>{
-        console.log(response);
-    })
-    .catch(function(error){
-        console.log("Please Try Again");
-    })
-
-}
 
 //signOut
 function signUserOut(){
@@ -204,3 +188,5 @@ function signUserOut(){
     localStorage.clear();
     location.reload();
 }
+
+console.log(localStorage);
