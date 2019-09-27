@@ -1,3 +1,17 @@
+let loggedInUsername = document.getElementById('usernameDisplay');
+
+document.addEventListener('DOMContentLoaded', function(e){
+    if(sessionStorage.userLoginStatus != 'true'){
+        window.location.replace('index.html')
+    } else {
+        if(localStorage.username == undefined){
+            loggedInUsername.innerHTML = 'Hi Guest';
+        } else {
+            loggedInUsername.innerHTML = 'Hi ' + localStorage.username;
+        }
+    }
+});
+
 let createPostButton = document.getElementById('createPostButton');
 console.log('post');
 createPostButton.addEventListener('click', (event) => {
@@ -33,3 +47,12 @@ createPostButton.addEventListener('click', (event) => {
             console.error(error, "error message");
     })
 })
+
+//signOut
+function signUserOut(){
+    console.log('sign User Out');
+    sessionStorage.setItem("userLoginStatus", false);
+    console.log(sessionStorage);
+    localStorage.clear();
+    location.reload();
+}
