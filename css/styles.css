@@ -15,10 +15,10 @@ body {
     list-style-type: disc;
   }
 
-  #postDiv {
+  .postDiv {
     background-color: white;
-    border: 2px black solid;
     color: midnightblue;
+    border: 2px solid black;
     font-size: 1.2rem;
     width: 40%;
     padding: 50px;
@@ -26,6 +26,8 @@ body {
     display: block;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
+
+
 
   #usernameDisplay {
     font-weight: bold;
