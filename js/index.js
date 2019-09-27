@@ -9,6 +9,9 @@ let loggedInUsername = document.getElementById('usernameDisplay');
 
 let specificPost;
 
+let commentUser;
+let commentText;
+
 var postObjectArray = [];
 var commentsObjectArray = [];
 
@@ -53,7 +56,7 @@ function fetchPost(){
     .then((response) =>{
         console.log(response);
         handleResponse(response);
-        //fetchComments();
+        // fetchComments();
         //checkPostForComments();
     })
     .catch(function(error){
@@ -72,19 +75,23 @@ function handleResponse(response) {
         //let postObject = new Post(reverseArray[i].id, reverseArray[i].title, reverseArray[i].description, reverseArray[i].user.username);
         let postObject = new Post(reverseArray[i].id, reverseArray[i].title, reverseArray[i].description, reverseArray[i].user.username);
         postObjectArray.push(postObject);
+
         let newPost = document.createElement('div');
         newPost.setAttribute('class', 'postDiv');
         newPost.setAttribute('id', reverseArray[i].id);
         newPost.innerHTML = `<h2>Id: ${postObject.postId} Post Title: ${postObject.postTitle}</h2>, Post Description: ${postObject.postDescription}, <h4>User: ${postObject.postUser}</h4>`;
+
         postDiv.appendChild(newPost);
         let commentForm = document.createElement('form');
         commentForm.setAttribute('method',"post");
+
         let commentBox = document.createElement("input");
         commentBox.name = postObject.postId;
         commentBox.setAttribute('id', "commentBoxId");
         commentBox.setAttribute('class', "commentBoxClass");
         newPost.appendChild(commentForm);
         commentForm.appendChild(commentBox);
+
         let createCommentButton = document.createElement('button');
         createCommentButton.setAttribute("id", "createCommentButton");
         createCommentButton.setAttribute('data-id', reverseArray[i].id);
@@ -100,6 +107,7 @@ function handleResponse(response) {
 }
 
 
+
 function fetchComments(postid) {
         fetch(`http://thesi.generalassemb.ly:8080/post/${postid}/comment`, {
             method: 'GET',
@@ -108,22 +116,13 @@ function fetchComments(postid) {
             return response.json();
         })
         .then((response) =>{
-            console.log(`THIS IS THE RESPONSE HERE: ${response}`);
-        //     //if (response.length === 0) {
-        //         //console.log(`This is postid = ${postid}`);
-        //         console.log(`This is the response.post.id = ${response[0].post.id}`)
-        //     } else if (response.length > 0 && postid == response.post.id) {
-                
-        //         // let commentPostDiv = document.createElement('div');
-        //         // commentPostDiv.setAttribute('class', 'postDiv');
-        //         // commentPostDiv.innerHTML = `<h4>Comment: ${response.text}</h4>`
-        //         // postDiv.appendChild(commentPostDiv);
-        //     } 
+            console.log(response);
         })
         .catch(function(error){
             console.log(error, "error message");
         })
     }
+
 
 //function to check if comments match to post
 
