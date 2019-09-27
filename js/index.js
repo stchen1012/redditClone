@@ -86,14 +86,11 @@ function handleResponse(response) {
     }
 }
 
-let postDivElements = document.getElementsByClassName('postDiv');
-
 function postComment(event) {
     event.preventDefault();
-    console.log(event);
+    console.log(event.srcElement.previousSibling.value);
     let specificPostId = event.target.dataset.id;
-    let commentBoxText = document.getElementById('commentBoxId').value;
-    // let commentBoxes = document.getElementsByClassName('commentBoxClass');
+    let commentBoxText = event.srcElement.previousSibling.value;
     fetch(`http://thesi.generalassemb.ly:8080/comment/${specificPostId}`, {
            method: 'post',
            headers:{
@@ -102,7 +99,7 @@ function postComment(event) {
             'Authorization': `Bearer ${localStorage.getItem('userToken')}`
         },
            body: JSON.stringify({
-               text: commentBoxText //Need to update this value,
+               text: commentBoxText,
            })
     }).then((response )=> {
         return response.json();    
