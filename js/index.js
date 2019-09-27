@@ -7,9 +7,11 @@ const userPostButton = document.getElementById('userPostButton');
 let loggedInUsername = document.getElementById('usernameDisplay');
 
 
+let specificPost;
+document.querySelector('#signOutButton').addEventListener('submit', loadUserPost);
 
 var postObjectArray = [];
-
+var commentsObjectArray = [];
 
 if (postButton && signOutButton) {
     if (sessionStorage.getItem("userLoginStatus") ==  "false" ) {
@@ -90,6 +92,9 @@ function handleResponse(response) {
         createCommentButton.type = "submit";
         commentForm.appendChild(createCommentButton);
         createCommentButton.addEventListener('click', postComment);
+        // if (commentsObjectArray[i].postId === postObjectArray[i].postId) {
+        //     console.log('this is a match')
+        // }
     }
 }
 
@@ -103,18 +108,37 @@ function fetchComments() {
         })
         .then((response) =>{
             console.log(response);
+            if (response.length === 0) {
+                console.log('nothing here')
+            } else {
+                for (let i =0; i < response.length; i++) {
+                    let commentObject = new Comments(response[i].id, response[i].text, response[i].user.username, response[i].post.id);
+                    console.log("THIS IS THE OBJECT" + commentObject.commentId)
+                    commentsObjectArray.push(commentObject);
+                    console.log(commentObject.postId);
+            }
+        }
         })
         .catch(function(error){
-            console.log("Please Try Again");
+            console.log(error, "error message");
         })
     }
 }
+
+function Comments(commentId, commentText, commentUsername, postId) {
+    this.commentId= commentId;
+    this.commentText = commentText;
+    this.commentUsername = commentUsername;
+    this.postId = postId;
+}
+
+
 
 //let postDivClass = document.getElementsByClassName('postDiv');
 
 function postComment(event) {
     event.preventDefault();
-    console.log(event.srcElement.previousSibling.value);
+    //console.log(event.srcElement.previousSibling.value);
     let specificPostId = event.target.dataset.id;
     let commentBoxText = event.srcElement.previousSibling.value;
     fetch(`http://thesi.generalassemb.ly:8080/comment/${specificPostId}`, {
