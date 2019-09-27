@@ -5,12 +5,9 @@ const signUpButton = document.getElementById('signupButton');
 
 let loggedInUsername = document.getElementById('usernameDisplay');
 
-<<<<<<< HEAD
-=======
 let specificPost;
 document.querySelector('#signOutButton').addEventListener('submit', loadUserPost);
 
->>>>>>> 7b1f0db9b51efa09484893ebe6c044e981cf7720
 
 if (postButton && signOutButton) {
     if (sessionStorage.getItem("userLoginStatus") ==  "false" ) {
@@ -137,9 +134,7 @@ function loadUserPost(){
     fetch(`http://thesi.generalassemb.ly:8080/user/post`, {
         method: 'GET',
         headers:{
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${userToken}`
+            'Authorization': `Bearer ${localStorage.userToken}`
         },
     })
     .then((response )=> {
@@ -147,6 +142,7 @@ function loadUserPost(){
     })
     .then((response) =>{
         console.log(response);
+        // window.location.replace("userPost.html");
     })
     .catch(function(error){
         console.log("Please Try Again");
@@ -162,3 +158,5 @@ function signUserOut(){
     localStorage.clear();
     location.reload();
 }
+
+console.log(localStorage);
