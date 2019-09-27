@@ -92,15 +92,15 @@ function handleResponse(response) {
         createCommentButton.type = "submit";
         commentForm.appendChild(createCommentButton);
         createCommentButton.addEventListener('click', postComment);
-        fetchComments(postObject.postId);
+        // let a = fetchComments(postObject.postId).then(res=>res);
+        console.log(fetchComments(postObject.postId));
         //console.log(postObject.postId);
         //var postIdValue = postObject.postId;
-
     }
 }
 
-
 function fetchComments(postid) {
+    let thing;
         fetch(`http://thesi.generalassemb.ly:8080/post/${postid}/comment`, {
             method: 'GET',
         })
@@ -108,17 +108,11 @@ function fetchComments(postid) {
             return response.json();
         })
         .then((response) =>{
-            console.log(`THIS IS THE RESPONSE HERE: ${response}`);
-        //     //if (response.length === 0) {
-        //         //console.log(`This is postid = ${postid}`);
-        //         console.log(`This is the response.post.id = ${response[0].post.id}`)
-        //     } else if (response.length > 0 && postid == response.post.id) {
-                
-        //         // let commentPostDiv = document.createElement('div');
-        //         // commentPostDiv.setAttribute('class', 'postDiv');
-        //         // commentPostDiv.innerHTML = `<h4>Comment: ${response.text}</h4>`
-        //         // postDiv.appendChild(commentPostDiv);
-        //     } 
+            response.forEach(item => {
+                let commentDiv = document.createElement('div');
+                commentDiv.innerHTML = `<h4>Comment Text: ${item.text}</h4> <h5>User:${item.user.username}</h5>`;
+                //thing = commentDiv;
+            });
         })
         .catch(function(error){
             console.log(error, "error message");
