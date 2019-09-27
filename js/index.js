@@ -104,7 +104,7 @@ function fetchComments(postid) {
         fetch(`http://thesi.generalassemb.ly:8080/post/${postid}/comment`, {
             method: 'GET',
         })
-        .then((response )=> {
+        .then((response)=> {
             return response.json();
         })
         .then((response) =>{
