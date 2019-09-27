@@ -5,10 +5,16 @@ const signUpButton = document.getElementById('signupButton');
 
 let loggedInUsername = document.getElementById('usernameDisplay');
 
+<<<<<<< HEAD
+=======
 let specificPost;
 document.querySelector('#signOutButton').addEventListener('submit', loadUserPost);
 
+<<<<<<< HEAD
 var postObjectArray = [];
+=======
+>>>>>>> 7b1f0db9b51efa09484893ebe6c044e981cf7720
+>>>>>>> e982f6aca61c6e0e7c0a364dd1d9d92b32a75e9a
 
 if (postButton && signOutButton) {
     if (sessionStorage.getItem("userLoginStatus") ==  "false" ) {
@@ -150,12 +156,15 @@ function Post(postId, postTitle, postDescription, postUser) {
     this.postUser = postUser;
 }
 
-function loadUserPost(event){
-    event.preventDefault();
-    console.log('you loaded the user post'); 
-
+function loadUserPost(){
+    console.log('you loaded the user post');
     fetch(`http://thesi.generalassemb.ly:8080/user/post`, {
         method: 'GET',
+        headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${userToken}`
+        },
     })
     .then((response )=> {
         return response.json();
