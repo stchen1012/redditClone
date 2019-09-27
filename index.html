@@ -12,18 +12,24 @@
         <link rel="stylesheet" href="css/styles.css">
 
         <!-- Font Awesome -->
-        <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
     </head>
     <body>
         <nav>
+        <a href="index.html"><i class="fas fa-home"></i></a>
+        <br>
         <a href="login.html"><button id="loginButton">Login</button></a>
         <a href="signup.html"><button id="signupButton">Signup</button></a>
+        <br />
         <a href="createPost.html" id="createPostButton">Create Post</a>
-        <!-- <button id="createPostButton">Create Post</button> -->
+        <br />
+        <a href="userPost.html" id="userPostButton">See Your Post</a>
+        <br />
         <button id="signOutButton" onclick="signUserOut()">Sign Out</button>
         </nav>
 
-            <h2 id="usernameDisplay" onclick="">Welcome</h2>
+        <h2 id="usernameDisplay"></h2>
 
 
         <!-- <a href="#" id="usernameDisplay">Signed in as buddy joe</a> -->

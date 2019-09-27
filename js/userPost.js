@@ -1,57 +1,23 @@
 console.log('userPost Page')
 
 document.addEventListener('DOMContentLoaded', function(e){
-    fetchPost('');
-    if(localStorage.username == undefined){
-        loggedInUsername.innerHTML = 'Hi Guest';
+    if(sessionStorage.userLoginStatus != 'true'){
+        window.location.replace('index.html')
     } else {
-    loggedInUsername.innerHTML = 'Hi ' + localStorage.username;
+        loadUserPost('');
+        if(localStorage.username == undefined){
+            loggedInUsername.innerHTML = 'Hi Guest';
+        } else {
+            loggedInUsername.innerHTML = 'Hi ' + localStorage.username;
+        }
     }
 });
 
-const loginButton = document.getElementById('loginButton');
 const postButton = document.getElementById('createPostButton');
-const signOutButton = document.getElementById('signOutButton');
 const signUpButton = document.getElementById('signupButton');
 
 let loggedInUsername = document.getElementById('usernameDisplay');
 
-
-
-if (postButton && signOutButton) {
-    if (sessionStorage.getItem("userLoginStatus") ==  "false" ) {
-        console.log('user not logged in');
-        console.log(sessionStorage);
-        loginButton.style.visibility != "hidden";
-        postButton.style.visibility = "hidden";
-        signOutButton.style.visibility = "hidden";
-        signUpButton.style.visibility != "hidden";
-    } else {
-        console.log("logged in statement");
-        console.log(sessionStorage);
-        loginButton.style.visibility = "hidden";
-        postButton.style.visibility != "hidden";
-        signOutButton.style.visibility != "hidden";
-        signUpButton.style.visibility = "hidden";
-    }
-}
-
-function fetchPost(){
-    fetch("http://thesi.generalassemb.ly:8080/post/list", {
-        method: 'GET',
-    })
-    .then((response )=> {
-        return response.json();
-    })
-    .then((response) =>{
-        console.log(response);
-        // handleResponse(response);
-        //onUserClick();
-    })
-    .catch(function(error){
-        console.log("Please Try Again");
-    })
-}
 
 const postDiv = document.getElementById('postDiv');
 
@@ -142,7 +108,6 @@ function loadUserPost(){
     })
     .then((response) =>{
         console.log(response);
-        console.log(response[0]);
         handleResponse(response);
         // window.location.replace("userPost.html");
     })
@@ -160,5 +125,3 @@ function signUserOut(){
     localStorage.clear();
     location.reload();
 }
-
-console.log(localStorage);
