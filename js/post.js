@@ -1,8 +1,9 @@
+let loggedInUsername = document.getElementById('usernameDisplay');
+
 document.addEventListener('DOMContentLoaded', function(e){
     if(sessionStorage.userLoginStatus != 'true'){
         window.location.replace('index.html')
     } else {
-        loadUserPost('');
         if(localStorage.username == undefined){
             loggedInUsername.innerHTML = 'Hi Guest';
         } else {

@@ -18,7 +18,7 @@ body {
   #postDiv {
     background-color: white;
     border: 2px black solid;
-    color: darkolivegreen;
+    color: midnightblue;
     font-size: 1.2rem;
     width: 40%;
     padding: 50px;
@@ -32,9 +32,9 @@ body {
     font-size: 30px;
   }
 
- #createPostButton, #userPostButton, #signupButton {
+ #createPostButton, #userPostButton, #signupButton, #loginButton, #signOutButton {
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 20px;
     padding: 8px;
  }
 
@@ -61,6 +61,7 @@ body {
   .fas {
     font-size: 80px;
     padding: 30px;
+    color: midnightblue;
   }
 
   /* create post page */
@@ -76,4 +77,8 @@ body {
   .createPostDiv {
     margin: 0 auto;
     width: 20%;
+  }
+
+  #signOutButton {
+    padding: 8px;
   }
