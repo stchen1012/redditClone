@@ -84,10 +84,7 @@ function handleResponse(response) {
         commentBox.setAttribute('class', "commentBoxClass");
         newPost.appendChild(commentForm);
         commentForm.appendChild(commentBox);
-<<<<<<< HEAD
-=======
         //console.log(fetchComments(postObject.postId));
->>>>>>> 42c6d5174b34eda35362f01dfbba58c7c546b955
         let createCommentButton = document.createElement('button');
         createCommentButton.setAttribute("id", "createCommentButton");
         createCommentButton.setAttribute('data-id', reverseArray[i].id);
@@ -95,15 +92,12 @@ function handleResponse(response) {
         createCommentButton.type = "submit";
         commentForm.appendChild(createCommentButton);
         createCommentButton.addEventListener('click', postComment);
-<<<<<<< HEAD
         // let a = fetchComments(postObject.postId).then(res=>res);
        
         //console.log(postObject.postId);
         //var postIdValue = postObject.postId;
         console.log(fetchComments(postObject.postId));
-=======
         fetchComments(postObject.postId);
->>>>>>> 42c6d5174b34eda35362f01dfbba58c7c546b955
     }
 }
 
