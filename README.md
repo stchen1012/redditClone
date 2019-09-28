@@ -44,7 +44,7 @@ Link:
 ## Wireframes
 Link:
 
-![Alt text](/image/Create Post.jpg)
+![Imgur Image] (redditClone/image/Create Post.jpg)
 
 Explanations of the technologies used.
 A couple of paragraphs about the general approach you took.
