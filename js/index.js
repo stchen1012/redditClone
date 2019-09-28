@@ -7,10 +7,7 @@ const userPostButton = document.getElementById('userPostButton');
 let loggedInUsername = document.getElementById('usernameDisplay');
 
 let specificPostId;
-
-
 var postObjectArray = [];
-var commentsObjectArray = [];
 
 if (postButton && signOutButton) {
     if (sessionStorage.getItem("userLoginStatus") ==  "false" ) {
@@ -43,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function(e){
     }
 });
 
+// function to fetch Posts
 function fetchPost(){
     fetch("http://thesi.generalassemb.ly:8080/post/list", {
         method: 'GET',
@@ -61,16 +59,12 @@ function fetchPost(){
 
 const postDiv = document.getElementById('postDiv');
 
+// Handle for fetch posts which stores the data in objects and displays the posts
 function handleResponse(response) {
     let reverseArray = response.reverse();
-    console.log(reverseArray);
     for (let i =0; i < 20; i++) {
-        //let postObject = new Post(response[i].id, response[i].title, response[i].description, response[i].user.username);
-        // console.log(postObject);
-        //let postObject = new Post(reverseArray[i].id, reverseArray[i].title, reverseArray[i].description, reverseArray[i].user.username);
         let postObject = new Post(reverseArray[i].id, reverseArray[i].title, reverseArray[i].description, reverseArray[i].user.username);
         postObjectArray.push(postObject);
-
         let newPost = document.createElement('div');
         newPost.setAttribute('class', 'postDiv');
         newPost.setAttribute('id', reverseArray[i].id);
@@ -84,7 +78,6 @@ function handleResponse(response) {
         commentBox.setAttribute('class', "commentBoxClass");
         newPost.appendChild(commentForm);
         commentForm.appendChild(commentBox);
-        //console.log(fetchComments(postObject.postId));
         let createCommentButton = document.createElement('button');
         createCommentButton.setAttribute("id", "createCommentButton");
         createCommentButton.setAttribute('data-id', reverseArray[i].id);
@@ -92,17 +85,18 @@ function handleResponse(response) {
         createCommentButton.type = "submit";
         commentForm.appendChild(createCommentButton);
         createCommentButton.addEventListener('click', postComment);
-        // let a = fetchComments(postObject.postId).then(res=>res);
-       
-        //console.log(postObject.postId);
-        //var postIdValue = postObject.postId;
-        console.log(fetchComments(postObject.postId));
         fetchComments(postObject.postId);
     }
 }
 
+function Post(postId, postTitle, postDescription, postUser) {
+    this.postId = postId;
+    this.postTitle = postTitle;
+    this.postDescription = postDescription;
+    this.postUser = postUser;
+}
 
-
+// Function to retrieve comments and render on page
 function fetchComments(postid) {
         fetch(`http://thesi.generalassemb.ly:8080/post/${postid}/comment`, {
             method: 'GET',
@@ -115,7 +109,6 @@ function fetchComments(postid) {
             response.forEach(item => {
                 let commentDiv = document.createElement('div');
                 commentDiv.setAttribute('class', 'commentPostDiv');
-                // commentDiv.setAttribute('id', item.post.id);
                 commentDiv.innerHTML = `<h4><u>Comment</u><br><br> ${item.text}</h4> <h5>User: ${item.user.username}</h5>`;
                 postDiv.appendChild(commentDiv);
                 const post = document.getElementById(`${item.post.id}`);
@@ -127,14 +120,11 @@ function fetchComments(postid) {
         })
     }
 
-// function to post a comment
+// Function to post a comment
 function postComment(event) {
     event.preventDefault();
-    //console.log(event.srcElement.previousSibling.value);
     let specificPostId = event.target.dataset.id;
-    //console.log("THIS IS THE SPECIFIC ID" + specificPostId);
     let commentBoxText = event.srcElement.previousSibling.value;
-    //console.log("THIS IS THE COMMENTBOXTEXT" + commentBoxText)
     fetch(`http://thesi.generalassemb.ly:8080/comment/${specificPostId}`, {
            method: 'post',
            headers:{
@@ -149,27 +139,18 @@ function postComment(event) {
         return response.json();    
     }).then(function(json){
         console.log(json);
-        if(json.httpStatus != "BAD_REQUEST"){
+        if(json.status != 500){
             alert("Comment created!");
         }
         else{
-            alert("Comment not created")
+            alert("Comment not created. Please log in or sign up")
         }
     }).catch(function(error){
             console.error(error, "error message");
     })
 }
 
-
-function Post(postId, postTitle, postDescription, postUser) {
-    this.postId = postId;
-    this.postTitle = postTitle;
-    this.postDescription = postDescription;
-    this.postUser = postUser;
-}
-
-
-//signOut
+// function for signout
 function signUserOut(){
     console.log('sign User Out');
     sessionStorage.setItem("userLoginStatus", false);
@@ -177,5 +158,3 @@ function signUserOut(){
     localStorage.clear();
     location.reload();
 }
-
-console.log(localStorage);

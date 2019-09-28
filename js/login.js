@@ -12,7 +12,7 @@ if(typeof(loginForm) != 'undefined' && loginForm != null){
     // console.log('none');
 }
 
-// login
+// login function
 function loginUser(event){
     event.preventDefault();
     let logEmail = document.getElementById('inputEmail').value;
@@ -37,8 +37,6 @@ function loginUser(event){
                
                if(json.httpStatus != "BAD_REQUEST"){
                 localStorage.setItem("userToken", json.token); 
-                //    window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
-                //userLoggedIn = true;
                 sessionStorage.setItem("userLoginStatus", true);
                 localStorage.setItem('username', json.username);
                 window.location.replace("index.html");
