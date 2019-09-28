@@ -7,3 +7,30 @@ A link to your planning documentation for how you broke down this project with d
 Installation instructions for any dependencies.
 A link to your user stories — who your users are, what they want, and why.
 A link to your wireframes — sketches of major views or interfaces in your application
+
+
+Project Deliverables and Timeline
+
+9/24
+Planning Phase
+-	User stories
+-	Mock ups
+-	Discussion of project features and deliverables
+
+9/25
+-	Add user login/sign up functionalities
+-	Create landing page for users that loads all posts 
+-	Added in buttons and checks for which buttons to be displayed when user is logged in
+
+9/26
+-	Add post creation functionality 
+-	Add obtaining individual user posts
+-	Add CSS
+
+9/27
+-	Add comment creation functionality
+-	Add comment deletion functionality
+-	Add more CSS
+
+9/28
+-	Readme
