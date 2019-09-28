@@ -42,9 +42,14 @@ Planning Phase
 Link:
 
 ## Wireframes
-Link:
+Home Page
+![alt text](https://github.com/stchen1012/redditClone/blob/master/image/Home%20page.jpg)
 
-![Imgur Image] (redditClone/image/Create Post.jpg)
+Log in and sign up pages
+![alt text](https://github.com/stchen1012/redditClone/blob/master/image/Log%20in%20and%20Sign%20up.jpg)
+
+Create posts
+![alt text](https://github.com/stchen1012/redditClone/blob/master/image/Create%20Post.jpg)
 
 Explanations of the technologies used.
 A couple of paragraphs about the general approach you took.
