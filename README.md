@@ -2,7 +2,14 @@
 
 Welcome to the redditClone! redditClone is a website with similar functionalities to Reddit. On this website users will have the ability to create posts, comment on a posts and delete comments once they are logged in. Users who are not logged in or signed up will have the ability to view all posts from other users. This application has a simple, streamlined and user-friendly interface.
 
+## Table of contents
+* [General Approach](#general-approach)
+* [Project Deliverables and Timeline](#project-deliverables-and-timeline)
+* [User stories](#user-stories)
+* [Wireframes](#wireframes)
 
+
+## General Approach
 
 
 ## Project Deliverables and Timeline
@@ -32,10 +39,10 @@ Planning Phase
 -	Readme
 
 ## User stories
-
+Link:
 
 ## Wireframes
-
+Link:
 
 Explanations of the technologies used.
 A couple of paragraphs about the general approach you took.
