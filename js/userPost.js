@@ -50,9 +50,12 @@ function handleResponse(response) {
         let postObject = new Post(reverseArray[i].id, reverseArray[i].title, reverseArray[i].description, reverseArray[i].user.username);
         let newPost = document.createElement('div');
         newPost.setAttribute('class', 'postDiv');
-        newPost.setAttribute('id', reverseArray[i].id)
-        newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2> <h5>Id: ${postObject.postId}</h5> Post Description: ${postObject.postDescription} <h5>User: ${postObject.postUser}</h5> <button type="button" onclick="alert('This post will be removed when API works')">Delete</button>`;
+        newPost.setAttribute('data-id', reverseArray[i].id)
+        newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2> <h5>Id: ${postObject.postId}</h5> Post Description: ${postObject.postDescription} <h5>User: ${postObject.postUser}</h5> <button type="button" class="deletePostClass" onclick="alert('This post will be removed when API works')">Delete</button>`;
         postDiv.appendChild(newPost);
+        //adding below lines of code for future use when delete Post API is functional
+        //let deletePostButton = document.getElementsByClassName('deletePostClass').item(i);
+        //deletePostButton.addEventListener('click', deletePost);
     }
 }
 
@@ -126,6 +129,33 @@ function deleteComment(event) {
             console.error(error, "error message");
     })
 }
+
+
+// function to delete Posts - API not working but adding in for later use
+// function deletePost(event) {
+//     event.preventDefault();
+//     let specificIdForPost = event.target.dataset.id;
+//     fetch(`http://thesi.generalassemb.ly:8080/post/${specificIdForPost}`, {
+//         method: 'DELETE',
+//         headers:{
+//          'Accept': 'application/json',
+//          'Content-Type': 'application/json',
+//          'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+//      },
+//  }).then((response )=> {
+//      return response.json();    
+//  }).then(function(json){
+//      console.log(json);
+//      if(json.httpStatus != "BAD_REQUEST"){
+//          alert("Post deleted");
+//      }
+//      else{
+//          alert("Try again")
+//      }
+//  }).catch(function(error){
+//          console.error(error, "error message");
+//  })
+// }
 
 // function to handle sign out
 function signUserOut(){
