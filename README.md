@@ -4,8 +4,8 @@ Welcome to the redditClone! redditClone is a website with similar functionalitie
 
 
 
-______________________
-Project Deliverables and Timeline
+
+## Project Deliverables and Timeline
 
 9/24
 Planning Phase
@@ -30,6 +30,11 @@ Planning Phase
 
 9/28
 -	Readme
+
+## User stories
+
+
+## Wireframes
 
 
 Explanations of the technologies used.
