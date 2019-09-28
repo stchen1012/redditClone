@@ -68,7 +68,7 @@ function handleResponse(response) {
         let newPost = document.createElement('div');
         newPost.setAttribute('class', 'postDiv');
         newPost.setAttribute('id', reverseArray[i].id);
-        newPost.innerHTML = `<h2>Id: ${postObject.postId} Post Title: ${postObject.postTitle}</h2>, Post Description: ${postObject.postDescription}, <h4>User: ${postObject.postUser}</h4>`;
+        newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2> <h5>Id: ${postObject.postId}</h5> Post Description: ${postObject.postDescription} <h5>User: ${postObject.postUser}</h5>`;
         postDiv.appendChild(newPost);
         let commentForm = document.createElement('form');
         commentForm.setAttribute('method',"post");
@@ -109,7 +109,7 @@ function fetchComments(postid) {
             response.forEach(item => {
                 let commentDiv = document.createElement('div');
                 commentDiv.setAttribute('class', 'commentPostDiv');
-                commentDiv.innerHTML = `<h4><u>Comment</u><br><br> ${item.text}</h4> <h5>User: ${item.user.username}</h5>`;
+                commentDiv.innerHTML = `<h3><u>Comment</u></h3> ${item.text} <h5>User: ${item.user.username}</h5>`;
                 postDiv.appendChild(commentDiv);
                 const post = document.getElementById(`${item.post.id}`);
                 post.appendChild(commentDiv);

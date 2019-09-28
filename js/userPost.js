@@ -22,26 +22,6 @@ let loggedInUsername = document.getElementById('usernameDisplay');
 
 const postDiv = document.getElementById('postDiv');
 
-function handleResponse(response) {
-    let reverseArray = response.reverse();
-    for (let i =0; i < 20; i++) {
-        let postObject = new Post(reverseArray[i].id, reverseArray[i].title, reverseArray[i].description, reverseArray[i].user.username);
-        let newPost = document.createElement('div');
-        newPost.setAttribute('class', 'postDiv');
-        newPost.setAttribute('id', reverseArray[i].id)
-        newPost.innerHTML = `<h2>Id: ${postObject.postId} Post Title: ${postObject.postTitle}</h2>, Post Description: ${postObject.postDescription}, <h4>User: ${postObject.postUser}</h4>`;
-        postDiv.appendChild(newPost);
-    }
-}
-
-
-function Post(postId, postTitle, postDescription, postUser) {
-    this.postId = postId;
-    this.postTitle = postTitle;
-    this.postDescription = postDescription;
-    this.postUser = postUser;
-}
-
 // function to load in User Posts
 function loadUserPost(){
     console.log('you loaded the user post');
@@ -64,7 +44,28 @@ function loadUserPost(){
 
 }
 
+function handleResponse(response) {
+    let reverseArray = response.reverse();
+    for (let i =0; i < 20; i++) {
+        let postObject = new Post(reverseArray[i].id, reverseArray[i].title, reverseArray[i].description, reverseArray[i].user.username);
+        let newPost = document.createElement('div');
+        newPost.setAttribute('class', 'postDiv');
+        newPost.setAttribute('id', reverseArray[i].id)
+        newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2> <h5>Id: ${postObject.postId}</h5> Post Description: ${postObject.postDescription} <h5>User: ${postObject.postUser}</h5>`;
+        postDiv.appendChild(newPost);
+    }
+}
+
+function Post(postId, postTitle, postDescription, postUser) {
+    this.postId = postId;
+    this.postTitle = postTitle;
+    this.postDescription = postDescription;
+    this.postUser = postUser;
+}
+
+
 const commentPostDiv = document.getElementById('commentDiv');
+
 // function to load in User Comments
 function loadUserComments(){
     console.log('you loaded the user comments');
@@ -80,7 +81,6 @@ function loadUserComments(){
     .then((response) => {
         console.log(response);
         onCommentResponse(response);
-        //toDeleteComment(response);
     })
     .catch(function(error){
         console.log("Please Try Again");
@@ -93,7 +93,7 @@ function onCommentResponse(response) {
         let userCommentDiv = document.createElement('div');
         userCommentDiv.setAttribute('class', 'commentDiv');
         userCommentDiv.setAttribute('data-id', response[i].id);
-        userCommentDiv.innerHTML = `<h2><u>Comment</u><br><br>${response[i].text}</h2> <br> <h4>User: ${response[i].user.username} </h4> <br><br><button type="button" class="deleteButtonClass" data-id="${response[i].id}">Delete</button>`
+        userCommentDiv.innerHTML = `<h3><u>Comment</u></h3> ${response[i].text} <h4>User: ${response[i].user.username} </h4> <button type="button" class="deleteButtonClass" data-id="${response[i].id}">Delete</button>`
         commentPostDiv.appendChild(userCommentDiv);
         let formButton = document.getElementsByClassName('deleteButtonClass').item(i);
         formButton.addEventListener('click', deleteComment);

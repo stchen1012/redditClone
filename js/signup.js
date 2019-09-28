@@ -11,7 +11,7 @@ if(typeof(loginForm) != 'undefined' && loginForm != null){
     // console.log('none');
 }
 
-//  signup
+// function for user sign up
 function signupUser(event){
     console.log('signupUser called');
     event.preventDefault();
@@ -42,12 +42,10 @@ function signupUser(event){
             console.log(json);
             if(json.httpStatus != "BAD_REQUEST"){
              alert("New User Created");
-             //    window.location.replace("file:///Users/marcus/Documents/generalAssembly/projects/redditClone/index.html");
+             localStorage.setItem("userToken", json.token); 
+             sessionStorage.setItem("userLoginStatus", true);
+             localStorage.setItem('username', json.username);
              window.location.replace("index.html");
-             userLoggedIn = true;
-             //document.getElementById('createPostButton').style.visibility != "hidden";
-             //    let loginButton = document.getElementById("loginButton");
-             //    loginButton.innerHTML = "Sign Out"
             } else {
                 alert("Failed To Create User")
                 location.reload();
