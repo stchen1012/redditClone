@@ -44,6 +44,8 @@ Link:
 ## Wireframes
 Link:
 
+![Alt text](/image/Create Post.jpg)
+
 Explanations of the technologies used.
 A couple of paragraphs about the general approach you took.
 Descriptions of any unsolved problems or major hurdles you had to overcome.
