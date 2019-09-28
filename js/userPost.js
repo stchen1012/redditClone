@@ -51,7 +51,7 @@ function handleResponse(response) {
         let newPost = document.createElement('div');
         newPost.setAttribute('class', 'postDiv');
         newPost.setAttribute('id', reverseArray[i].id)
-        newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2> <h5>Id: ${postObject.postId}</h5> Post Description: ${postObject.postDescription} <h5>User: ${postObject.postUser}</h5>`;
+        newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2> <h5>Id: ${postObject.postId}</h5> Post Description: ${postObject.postDescription} <h5>User: ${postObject.postUser}</h5> <button type="button" onclick="alert('This post will be removed when API works')">Delete</button>`;
         postDiv.appendChild(newPost);
     }
 }
