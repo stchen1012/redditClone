@@ -1,3 +1,4 @@
+/*
 let userLoggedInStatus;
 let userToken;
 let myStorage = window.localStorage;
@@ -353,7 +354,6 @@ createPostButton.addEventListener('click', (event) => {
                alert("Failed to create post");
            })
 }
-*/
 
 
 function signUserOut(){
@@ -363,4 +363,6 @@ function signUserOut(){
     localStorage.clear();
     location.reload();
 }
+*/
+
 
