@@ -11,6 +11,7 @@ Welcome to the redditClone! redditClone is a website with similar functionalitie
 
 ## General Approach
 
+Our approach was to first load all post, and use that as our index page. We did this because one of our user stories was for users to be able to view post without having to sign in. Initially we started out with all of the Javascript code in one file. This began to be problematic as some of the code was difficult to implement with so many event listeners and function calls all on the same page, and also it began to take extra time to troubleshoot when looking through the code. So we moved some of the functions to their own js file to match their html page counterparts. Everytime we moved onto a technical requirement, we would consult with eachother on where we were in our code, and whether to implement the function on the index page or its own page.
 
 ## Project Deliverables and Timeline
 
@@ -52,10 +53,26 @@ Create posts
 ![alt text](https://github.com/stchen1012/redditClone/blob/master/image/Create%20Post.jpg)
 
 Explanations of the technologies used.
-A couple of paragraphs about the general approach you took.
-Descriptions of any unsolved problems or major hurdles you had to overcome.
-A link to your planning documentation for how you broke down this project with deliverables and timelines.
-Installation instructions for any dependencies.
-A link to your user stories — who your users are, what they want, and why.
-A link to your wireframes — sketches of major views or interfaces in your application
+    github - to host our code for version control and a shared working repository
+    vscode - to build, edit, and troubleshoot our code
+    pivotal tracker - to write our user stories and keep track of our technical requirements
+    (sketching app?)
+    developer console - to help troubleshoot our code
 
+
+A couple of paragraphs about the general approach you took.
+
+Descriptions of any unsolved problems or major hurdles you had to overcome.
+     Major hurdle we had was finding a way to display the comments. It was very difficult to get this implement    compared to our display our post functionality. Also we continuously ran into github issues even after we     finished all of our technical requirements
+
+A link to your planning documentation for how you broke down this project with deliverables and timelines.
+    Linked
+
+Installation instructions for any dependencies.
+    ?like font awesome or bootstrap?
+
+A link to your user stories — who your users are, what they want, and why.
+    Linked
+
+A link to your wireframes — sketches of major views or interfaces in your application
+    Linked

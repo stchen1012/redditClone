@@ -1,5 +1,5 @@
 body {
-    background-color: papayawhip;
+    background-color: white;
     /* background-image: url("../image/unsplashPhoto.jpeg"); */
   }
 
@@ -15,8 +15,9 @@ body {
     list-style-type: disc;
   }
 
-  .postDiv {
-    background-color: white;
+
+  .postDiv  {
+    background-color: azure;
     color: midnightblue;
     border: 2px solid black;
     font-size: 1.2rem;
@@ -28,7 +29,7 @@ body {
   }
 
   .commentDiv {
-    background-color: white;
+    background-color: azure;
     color: midnightblue;
     border: 2px solid black;
     font-size: 1.2rem;
