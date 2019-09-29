@@ -39,7 +39,7 @@ Planning Phase
 -	Readme
 
 ## User stories
-Link:
+Link:   https://www.pivotaltracker.com/n/projects/2400338
 
 ## Wireframes
 Home Page
