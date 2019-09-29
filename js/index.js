@@ -1,3 +1,4 @@
+// all global variables that are used in multiple functions and pages
 const loginButton = document.getElementById('loginButton');
 const postButton = document.getElementById('createPostButton');
 const signOutButton = document.getElementById('signOutButton');
@@ -9,6 +10,7 @@ let loggedInUsername = document.getElementById('usernameDisplay');
 let specificPostId;
 var postObjectArray = [];
 
+// chooses what buttons to display based on if a user is logged in or not
 if (postButton && signOutButton) {
     if (sessionStorage.getItem("userLoginStatus") ==  "false" ) {
         console.log('user not logged in');
@@ -31,6 +33,7 @@ if (postButton && signOutButton) {
     }
 }
 
+// checks if a user is signed in, if a user is signed in, display their name near the nav menu, else display nothing
 document.addEventListener('DOMContentLoaded', function(e){
     fetchPost('');
     if(localStorage.username == undefined){
