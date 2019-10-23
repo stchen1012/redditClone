@@ -21,7 +21,8 @@ createPostButton.addEventListener('click', (event) => {
     let descriptionOfPost = document.getElementById('descriptionOfPost').value;
     userToken = localStorage.getItem('userToken');
 
-    fetch("http://thesi.generalassemb.ly:8080/post", {
+    //http://thesi.generalassemb.ly:8080/post
+    fetch(`http://localhost:8080/redditBackend/user/${localStorage.username}/post`, {
            method: 'post',
            headers:{
             'Accept': 'application/json',

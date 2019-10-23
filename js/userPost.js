@@ -25,7 +25,10 @@ const postDiv = document.getElementById('postDiv');
 // function to load in User Posts
 function loadUserPost(){
     console.log('you loaded the user post');
-    fetch(`http://thesi.generalassemb.ly:8080/user/post`, {
+
+    //http://thesi.generalassemb.ly:8080/user/post
+    //the below endpoint is wrong
+    fetch(`http://localhost:8080/redditBackend/post/list`, {
         method: 'GET',
         headers:{
             'Authorization': `Bearer ${localStorage.userToken}`
@@ -108,7 +111,7 @@ function deleteComment(event) {
     event.preventDefault();
     console.log(event);
     let commentId = event.target.dataset.id;
-    fetch(`http://thesi.generalassemb.ly:8080/comment/${commentId}`, {
+    fetch(`http://localhost:8080/redditBackend/comment/${commentId}`, {
            method: 'DELETE',
            headers:{
             'Accept': 'application/json',
@@ -116,10 +119,10 @@ function deleteComment(event) {
             'Authorization': `Bearer ${localStorage.getItem('userToken')}`
         },
     }).then((response )=> {
-        return response.json();    
-    }).then(function(json){
-        console.log(json);
-        if(json.httpStatus != "BAD_REQUEST"){
+        return response.json();
+    }).then(function(response){
+        console.log(response);
+        if(response.httpStatus != "BAD_REQUEST"){
             alert("Comment deleted");
         }
         else{

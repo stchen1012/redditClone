@@ -22,14 +22,14 @@ function signupUser(event){
     let inputPassword = document.getElementById('inputPassword').value;
     console.log(inputPassword);
 
-        fetch("http://thesi.generalassemb.ly:8080/signup", {
+        fetch("http://localhost:8080/redditBackend/user/signup", {
            method: 'post',
            headers:{
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
            body: JSON.stringify({
-               email: inputEmail,
+               //email: inputEmail,
                username: inputUsername,
                password: inputPassword,
            })

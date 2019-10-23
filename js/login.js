@@ -18,7 +18,7 @@ function loginUser(event){
     let logEmail = document.getElementById('inputEmail').value;
     let logPassword = document.getElementById('inputPassword').value;
 
-        fetch("http://thesi.generalassemb.ly:8080/login", {
+        fetch("http://localhost:8080/redditBackend/user/login", {
            method: 'post',
            headers:{
             'Accept': 'application/json',

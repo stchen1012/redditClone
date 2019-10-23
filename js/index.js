@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function(e){
 
 // function to fetch Posts
 function fetchPost(){
-    fetch("http://thesi.generalassemb.ly:8080/post/list", {
+    fetch("http://localhost:8080/redditBackend/post/list", {
         method: 'GET',
     })
     .then((response )=> {
@@ -98,7 +98,7 @@ function Post(postId, postTitle, postDescription, postUser) {
 
 // Function to retrieve comments and render on page
 function fetchComments(postid) {
-        fetch(`http://thesi.generalassemb.ly:8080/post/${postid}/comment`, {
+        fetch(`http://localhost:8080/redditBackend/post/${postid}/comments`, {
             method: 'GET',
         })
         .then((response)=> {
@@ -125,7 +125,7 @@ function postComment(event) {
     event.preventDefault();
     let specificPostId = event.target.dataset.id;
     let commentBoxText = event.srcElement.previousSibling.value;
-    fetch(`http://thesi.generalassemb.ly:8080/comment/${specificPostId}`, {
+    fetch(`http://localhost:8080/redditBackend/post/${specificPostId}/comments`, {
            method: 'post',
            headers:{
             'Accept': 'application/json',
