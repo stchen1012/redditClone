@@ -100,7 +100,7 @@ function onCommentResponse(response) {
         let userCommentDiv = document.createElement('div');
         userCommentDiv.setAttribute('class', 'commentDiv');
         userCommentDiv.setAttribute('data-id', response[i].commentId);
-        userCommentDiv.innerHTML = `<h3><u>Comment</u></h3> ${response[i].text} <h4>User: ${sessionStorage.username} </h4> <button type="button" class="deleteButtonClass" data-id="${response[i].postId}">Delete</button>`
+        userCommentDiv.innerHTML = `<h3><u>Comment</u></h3> ${response[i].text} <h4>User: ${sessionStorage.username} </h4> <button type="button" class="deleteButtonClass" data-id="${response[i].commentId}">Delete</button>`
         commentPostDiv.appendChild(userCommentDiv);
         let formButton = document.getElementsByClassName('deleteButtonClass').item(i);
         formButton.addEventListener('click', deleteComment);
