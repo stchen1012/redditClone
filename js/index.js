@@ -9,27 +9,30 @@ let loggedInUsername = document.getElementById('usernameDisplay');
 let specificPostId;
 var postObjectArray = [];
 
-if (postButton && signOutButton) {
-    if (sessionStorage.getItem("userLoginStatus") ==  "false" ) {
-        console.log('user not logged in');
-        console.log(sessionStorage);
-        loginButton.style.visibility != "hidden";
-        signUpButton.style.visibility != "hidden";
+// if (postButton && signOutButton) {
+//     //user not signed in
+//     if (sessionStorage.getItem("userLoginStatus") !=  true ) {
+//         console.log('user not logged in');
+//         console.log(sessionStorage);
+//         loginButton.style.visibility = "visible";
+//         signUpButton.style.visibility = "visible";
 
-        postButton.style.visibility = "hidden";
-        signOutButton.style.visibility = "hidden";
-        userPostButton.style.visibility = "hidden";
-    } else {
-        console.log("logged in statement");
-        console.log(sessionStorage);
-        postButton.style.visibility != "hidden";
-        signOutButton.style.visibility != "hidden";
-        userPostButton.style.visibility != "hidden";
+//         postButton.style.visibility = "hidden";
+//         signOutButton.style.visibility = "hidden";
+//         userPostButton.style.visibility = "hidden";
+//     } else {
+//         console.log("logged in statement");
+//         console.log(sessionStorage);
+//         postButton.style.visibility = "visible";
+//         signOutButton.style.visibility = "visible";
+//         userPostButton.style.visibility = "visible";
 
-        loginButton.style.visibility = "hidden";
-        signUpButton.style.visibility = "hidden";
-    }
-}
+//         loginButton.style.visibility = "hidden";
+//         signUpButton.style.visibility = "hidden";
+//     }
+// }
+
+
 
 document.addEventListener('DOMContentLoaded', function(e){
     fetchPost();
@@ -37,6 +40,27 @@ document.addEventListener('DOMContentLoaded', function(e){
         loggedInUsername.innerHTML = '';
     } else {
     loggedInUsername.innerHTML = 'Hi ' + sessionStorage.username;
+    }
+
+    console.log("this is the first log" + sessionStorage.getItem("userLoginStatus"));
+    if (sessionStorage.getItem("userLoginStatus") ===  true ) {
+        // console.log('user logged in');
+        console.log(sessionStorage);
+        loginButton.style.visibility = "visible";
+        signUpButton.style.visibility = "visible";
+    
+        postButton.style.visibility = "hidden";
+        signOutButton.style.visibility = "hidden";
+        userPostButton.style.visibility = "hidden";
+    } else {
+        console.log("logged in statement");
+        console.log(sessionStorage);
+        postButton.style.visibility = "visible";
+        signOutButton.style.visibility = "visible";
+        userPostButton.style.visibility = "visible";
+    
+        loginButton.style.visibility = "hidden";
+        signUpButton.style.visibility = "hidden";
     }
 });
 
@@ -161,5 +185,5 @@ function signUserOut(){
     sessionStorage.setItem("userLoginStatus", false);
     console.log(sessionStorage);
     sessionStorage.clear();
-    location.reload();
+    location.assign("/index.html");
 }
