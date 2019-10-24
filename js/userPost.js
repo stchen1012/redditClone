@@ -27,8 +27,7 @@ function loadUserPost(){
     console.log('you loaded the user post');
 
     //http://thesi.generalassemb.ly:8080/user/post
-    //the below endpoint is wrong
-    fetch(`http://localhost:8080/redditBackend/post/list`, {
+    fetch(`http://localhost:8080/redditBackend/post/list/${localStorage.username}`, {
         method: 'GET',
         headers:{
             'Authorization': `Bearer ${localStorage.userToken}`
@@ -75,7 +74,7 @@ const commentPostDiv = document.getElementById('commentDiv');
 // function to load in User Comments
 function loadUserComments(){
     console.log('you loaded the user comments');
-    fetch(`http://thesi.generalassemb.ly:8080/user/comment`, {
+    fetch(`http://localhost:8080/redditBackend/comment/list/${localStorage.username}`, {
         method: 'GET',
         headers:{
             'Authorization': `Bearer ${localStorage.userToken}`
@@ -138,7 +137,7 @@ function deleteComment(event) {
 // function deletePost(event) {
 //     event.preventDefault();
 //     let specificIdForPost = event.target.dataset.id;
-//     fetch(`http://thesi.generalassemb.ly:8080/post/${specificIdForPost}`, {
+//     fetch(`http://localhost:8080/redditBackend/post/${specificIdForPost}`, {
 //         method: 'DELETE',
 //         headers:{
 //          'Accept': 'application/json',
