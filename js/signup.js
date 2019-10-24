@@ -42,9 +42,9 @@ function signupUser(event){
             console.log(json);
             if(json.httpStatus != "BAD_REQUEST"){
              alert("New User Created");
-             localStorage.setItem("userToken", json.token); 
+             sessionStorage.setItem("userToken", json.token); 
              sessionStorage.setItem("userLoginStatus", true);
-             localStorage.setItem('username', json.username);
+             sessionStorage.setItem('username', json.username);
              window.location.replace("index.html");
             } else {
                 alert("Failed To Create User")

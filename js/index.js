@@ -32,7 +32,7 @@ if (postButton && signOutButton) {
 }
 
 document.addEventListener('DOMContentLoaded', function(e){
-    fetchPost('');
+    fetchPost();
     if(localStorage.username == undefined){
         loggedInUsername.innerHTML = '';
     } else {
@@ -62,12 +62,15 @@ const postDiv = document.getElementById('postDiv');
 // Handle for fetch posts which stores the data in objects and displays the posts
 function handleResponse(response) {
     let reverseArray = response.reverse();
-    for (let i =0; i < 20; i++) {
-        let postObject = new Post(reverseArray[i].id, reverseArray[i].title, reverseArray[i].description, reverseArray[i].user.username);
-        postObjectArray.push(postObject);
+
+    for (let i =0; i < reverseArray.length; i++) {
+        if (reverseArray[i].user == null) continue; // temp fix, skip if user is null
+        let postObject = new Post(reverseArray[i].postId, reverseArray[i].title, reverseArray[i].description, reverseArray[i].user.username); //was using incorrect postId variable
+        // console.log("THIS IS" + postObject.postTitle);
+        // postObjectArray.push(postObject);
         let newPost = document.createElement('div');
         newPost.setAttribute('class', 'postDiv');
-        newPost.setAttribute('id', reverseArray[i].id);
+        newPost.setAttribute('id', reverseArray[i].postId);
         newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2> <h5>Id: ${postObject.postId}</h5> Post Description: ${postObject.postDescription} <h5>User: ${postObject.postUser}</h5>`;
         postDiv.appendChild(newPost);
         let commentForm = document.createElement('form');
@@ -80,7 +83,7 @@ function handleResponse(response) {
         commentForm.appendChild(commentBox);
         let createCommentButton = document.createElement('button');
         createCommentButton.setAttribute("id", "createCommentButton");
-        createCommentButton.setAttribute('data-id', reverseArray[i].id);
+        createCommentButton.setAttribute('data-id', reverseArray[i].postId);
         createCommentButton.innerHTML = "comment";
         createCommentButton.type = "submit";
         commentForm.appendChild(createCommentButton);
@@ -90,10 +93,11 @@ function handleResponse(response) {
 }
 
 function Post(postId, postTitle, postDescription, postUser) {
+    this.postUser = postUser;
     this.postId = postId;
     this.postTitle = postTitle;
     this.postDescription = postDescription;
-    this.postUser = postUser;
+
 }
 
 // Function to retrieve comments and render on page
@@ -105,13 +109,14 @@ function fetchComments(postid) {
             return response.json();
         })
         .then((response) =>{
-            console.log(response);
             response.forEach(item => {
+                // if(item.postId == null) continue;
                 let commentDiv = document.createElement('div');
                 commentDiv.setAttribute('class', 'commentPostDiv');
-                commentDiv.innerHTML = `<h3><u>Comment</u></h3> ${item.text} <h5>User: ${item.user.username}</h5>`;
+                commentDiv.innerHTML = `<h3><u>Comment</u></h3> ${item.text} <h5>User: ${item.userComment.username}</h5>`;
+                // commentDiv.innerHTML = `<h3><u>Comment</u></h3> ${item.text}`;
                 postDiv.appendChild(commentDiv);
-                const post = document.getElementById(`${item.post.id}`);
+                const post = document.getElementById(`${postid}`);
                 post.appendChild(commentDiv);
             });
         })
@@ -138,7 +143,7 @@ function postComment(event) {
     }).then((response )=> {
         return response.json();    
     }).then(function(json){
-        console.log(json);
+        // console.log(json);
         if(json.status != 500){
             alert("Comment created!");
         }

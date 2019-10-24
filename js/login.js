@@ -25,7 +25,7 @@ function loginUser(event){
             'Content-Type': 'application/json'
         },
            body: JSON.stringify({
-               email: logEmail,
+               username: logEmail,
                password: logPassword,
            })
        })
@@ -33,12 +33,12 @@ function loginUser(event){
                return response.json();
            })
            .then(function(json){
-               console.log(json);
+               console.log(">>>>>>" + json);
                
                if(json.httpStatus != "BAD_REQUEST"){
-                localStorage.setItem("userToken", json.token); 
+                sessionStorage.setItem("userToken", json.token); 
                 sessionStorage.setItem("userLoginStatus", true);
-                localStorage.setItem('username', json.username);
+                sessionStorage.setItem('username', logEmail); //json object won't return a username since its just a token, updated it to set username to user defined value
                 window.location.replace("index.html");
                } else {
                    location.reload();//error msg
