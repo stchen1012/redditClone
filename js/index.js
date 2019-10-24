@@ -33,10 +33,10 @@ if (postButton && signOutButton) {
 
 document.addEventListener('DOMContentLoaded', function(e){
     fetchPost();
-    if(localStorage.username == undefined){
+    if(sessionStorage.username == undefined){
         loggedInUsername.innerHTML = '';
     } else {
-    loggedInUsername.innerHTML = 'Hi ' + localStorage.username;
+    loggedInUsername.innerHTML = 'Hi ' + sessionStorage.username;
     }
 });
 
@@ -130,12 +130,12 @@ function postComment(event) {
     event.preventDefault();
     let specificPostId = event.target.dataset.id;
     let commentBoxText = event.srcElement.previousSibling.value;
-    fetch(`http://localhost:8080/redditBackend/post/${specificPostId}/comments`, {
+    fetch(`http://localhost:8080/redditBackend/user/${sessionStorage.username}/${specificPostId}/comment`, {
            method: 'post',
            headers:{
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+            'Authorization': `Bearer ${sessionStorage.getItem('userToken')}`
         },
            body: JSON.stringify({
                text: commentBoxText,
@@ -160,6 +160,6 @@ function signUserOut(){
     console.log('sign User Out');
     sessionStorage.setItem("userLoginStatus", false);
     console.log(sessionStorage);
-    localStorage.clear();
+    sessionStorage.clear();
     location.reload();
 }

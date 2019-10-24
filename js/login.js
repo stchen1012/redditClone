@@ -33,6 +33,7 @@ function loginUser(event){
                return response.json();
            })
            .then(function(json){
+               console.log("REACHED???")
                console.log(">>>>>>" + json);
                
                if(json.httpStatus != "BAD_REQUEST"){

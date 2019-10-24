@@ -15,8 +15,8 @@ if(typeof(loginForm) != 'undefined' && loginForm != null){
 function signupUser(event){
     console.log('signupUser called');
     event.preventDefault();
-    let inputEmail = document.getElementById('inputEmail').value;
-    console.log(inputEmail);
+    // let inputEmail = document.getElementById('inputEmail').value;
+    // console.log(inputEmail);
     let inputUsername = document.getElementById('inputUsername').value;
     console.log(inputUsername);
     let inputPassword = document.getElementById('inputPassword').value;
@@ -44,7 +44,7 @@ function signupUser(event){
              alert("New User Created");
              sessionStorage.setItem("userToken", json.token); 
              sessionStorage.setItem("userLoginStatus", true);
-             sessionStorage.setItem('username', json.username);
+             sessionStorage.setItem('username', inputUsername);
              window.location.replace("index.html");
             } else {
                 alert("Failed To Create User")

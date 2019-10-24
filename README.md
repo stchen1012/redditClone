@@ -47,7 +47,7 @@ We took a collaborative and systematic approach to ensure that all the core func
 
 A few of the challenges that we encountered and how we resolved those issues:
 -	Initially we began with one massive JavaScript file that contained all the code and functions for various pages. This began to become problematic as some of the technical requirements were difficult to implement with so many event listeners and function calls all on the same page. This approach also took extra time to troubleshoot when looking through the code so ultimately we moved split up the one JS file to multiple JS files matching their html page counterparts.
--	Figuring out how to store the JSON token so that the user profile would be authenticated and the user would be allowed to delete and create posts and comments. We resolve this by using local and session storage.
+-	Figuring out how to store the JSON token so that the user profile would be authenticated and the user would be allowed to delete and create posts and comments. We resolve this by using session and session storage.
 -	Another challenge was figuring out how to obtain the specific data associated the form the user was interacting with, as we had multiple forms loaded on the same page. This was resolved by retrieving the information from the event.
 -	Figuring out how to display the comment(s) associated with the specific post. Although the code was set up in such a way to help facilitate this functionality by already including the specific post ids with each post and passing through the post id to the fetch comments call, there was difficulty rendering the comment. We resolved this by storing the post id as a variable and manipulating the DOM with this id.
 -	General GitHub issues when committing and pulling code.
