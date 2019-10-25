@@ -42,7 +42,7 @@ function loginUser(event){
                 sessionStorage.setItem('username', logEmail); //json object won't return a username since its just a token, updated it to set username to user defined value
                 window.location.replace("index.html");
                } else {
-                   location.reload();//error msg
+                //    location.reload();//error msg
                }
            })
            .catch(function(error){

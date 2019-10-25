@@ -12,6 +12,22 @@ document.addEventListener('DOMContentLoaded', function(e){
             loggedInUsername.innerHTML = 'Hi ' + sessionStorage.username;
         }
     }
+
+    const toggle = document.getElementById("post-comment-toggle");
+    toggle.addEventListener('click', ()=>{
+        const postDiv = document.getElementById("postDiv");
+        const commentDiv = document.getElementById("commentDiv");
+        if(toggle.innerText === "See my Post"){
+            toggle.innerText = "See my Comments";
+            postDiv.hidden = false;
+            commentDiv.hidden = true;
+        } else {
+            toggle.innerText = "See my Post";
+            postDiv.hidden = true;
+            commentDiv.hidden = false;
+        }
+    } )
+    
 });
 
 const postButton = document.getElementById('createPostButton');

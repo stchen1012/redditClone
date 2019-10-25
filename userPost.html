@@ -26,12 +26,17 @@
             <br>
             <a href="" id="signOutButton" onclick="signUserOut()">Sign Out</a>
             <h2 id="usernameDisplay"></h2>
+            <button id="post-comment-toggle">See my Comments</button>
         </nav>
 
 
         <!-- <a href="#" id="usernameDisplay">Signed in as buddy joe</a> -->
-        <div id="postDiv"></div>
-        <div id="commentDiv"></div>
+        <div id="postDiv">
+            <h1 class="user-post-h1">Posts</h1>
+        </div>
+        <div id="commentDiv" hidden>
+            <h1 class="user-post-h1">Comments</h1>
+        </div>
         <!-- JS -->
         <script src="js/userPost.js"></script>
     </body>
