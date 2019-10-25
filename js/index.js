@@ -9,30 +9,6 @@ let loggedInUsername = document.getElementById('usernameDisplay');
 let specificPostId;
 var postObjectArray = [];
 
-// if (postButton && signOutButton) {
-//     //user not signed in
-//     if (sessionStorage.getItem("userLoginStatus") !=  true ) {
-//         console.log('user not logged in');
-//         console.log(sessionStorage);
-//         loginButton.style.visibility = "visible";
-//         signUpButton.style.visibility = "visible";
-
-//         postButton.style.visibility = "hidden";
-//         signOutButton.style.visibility = "hidden";
-//         userPostButton.style.visibility = "hidden";
-//     } else {
-//         console.log("logged in statement");
-//         console.log(sessionStorage);
-//         postButton.style.visibility = "visible";
-//         signOutButton.style.visibility = "visible";
-//         userPostButton.style.visibility = "visible";
-
-//         loginButton.style.visibility = "hidden";
-//         signUpButton.style.visibility = "hidden";
-//     }
-// }
-
-
 
 document.addEventListener('DOMContentLoaded', function(e){
     fetchPost();
@@ -41,26 +17,17 @@ document.addEventListener('DOMContentLoaded', function(e){
     } else {
     loggedInUsername.innerHTML = 'Hi ' + sessionStorage.username;
     }
-
-    console.log("this is the first log" + sessionStorage.getItem("userLoginStatus"));
-    if (sessionStorage.getItem("userLoginStatus") ===  true ) {
-        // console.log('user logged in');
-        console.log(sessionStorage);
-        loginButton.style.visibility = "visible";
-        signUpButton.style.visibility = "visible";
-    
-        postButton.style.visibility = "hidden";
-        signOutButton.style.visibility = "hidden";
-        userPostButton.style.visibility = "hidden";
-    } else {
-        console.log("logged in statement");
-        console.log(sessionStorage);
-        postButton.style.visibility = "visible";
-        signOutButton.style.visibility = "visible";
-        userPostButton.style.visibility = "visible";
-    
+    if (sessionStorage.getItem("userLoginStatus") ===  "true" ) {
+        //logged in
         loginButton.style.visibility = "hidden";
         signUpButton.style.visibility = "hidden";
+        signOutButton.style.visibility = "visible";
+        createPostButton.style.visibility = "visible";
+        userPostButton.style.visibility = "visible";
+    } else {
+        userPostButton.style.visibility = "hidden";
+        createPostButton.style.visibility = "hidden";
+        signOutButton.style.visibility = "hidden";
     }
 });
 
