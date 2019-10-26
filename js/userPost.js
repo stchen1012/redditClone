@@ -128,7 +128,7 @@ function deleteComment(event) {
     event.preventDefault();
     console.log(event);
     let commentId = event.target.dataset.id;
-    fetch(`http://localhost:8080/redditBackend/comment/${commentId}`, {
+    fetch(`http://localhost:8080/redditBackend/comment/remove/${commentId}`, {
            method: 'DELETE',
            headers:{
             'Accept': 'application/json',
@@ -155,7 +155,7 @@ function deleteComment(event) {
 function deletePost(event) {
     event.preventDefault();
     let specificIdForPost = event.target.dataset.id;
-    fetch(`http://localhost:8080/redditBackend/post/${specificIdForPost}`, {
+    fetch(`http://localhost:8080/redditBackend/post/remove/${specificIdForPost}`, {
         method: 'DELETE',
         headers:{
          'Accept': 'application/json',

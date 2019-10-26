@@ -121,7 +121,7 @@ function postComment(event) {
     event.preventDefault();
     let specificPostId = event.target.dataset.id;
     let commentBoxText = event.srcElement.previousSibling.value;
-    fetch(`http://localhost:8080/redditBackend/user/${sessionStorage.username}/${specificPostId}/comment`, {
+    fetch(`http://localhost:8080/redditBackend/user/${specificPostId}/comment`, {
            method: 'post',
            headers:{
             'Accept': 'application/json',
