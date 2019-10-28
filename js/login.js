@@ -36,13 +36,16 @@ function loginUser(event){
                console.log("REACHED???")
                console.log(">>>>>>" + json);
                
-               if(json.httpStatus != "BAD_REQUEST"){
+            //    if(json.httpStatus != "BAD_REQUEST"){
+                if(json.token != null){
+                   console.log(json.token);
                 sessionStorage.setItem("userToken", json.token); 
                 sessionStorage.setItem("userLoginStatus", true);
                 sessionStorage.setItem('username', logEmail); //json object won't return a username since its just a token, updated it to set username to user defined value
                 window.location.replace("index.html");
                } else {
-                //    location.reload();//error msg
+                alert("incorrect credentials");
+                   location.reload();//error msg  
                }
            })
            .catch(function(error){
