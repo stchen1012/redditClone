@@ -22,8 +22,7 @@ createPostButton.addEventListener('click', (event) => {
     userToken = sessionStorage.getItem('userToken');
 
     //http://thesi.generalassemb.ly:8080/post
-    console.log(`http://localhost:8080/redditBackend/user/${sessionStorage.username}/post`)
-    fetch(`http://localhost:8080/redditBackend/user/post`, {
+    fetch(`http://localhost:8080/posts/post`, {
            method: 'post',
            headers:{
             'Accept': 'application/json',

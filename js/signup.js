@@ -22,7 +22,7 @@ function signupUser(event){
     let inputPassword = document.getElementById('inputPassword').value;
     console.log(inputPassword);
 
-        fetch("http://localhost:8080/redditBackend/user/signup", {
+        fetch("http://localhost:8080/users/signup", {
            method: 'post',
            headers:{
             'Accept': 'application/json',

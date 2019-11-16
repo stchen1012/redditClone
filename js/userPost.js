@@ -43,8 +43,7 @@ function loadUserPost(){
     console.log('you loaded the user post');
 
     //http://thesi.generalassemb.ly:8080/user/post
-    console.log(`http://localhost:8080/redditBackend/post/list/${sessionStorage.username}`)
-    fetch(`http://localhost:8080/redditBackend/post/list/${sessionStorage.username}`, {
+    fetch(`http://localhost:8080/posts/user`, {
         method: 'GET',
         headers:{
             'Authorization': `Bearer ${sessionStorage.userToken}`
@@ -91,7 +90,7 @@ const commentPostDiv = document.getElementById('commentDiv');
 // function to load in User Comments
 function loadUserComments(){
     console.log('you loaded the user comments');
-    fetch(`http://localhost:8080/redditBackend/comment/list/${sessionStorage.username}`, {
+    fetch(`http://localhost:8080/comments/user`, {
         method: 'GET',
         headers:{
             'Authorization': `Bearer ${sessionStorage.userToken}`
@@ -128,7 +127,7 @@ function deleteComment(event) {
     event.preventDefault();
     console.log(event);
     let commentId = event.target.dataset.id;
-    fetch(`http://localhost:8080/redditBackend/comment/remove/${commentId}`, {
+    fetch(`http://localhost:8080/comments/${commentId}`, {
            method: 'DELETE',
            headers:{
             'Accept': 'application/json',
@@ -155,7 +154,7 @@ function deleteComment(event) {
 function deletePost(event) {
     event.preventDefault();
     let specificIdForPost = event.target.dataset.id;
-    fetch(`http://localhost:8080/redditBackend/post/remove/${specificIdForPost}`, {
+    fetch(`http://localhost:8080/posts/${specificIdForPost}`, {
         method: 'DELETE',
         headers:{
          'Accept': 'application/json',

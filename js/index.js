@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function(e){
 
 // function to fetch Posts
 function fetchPost(){
-    fetch("http://localhost:8080/redditBackend/post/list", {
+    fetch("http://localhost:8080/posts/list", {
         method: 'GET',
     })
     .then((response )=> {
@@ -93,7 +93,7 @@ function Post(postId, postTitle, postDescription, postUser) {
 
 // Function to retrieve comments and render on page
 function fetchComments(postid) {
-        fetch(`http://localhost:8080/redditBackend/post/${postid}/comments`, {
+        fetch(`http://localhost:8080/comments/post/${postid}/comment`, {
             method: 'GET',
         })
         .then((response)=> {
@@ -104,7 +104,7 @@ function fetchComments(postid) {
                 // if(item.postId == null) continue;
                 let commentDiv = document.createElement('div');
                 commentDiv.setAttribute('class', 'commentPostDiv');
-                commentDiv.innerHTML = `<h3><u>Comment</u></h3> ${item.text} <h5>User: ${item.userComment.username}</h5>`;
+                commentDiv.innerHTML = `<h3><u>Comment</u></h3> ${item.text} <h5>User: ${item.user.username}</h5>`;
                 // commentDiv.innerHTML = `<h3><u>Comment</u></h3> ${item.text}`;
                 postDiv.appendChild(commentDiv);
                 const post = document.getElementById(`${postid}`);
@@ -121,7 +121,7 @@ function postComment(event) {
     event.preventDefault();
     let specificPostId = event.target.dataset.id;
     let commentBoxText = event.srcElement.previousSibling.value;
-    fetch(`http://localhost:8080/redditBackend/user/${specificPostId}/comment`, {
+    fetch(`http://localhost:8080/comments/post/${specificPostId}`, {
            method: 'post',
            headers:{
             'Accept': 'application/json',
