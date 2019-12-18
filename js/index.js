@@ -15,8 +15,6 @@ document.addEventListener('DOMContentLoaded', function(e){
     if(sessionStorage.username == undefined){
         loggedInUsername.innerHTML = "Hi Guest";
         signOutButton.style.visibility = "hidden";
-        createPostButton.style.visibility = "hidden";
-        userPostButton.style.visibility = "hidden";
     } else {
     loggedInUsername.innerHTML = 'Welcome, ' + sessionStorage.username;
     }
@@ -58,14 +56,11 @@ function handleResponse(response) {
     let reverseArray = response.reverse();
 
     for (let i =0; i < reverseArray.length; i++) {
-        if (reverseArray[i].user == null) continue; // temp fix, skip if user is null
-        let postObject = new Post(reverseArray[i].postId, reverseArray[i].title, reverseArray[i].description, reverseArray[i].user.username); //was using incorrect postId variable
-        // console.log("THIS IS" + postObject.postTitle);
-        // postObjectArray.push(postObject);
+        if (reverseArray[i].user == null) continue;
+        let postObject = new Post(reverseArray[i].postId, reverseArray[i].title, reverseArray[i].description, reverseArray[i].user.username);
         let newPost = document.createElement('div');
         newPost.setAttribute('class', 'postDiv');
         newPost.setAttribute('class', "card border-light mb-3");
-        // newPost.setAttribute('style', "max-width: 40rem;");
         newPost.setAttribute('id', reverseArray[i].postId);
         newPost.innerHTML = `<div class="card-body" id="postCard"><h3 class="card-header"> ${postObject.postTitle}</h3><div class='card-body'><p class="card-text" id="postIdStyle">Post id: ${postObject.postId}</p> <p class="card-text" id="postedByStyle">Posted by: ${postObject.postUser}</p><p class ="card-text" id="postDesc">${postObject.postDescription}</p></div></div>`;
         postDiv.appendChild(newPost);
@@ -76,8 +71,6 @@ function handleResponse(response) {
         commentBox.name = postObject.postId;
         commentBox.setAttribute('id', "commentBoxId");
         commentBox.setAttribute('class', "commentBoxClass");
-        
-        
         commentForm.appendChild(commentBox);
         let createCommentButton = document.createElement('button');
         createCommentButton.setAttribute("id", "createCommentButton");

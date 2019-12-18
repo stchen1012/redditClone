@@ -1,110 +1,10 @@
-body {
-    /* background-color: rgb(23, 65, 126); */
-    /* background-image: url("../image/unsplashPhoto.jpeg"); */
-  }
-
-
-
-  /* Index page */
-
-
-
-  /* .postDiv  {
-    background-color: azure;
-    color: midnightblue;
-    border: 2px solid black;
-    font-size: 1.2rem;
-    width: 40%;
-    padding: 50px;
-    margin: 0 auto;
-    display: block;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  }
-
-  .commentDiv {
-    background-color: azure;
-    color: midnightblue;
-    border: 2px solid black;
-    font-size: 1.2rem;
-    width: 100%;
-    padding: 50px;
-    margin: 0 auto;
-    display: block;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  } */
-
-
-
-  #usernameDisplay {
+#usernameDisplay {
     /* font-weight: bold; */
     font-size: 20px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: right;
     color: rgba(255, 86, 0, 1);
   }
-
- /* #createPostButton, #userPostButton, #signupButton, #loginButton, #signOutButton {
-    text-decoration: none;
-    font-size: 20px;
-    padding: 8px;
- } */
-
-  /* #usernameDisplay a:link, a:visited{
-    color: black;
-  }  */
-
-
-  
-    
-/* sign in page */
-
-  /* .customWidth {
-      width: 250px;
-  }
-
-  .form-signup, .form-login {
-    position: relative;
-    left: 500px;
-    top: 200px;
-  }
-
-
-  .fas {
-    font-size: 80px;
-    padding: 30px;
-    color: midnightblue;
-  } */
-
-  /* create post page */
-  /* #titleOfPost{
-    width: 300px;
-  }
-
-  #descriptionOfPost {
-    width: 500px;
-    height: 200px;
-  }
-
-  .createPostDiv {
-    margin: 0 auto;
-    width: 20%;
-  }
-
-  #signOutButton {
-    padding: 8px;
-  }
-
-.user-post-h1 {
-    text-align: center;
-    margin: 0 auto;
-  }
-
-#center-align {
-  text-align: center;
-  margin: 0 auto;
-  width: 50%;
-  padding: 30px;
-} */
 
 #createCommentButton {
   margin-left: 20px;
@@ -171,13 +71,7 @@ h3 {
 #post-comment-toggle {
   margin-top: 25px;
   margin-left: 5px;
-
-
 }
-
-/* #commentTextBody{
-  background-color: white;
-} */
 
 #commentDiv {
   background-color: white;
