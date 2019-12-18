@@ -10,42 +10,32 @@ let loggedInUsername = document.getElementById('usernameDisplay');
 let specificPostId;
 var postObjectArray = [];
 
-// chooses what buttons to display based on if a user is logged in or not
-if (postButton && signOutButton) {
-    if (sessionStorage.getItem("userLoginStatus") ==  "false" ) {
-        console.log('user not logged in');
-        console.log(sessionStorage);
-        loginButton.style.visibility != "hidden";
-        signUpButton.style.visibility != "hidden";
 
-        postButton.style.visibility = "hidden";
+document.addEventListener('DOMContentLoaded', function(e){
+    fetchPost();
+    if(sessionStorage.username == undefined){
+        loggedInUsername.innerHTML = "Hi Guest";
         signOutButton.style.visibility = "hidden";
-        userPostButton.style.visibility = "hidden";
     } else {
-        console.log("logged in statement");
-        console.log(sessionStorage);
-        postButton.style.visibility != "hidden";
-        signOutButton.style.visibility != "hidden";
-        userPostButton.style.visibility != "hidden";
-
+    loggedInUsername.innerHTML = 'Welcome, ' + sessionStorage.username;
+    }
+    if (sessionStorage.getItem("userLoginStatus") ===  "true" ) {
+        //logged in
         loginButton.style.visibility = "hidden";
         signUpButton.style.visibility = "hidden";
-    }
-}
-
-// checks if a user is signed in, if a user is signed in, display their name near the nav menu, else display nothing
-document.addEventListener('DOMContentLoaded', function(e){
-    fetchPost('');
-    if(localStorage.username == undefined){
-        loggedInUsername.innerHTML = '';
+        signOutButton.style.visibility = "visible";
+        createPostButton.style.visibility = "visible";
+        userPostButton.style.visibility = "visible";
     } else {
-    loggedInUsername.innerHTML = 'Hi ' + localStorage.username;
+        userPostButton.style.visibility = "hidden";
+        createPostButton.style.visibility = "hidden";
+        signOutButton.style.visibility = "hidden";
     }
 });
 
 // function to fetch Posts
 function fetchPost(){
-    fetch("http://thesi.generalassemb.ly:8080/post/list", {
+    fetch("http://localhost:8080/redditBackend/post/list", {
         method: 'GET',
     })
     .then((response )=> {
@@ -65,56 +55,65 @@ const postDiv = document.getElementById('postDiv');
 // Handle for fetch posts which stores the data in objects and displays the posts
 function handleResponse(response) {
     let reverseArray = response.reverse();
-    for (let i =0; i < 20; i++) {
-        let postObject = new Post(reverseArray[i].id, reverseArray[i].title, reverseArray[i].description, reverseArray[i].user.username);
-        postObjectArray.push(postObject);
+
+    for (let i =0; i < reverseArray.length; i++) {
+        if (reverseArray[i].user == null) continue;
+        let postObject = new Post(reverseArray[i].postId, reverseArray[i].title, reverseArray[i].description, reverseArray[i].user.username);
         let newPost = document.createElement('div');
         newPost.setAttribute('class', 'postDiv');
-        newPost.setAttribute('id', reverseArray[i].id);
-        newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2> <h5>Id: ${postObject.postId}</h5> Post Description: ${postObject.postDescription} <h5>User: ${postObject.postUser}</h5>`;
+        newPost.setAttribute('class', "card border-light mb-3");
+        newPost.setAttribute('id', reverseArray[i].postId);
+        newPost.innerHTML = `<div class="card-body" id="postCard"><h3 class="card-header"> ${postObject.postTitle}</h3><div class='card-body'><p class="card-text" id="postIdStyle">Post id: ${postObject.postId}</p> <p class="card-text" id="postedByStyle">Posted by: ${postObject.postUser}</p><p class ="card-text" id="postDesc">${postObject.postDescription}</p></div></div>`;
         postDiv.appendChild(newPost);
         let commentForm = document.createElement('form');
         commentForm.setAttribute('method',"post");
+        commentForm.setAttribute('class', 'card-body');
         let commentBox = document.createElement("input");
         commentBox.name = postObject.postId;
         commentBox.setAttribute('id', "commentBoxId");
         commentBox.setAttribute('class', "commentBoxClass");
-        newPost.appendChild(commentForm);
         commentForm.appendChild(commentBox);
         let createCommentButton = document.createElement('button');
         createCommentButton.setAttribute("id", "createCommentButton");
-        createCommentButton.setAttribute('data-id', reverseArray[i].id);
+        createCommentButton.setAttribute('data-id', reverseArray[i].postId);
         createCommentButton.innerHTML = "comment";
+        createCommentButton.setAttribute("class", "btn btn-primary");
         createCommentButton.type = "submit";
         commentForm.appendChild(createCommentButton);
+        newPost.appendChild(commentForm);
         createCommentButton.addEventListener('click', postComment);
         fetchComments(postObject.postId);
+
     }
+    
 }
 
+
 function Post(postId, postTitle, postDescription, postUser) {
+    this.postUser = postUser;
     this.postId = postId;
     this.postTitle = postTitle;
     this.postDescription = postDescription;
-    this.postUser = postUser;
+
 }
 
 // Function to retrieve comments and render on page
 function fetchComments(postid) {
-        fetch(`http://thesi.generalassemb.ly:8080/post/${postid}/comment`, {
+        fetch(`http://localhost:8080/redditBackend/post/${postid}/comments`, {
             method: 'GET',
         })
         .then((response)=> {
             return response.json();
         })
         .then((response) =>{
-            console.log(response);
             response.forEach(item => {
+                // if(item.postId == null) continue;
                 let commentDiv = document.createElement('div');
                 commentDiv.setAttribute('class', 'commentPostDiv');
-                commentDiv.innerHTML = `<h3><u>Comment</u></h3> ${item.text} <h5>User: ${item.user.username}</h5>`;
+                commentDiv.innerHTML = `<div class="card-body"><p class="card-header" id="commentBoxLabel">Comment </p> <p class="card-text" id="commentBy">Comment by: ${item.userComment.username}</p><div class='card-body'><p class="card-text">${item.text} </p></div></div>`;
+                // commentDiv.innerHTML = `<h3><u>Comment</u></h3> ${item.text}`;
                 postDiv.appendChild(commentDiv);
-                const post = document.getElementById(`${item.post.id}`);
+                const post = document.getElementById(`${postid}`);
                 post.appendChild(commentDiv);
             });
         })
@@ -128,12 +127,12 @@ function postComment(event) {
     event.preventDefault();
     let specificPostId = event.target.dataset.id;
     let commentBoxText = event.srcElement.previousSibling.value;
-    fetch(`http://thesi.generalassemb.ly:8080/comment/${specificPostId}`, {
+    fetch(`http://localhost:8080/redditBackend/user/${specificPostId}/comment`, {
            method: 'post',
            headers:{
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+            'Authorization': `Bearer ${sessionStorage.getItem('userToken')}`
         },
            body: JSON.stringify({
                text: commentBoxText,
@@ -141,7 +140,7 @@ function postComment(event) {
     }).then((response )=> {
         return response.json();    
     }).then(function(json){
-        console.log(json);
+        // console.log(json);
         if(json.status != 500){
             alert("Comment created!");
         }
@@ -158,6 +157,6 @@ function signUserOut(){
     console.log('sign User Out');
     sessionStorage.setItem("userLoginStatus", false);
     console.log(sessionStorage);
-    localStorage.clear();
-    location.reload();
+    sessionStorage.clear();
+    location.assign("/index.html");
 }

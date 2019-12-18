@@ -15,21 +15,21 @@ if(typeof(loginForm) != 'undefined' && loginForm != null){
 function signupUser(event){
     console.log('signupUser called');
     event.preventDefault();
-    let inputEmail = document.getElementById('inputEmail').value;
-    console.log(inputEmail);
+    // let inputEmail = document.getElementById('inputEmail').value;
+    // console.log(inputEmail);
     let inputUsername = document.getElementById('inputUsername').value;
     console.log(inputUsername);
     let inputPassword = document.getElementById('inputPassword').value;
     console.log(inputPassword);
 
-        fetch("http://thesi.generalassemb.ly:8080/signup", {
+        fetch("http://localhost:8080/redditBackend/user/signup", {
            method: 'post',
            headers:{
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
            body: JSON.stringify({
-               email: inputEmail,
+               //email: inputEmail,
                username: inputUsername,
                password: inputPassword,
            })
@@ -42,9 +42,9 @@ function signupUser(event){
             console.log(json);
             if(json.httpStatus != "BAD_REQUEST"){
              alert("New User Created");
-             localStorage.setItem("userToken", json.token); 
+             sessionStorage.setItem("userToken", json.token); 
              sessionStorage.setItem("userLoginStatus", true);
-             localStorage.setItem('username', json.username);
+             sessionStorage.setItem('username', inputUsername);
              window.location.replace("index.html");
             } else {
                 alert("Failed To Create User")

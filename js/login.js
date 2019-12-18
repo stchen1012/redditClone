@@ -18,14 +18,14 @@ function loginUser(event){
     let logEmail = document.getElementById('inputEmail').value;
     let logPassword = document.getElementById('inputPassword').value;
 
-        fetch("http://thesi.generalassemb.ly:8080/login", {
+        fetch("http://localhost:8080/redditBackend/user/login", {
            method: 'post',
            headers:{
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
            body: JSON.stringify({
-               email: logEmail,
+               username: logEmail,
                password: logPassword,
            })
        })
@@ -33,15 +33,19 @@ function loginUser(event){
                return response.json();
            })
            .then(function(json){
-               console.log(json);
+               console.log("REACHED???")
+               console.log(">>>>>>" + json);
                
-               if(json.httpStatus != "BAD_REQUEST"){
-                localStorage.setItem("userToken", json.token); 
+            //    if(json.httpStatus != "BAD_REQUEST"){
+                if(json.token != null){
+                   console.log(json.token);
+                sessionStorage.setItem("userToken", json.token); 
                 sessionStorage.setItem("userLoginStatus", true);
-                localStorage.setItem('username', json.username);
+                sessionStorage.setItem('username', logEmail); //json object won't return a username since its just a token, updated it to set username to user defined value
                 window.location.replace("index.html");
                } else {
-                   location.reload();//error msg
+                alert("incorrect credentials");
+                   location.reload();//error msg  
                }
            })
            .catch(function(error){

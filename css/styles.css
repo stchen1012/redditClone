@@ -1,99 +1,78 @@
-body {
-    background-color: white;
-    /* background-image: url("../image/unsplashPhoto.jpeg"); */
-  }
-
-
-
-  /* Index page */
-
-  nav {
-    float: left;
-  }
-
-  nav li {
-    list-style-type: disc;
-  }
-
-
-  .postDiv  {
-    background-color: azure;
-    color: midnightblue;
-    border: 2px solid black;
-    font-size: 1.2rem;
-    width: 40%;
-    padding: 50px;
-    margin: 0 auto;
-    display: block;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  }
-
-  .commentDiv {
-    background-color: azure;
-    color: midnightblue;
-    border: 2px solid black;
-    font-size: 1.2rem;
-    width: 40%;
-    padding: 50px;
-    margin: 0 auto;
-    display: block;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  }
-
-
-
-  #usernameDisplay {
-    font-weight: bold;
-    font-size: 30px;
-  }
-
- #createPostButton, #userPostButton, #signupButton, #loginButton, #signOutButton {
-    text-decoration: none;
+#usernameDisplay {
+    /* font-weight: bold; */
     font-size: 20px;
-    padding: 8px;
- }
-
-  #usernameDisplay a:link, a:visited{
-    color: black;
-  } 
-
-
-  
-    
-/* sign in page */
-
-  .customWidth {
-      width: 250px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: right;
+    color: rgba(255, 86, 0, 1);
   }
 
-  .form-signup, .form-login {
-    position: relative;
-    left: 500px;
-    top: 200px;
-  }
+#createCommentButton {
+  margin-left: 20px;
+}
 
+h3 {
+  color:	rgba(255, 67, 0,1);
+  font-family: sans-serif;
+}
 
-  .fas {
-    font-size: 80px;
-    padding: 30px;
-    color: midnightblue;
-  }
+#postIdStyle {
+  font-size: 12px;
+  text-align: right;
+  padding: 0px;
+  margin: 0px;
+  color: grey;
+}
 
-  /* create post page */
-  #titleOfPost{
-    width: 300px;
-  }
+#postedByStyle {
+  font-size: 12px;
+  color: #007bff;
+  text-align: right;
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
 
-  #descriptionOfPost {
-    width: 500px;
-    height: 200px;
-  }
+#postDesc {
+  font-size: 20px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  margin-top: 10px;
+}
 
-  .createPostDiv {
-    margin: 0 auto;
-    width: 20%;
-  }
+#commentBoxId {
+  margin-top: 0px;
+  margin-left: 20px;
+  padding-top: 0px;
+}
 
-  #signOutButton {
-    padding: 8px;
-  }
+#commentBy {
+  font-size: 12px;
+  color: #007bff;
+  text-align: right;
+  padding-top: 10px;
+  padding-right: 15px;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+#commentBoxLabel {
+  color:rgba(43, 19, 6, 0.947);;
+}
+
+#createCommentButton {
+  margin-top: 0px;
+}
+
+.container {
+  background-color:	rgb(235, 235, 235);
+}
+
+#post-comment-toggle {
+  margin-top: 25px;
+  margin-left: 5px;
+}
+
+#commentDiv {
+  background-color: white;
+}

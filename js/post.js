@@ -4,10 +4,10 @@ document.addEventListener('DOMContentLoaded', function(e){
     if(sessionStorage.userLoginStatus != 'true'){
         window.location.replace('index.html')
     } else {
-        if(localStorage.username == undefined){
+        if(sessionStorage.username == undefined){
             loggedInUsername.innerHTML = 'Hi Guest';
         } else {
-            loggedInUsername.innerHTML = 'Hi ' + localStorage.username;
+            loggedInUsername.innerHTML = 'Welcome, ' + sessionStorage.username;
         }
     }
 });
@@ -19,9 +19,11 @@ createPostButton.addEventListener('click', (event) => {
     
     let titleOfPost = document.getElementById('titleOfPost').value;
     let descriptionOfPost = document.getElementById('descriptionOfPost').value;
-    userToken = localStorage.getItem('userToken');
+    userToken = sessionStorage.getItem('userToken');
 
-    fetch("http://thesi.generalassemb.ly:8080/post", {
+    //http://thesi.generalassemb.ly:8080/post
+    console.log(`http://localhost:8080/redditBackend/user/${sessionStorage.username}/post`)
+    fetch(`http://localhost:8080/redditBackend/user/post`, {
            method: 'post',
            headers:{
             'Accept': 'application/json',
@@ -38,7 +40,7 @@ createPostButton.addEventListener('click', (event) => {
         console.log(json);
         if(json.httpStatus != "BAD_REQUEST"){
             alert("Post created!")
-            window.location.replace("index.html");
+            // window.location.replace("index.html");
         }
         else{
             alert("Post not created")
@@ -53,6 +55,6 @@ function signUserOut(){
     console.log('sign User Out');
     sessionStorage.setItem("userLoginStatus", false);
     console.log(sessionStorage);
-    localStorage.clear();
+    sessionStorage.clear();
     location.reload();
 }
