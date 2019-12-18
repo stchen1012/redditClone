@@ -1,5 +1,5 @@
 body {
-    background-color: white;
+    background-color: rgb(210, 222, 240);
     /* background-image: url("../image/unsplashPhoto.jpeg"); */
   }
 
@@ -7,13 +7,6 @@ body {
 
   /* Index page */
 
-  nav {
-    float: left;
-  }
-
-  nav li {
-    list-style-type: disc;
-  }
 
 
   /* .postDiv  {
@@ -26,33 +19,35 @@ body {
     margin: 0 auto;
     display: block;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  } */
+  }
 
   .commentDiv {
     background-color: azure;
     color: midnightblue;
     border: 2px solid black;
     font-size: 1.2rem;
-    width: 40%;
+    width: 100%;
     padding: 50px;
     margin: 0 auto;
     display: block;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  }
+  } */
 
 
 
   #usernameDisplay {
     /* font-weight: bold; */
-    font-size: 10px;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: right;
+    color: rgba(255, 86, 0, 1);
   }
 
- #createPostButton, #userPostButton, #signupButton, #loginButton, #signOutButton {
+ /* #createPostButton, #userPostButton, #signupButton, #loginButton, #signOutButton {
     text-decoration: none;
     font-size: 20px;
     padding: 8px;
- }
+ } */
 
   /* #usernameDisplay a:link, a:visited{
     color: black;
@@ -63,7 +58,7 @@ body {
     
 /* sign in page */
 
-  .customWidth {
+  /* .customWidth {
       width: 250px;
   }
 
@@ -78,10 +73,10 @@ body {
     font-size: 80px;
     padding: 30px;
     color: midnightblue;
-  }
+  } */
 
   /* create post page */
-  #titleOfPost{
+  /* #titleOfPost{
     width: 300px;
   }
 
@@ -109,4 +104,27 @@ body {
   margin: 0 auto;
   width: 50%;
   padding: 30px;
+} */
+
+#createCommentButton {
+  margin-left: 20px;
+}
+
+h3 {
+  color:	rgba(255, 67, 0,1);
+  font-family: sans-serif;
+}
+
+#postIdStyle {
+  font-size: 12px;
+  text-align: right;
+  padding: 0px;
+  margin: 0px;
+}
+
+#postedByStyle {
+  font-size: 12px;
+  text-align: right;
+  padding: 0px;
+  margin: 0px;
 }

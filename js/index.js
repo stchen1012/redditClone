@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function(e){
     fetchPost();
     if(sessionStorage.username == undefined){
         loggedInUsername.innerHTML = "Hi Guest";
+        signOutButton.style.visibility = "hidden";
     } else {
     loggedInUsername.innerHTML = 'Welcome, ' + sessionStorage.username;
     }
@@ -61,18 +62,20 @@ function handleResponse(response) {
         // postObjectArray.push(postObject);
         let newPost = document.createElement('div');
         newPost.setAttribute('class', 'postDiv');
-        newPost.setAttribute('class', "card border-info mb-3" );
-        // newPost.setAttribute('style', "max-width: 30rem;");
+        newPost.setAttribute('class', "card border-light mb-3");
+        // newPost.setAttribute('style', "max-width: 40rem;");
         newPost.setAttribute('id', reverseArray[i].postId);
-        newPost.innerHTML = `<h2 class="card-header">Post Title: ${postObject.postTitle}</h2> <br> <h6>Id: ${postObject.postId}</h6> <h5>Post Description: ${postObject.postDescription}</h5> <h6>User: ${postObject.postUser}</h6>`;
+        newPost.innerHTML = `<div class="card-body" id="postCard"><h3 class="card-header"> ${postObject.postTitle}</h3><div class='card-body'><p class="card-text" id="postIdStyle">Post id: ${postObject.postId}</p> <p class="card-text" id="postedByStyle">Posted by: ${postObject.postUser}</p><p class ="card-text">${postObject.postDescription}</p></div></div>`;
         postDiv.appendChild(newPost);
         let commentForm = document.createElement('form');
         commentForm.setAttribute('method',"post");
+        commentForm.setAttribute('class', 'card-body');
         let commentBox = document.createElement("input");
         commentBox.name = postObject.postId;
         commentBox.setAttribute('id', "commentBoxId");
         commentBox.setAttribute('class', "commentBoxClass");
-        newPost.appendChild(commentForm);
+        
+        
         commentForm.appendChild(commentBox);
         let createCommentButton = document.createElement('button');
         createCommentButton.setAttribute("id", "createCommentButton");
@@ -81,7 +84,7 @@ function handleResponse(response) {
         createCommentButton.setAttribute("class", "btn btn-primary");
         createCommentButton.type = "submit";
         commentForm.appendChild(createCommentButton);
-
+        newPost.appendChild(commentForm);
         createCommentButton.addEventListener('click', postComment);
         fetchComments(postObject.postId);
 
@@ -111,7 +114,7 @@ function fetchComments(postid) {
                 // if(item.postId == null) continue;
                 let commentDiv = document.createElement('div');
                 commentDiv.setAttribute('class', 'commentPostDiv');
-                commentDiv.innerHTML = `<h3><u>Comment</u></h3> ${item.text} <h5>User: ${item.userComment.username}</h5>`;
+                commentDiv.innerHTML = `<div class="card-body"><p class="card-header">Comment </p> <div class='card-body'><p class="card-text">${item.text} </p> <p class="card-text">Comment by: ${item.userComment.username}</p></div></div>`;
                 // commentDiv.innerHTML = `<h3><u>Comment</u></h3> ${item.text}`;
                 postDiv.appendChild(commentDiv);
                 const post = document.getElementById(`${postid}`);

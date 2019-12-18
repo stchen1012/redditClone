@@ -72,7 +72,7 @@ function handleResponse(response) {
         newPost.setAttribute('class', 'postDiv');
         newPost.setAttribute('class', "card border-info mb-3" );
         newPost.setAttribute('data-id', reverseArray[i].postId);
-        newPost.innerHTML = `<h2 class="card-header">Post Title: ${postObject.postTitle}</h2> <h5>Id: ${postObject.postId}</h5> Post Description: ${postObject.postDescription} <h5>User: ${postObject.postUser}</h5> <button type="button" class="deletePostClass" data-id="${response[i].postId}">Delete</button>`;
+        newPost.innerHTML = `<div class="card-body"><h3 class="card-header">Post Title: ${postObject.postTitle}</h3><div class='card-body'><p class="card-text">Post id: ${postObject.postId}</p> <p class ="card-text">Post Description: ${postObject.postDescription}</p> <p class="card-text">Username: ${postObject.postUser}</p> <button type="button" class="deletePostClass" data-id="${response[i].postId}">Delete</button></div></div>`;
         postDiv.appendChild(newPost);
         //adding below lines of code for future use when delete Post API is functional
         let deletePostButton = document.getElementsByClassName('deletePostClass').item(i);
