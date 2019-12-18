@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', function(e){
     if(sessionStorage.username == undefined){
         loggedInUsername.innerHTML = "Hi Guest";
         signOutButton.style.visibility = "hidden";
+        createPostButton.style.visibility = "hidden";
+        userPostButton.style.visibility = "hidden";
     } else {
     loggedInUsername.innerHTML = 'Welcome, ' + sessionStorage.username;
     }
@@ -65,7 +67,7 @@ function handleResponse(response) {
         newPost.setAttribute('class', "card border-light mb-3");
         // newPost.setAttribute('style', "max-width: 40rem;");
         newPost.setAttribute('id', reverseArray[i].postId);
-        newPost.innerHTML = `<div class="card-body" id="postCard"><h3 class="card-header"> ${postObject.postTitle}</h3><div class='card-body'><p class="card-text" id="postIdStyle">Post id: ${postObject.postId}</p> <p class="card-text" id="postedByStyle">Posted by: ${postObject.postUser}</p><p class ="card-text">${postObject.postDescription}</p></div></div>`;
+        newPost.innerHTML = `<div class="card-body" id="postCard"><h3 class="card-header"> ${postObject.postTitle}</h3><div class='card-body'><p class="card-text" id="postIdStyle">Post id: ${postObject.postId}</p> <p class="card-text" id="postedByStyle">Posted by: ${postObject.postUser}</p><p class ="card-text" id="postDesc">${postObject.postDescription}</p></div></div>`;
         postDiv.appendChild(newPost);
         let commentForm = document.createElement('form');
         commentForm.setAttribute('method',"post");
@@ -114,7 +116,7 @@ function fetchComments(postid) {
                 // if(item.postId == null) continue;
                 let commentDiv = document.createElement('div');
                 commentDiv.setAttribute('class', 'commentPostDiv');
-                commentDiv.innerHTML = `<div class="card-body"><p class="card-header">Comment </p> <div class='card-body'><p class="card-text">${item.text} </p> <p class="card-text">Comment by: ${item.userComment.username}</p></div></div>`;
+                commentDiv.innerHTML = `<div class="card-body"><p class="card-header" id="commentBoxLabel">Comment </p> <p class="card-text" id="commentBy">Comment by: ${item.userComment.username}</p><div class='card-body'><p class="card-text">${item.text} </p></div></div>`;
                 // commentDiv.innerHTML = `<h3><u>Comment</u></h3> ${item.text}`;
                 postDiv.appendChild(commentDiv);
                 const post = document.getElementById(`${postid}`);

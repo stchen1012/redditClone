@@ -17,12 +17,12 @@ document.addEventListener('DOMContentLoaded', function(e){
     toggle.addEventListener('click', ()=>{
         const postDiv = document.getElementById("postDiv");
         const commentDiv = document.getElementById("commentDiv");
-        if(toggle.innerText === "See my Post"){
+        if(toggle.innerText === "See my Posts"){
             toggle.innerText = "See my Comments";
             postDiv.hidden = false;
             commentDiv.hidden = true;
         } else {
-            toggle.innerText = "See my Post";
+            toggle.innerText = "See my Posts";
             postDiv.hidden = true;
             commentDiv.hidden = false;
         }
@@ -70,13 +70,13 @@ function handleResponse(response) {
         let newPost = document.createElement('div');
 
         newPost.setAttribute('class', 'postDiv');
-        newPost.setAttribute('class', "card border-info mb-3" );
+        newPost.setAttribute('class', "card border-light mb-3");
         newPost.setAttribute('data-id', reverseArray[i].postId);
-        newPost.innerHTML = `<div class="card-body"><h3 class="card-header">Post Title: ${postObject.postTitle}</h3><div class='card-body'><p class="card-text">Post id: ${postObject.postId}</p> <p class ="card-text">Post Description: ${postObject.postDescription}</p> <p class="card-text">Username: ${postObject.postUser}</p> <button type="button" class="deletePostClass" data-id="${response[i].postId}">Delete</button></div></div>`;
+        newPost.innerHTML = `<div class="card-body" id="postCard"><h3 class="card-header"> ${postObject.postTitle}</h3><div class='card-body'><p class="card-text" id="postIdStyle">Post id: ${postObject.postId}</p> <p class="card-text" id="postedByStyle">Posted by: ${postObject.postUser}</p><p class="card-text"id="postDesc">${postObject.postDescription}</p> <br><button type="submit" class="deletePostClass" class="btn btn-primary" data-id="${response[i].postId}">Delete</button></div></div>`;
         postDiv.appendChild(newPost);
         //adding below lines of code for future use when delete Post API is functional
         let deletePostButton = document.getElementsByClassName('deletePostClass').item(i);
-        deletePostButton.setAttribute("class", "btn btn-primary");
+        // deletePostButton.setAttribute("class", "btn btn-primary");
         deletePostButton.addEventListener('click', deletePost);
     }
 }
@@ -119,7 +119,7 @@ function onCommentResponse(response) {
         let userCommentDiv = document.createElement('div');
         userCommentDiv.setAttribute('class', 'commentDiv');
         userCommentDiv.setAttribute('data-id', response[i].commentId);
-        userCommentDiv.innerHTML = `<h3><u>Comment</u></h3> ${response[i].text} <h4>User: ${sessionStorage.username} </h4> <button type="button" class="deleteButtonClass" data-id="${response[i].commentId}">Delete</button>`
+        userCommentDiv.innerHTML = `<div class="card-body"><p class="card-header" id="commentBoxLabel">Comment </p> <p class="card-text" id="commentBy">Comment by: ${sessionStorage.username}</p><div class='card-body'><p class="card-text">${response[i].text}</p><button type="button" class="deleteButtonClass" class="btn btn-primary" data-id="${response[i].commentId}">Delete</button></div></div>`;
         commentPostDiv.appendChild(userCommentDiv);
         let formButton = document.getElementsByClassName('deleteButtonClass').item(i);
         formButton.addEventListener('click', deleteComment);

@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(210, 222, 240);
+    /* background-color: rgb(23, 65, 126); */
     /* background-image: url("../image/unsplashPhoto.jpeg"); */
   }
 
@@ -120,11 +120,65 @@ h3 {
   text-align: right;
   padding: 0px;
   margin: 0px;
+  color: grey;
 }
 
 #postedByStyle {
   font-size: 12px;
+  color: #007bff;
   text-align: right;
   padding: 0px;
   margin: 0px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+#postDesc {
+  font-size: 20px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  margin-top: 10px;
+}
+
+#commentBoxId {
+  margin-top: 0px;
+  margin-left: 20px;
+  padding-top: 0px;
+}
+
+#commentBy {
+  font-size: 12px;
+  color: #007bff;
+  text-align: right;
+  padding-top: 10px;
+  padding-right: 15px;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+#commentBoxLabel {
+  color:rgba(43, 19, 6, 0.947);;
+}
+
+#createCommentButton {
+  margin-top: 0px;
+}
+
+.container {
+  background-color:	rgb(235, 235, 235);
+}
+
+#post-comment-toggle {
+  margin-top: 25px;
+  margin-left: 5px;
+
+
+}
+
+/* #commentTextBody{
+  background-color: white;
+} */
+
+#commentDiv {
+  background-color: white;
 }
