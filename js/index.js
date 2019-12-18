@@ -13,9 +13,9 @@ var postObjectArray = [];
 document.addEventListener('DOMContentLoaded', function(e){
     fetchPost();
     if(sessionStorage.username == undefined){
-        loggedInUsername.innerHTML = '';
+        loggedInUsername.innerHTML = "Hi Guest";
     } else {
-    loggedInUsername.innerHTML = 'Hi ' + sessionStorage.username;
+    loggedInUsername.innerHTML = 'Welcome, ' + sessionStorage.username;
     }
     if (sessionStorage.getItem("userLoginStatus") ===  "true" ) {
         //logged in
@@ -61,8 +61,10 @@ function handleResponse(response) {
         // postObjectArray.push(postObject);
         let newPost = document.createElement('div');
         newPost.setAttribute('class', 'postDiv');
+        newPost.setAttribute('class', "card border-info mb-3" );
+        // newPost.setAttribute('style', "max-width: 30rem;");
         newPost.setAttribute('id', reverseArray[i].postId);
-        newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2> <h5>Id: ${postObject.postId}</h5> Post Description: ${postObject.postDescription} <h5>User: ${postObject.postUser}</h5>`;
+        newPost.innerHTML = `<h2 class="card-header">Post Title: ${postObject.postTitle}</h2> <br> <h6>Id: ${postObject.postId}</h6> <h5>Post Description: ${postObject.postDescription}</h5> <h6>User: ${postObject.postUser}</h6>`;
         postDiv.appendChild(newPost);
         let commentForm = document.createElement('form');
         commentForm.setAttribute('method',"post");
@@ -76,12 +78,17 @@ function handleResponse(response) {
         createCommentButton.setAttribute("id", "createCommentButton");
         createCommentButton.setAttribute('data-id', reverseArray[i].postId);
         createCommentButton.innerHTML = "comment";
+        createCommentButton.setAttribute("class", "btn btn-primary");
         createCommentButton.type = "submit";
         commentForm.appendChild(createCommentButton);
+
         createCommentButton.addEventListener('click', postComment);
         fetchComments(postObject.postId);
+
     }
+    
 }
+
 
 function Post(postId, postTitle, postDescription, postUser) {
     this.postUser = postUser;

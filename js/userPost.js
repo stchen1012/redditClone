@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function(e){
         if(sessionStorage.username == undefined){
             loggedInUsername.innerHTML = 'Hi Guest';
         } else {
-            loggedInUsername.innerHTML = 'Hi ' + sessionStorage.username;
+            loggedInUsername.innerHTML = 'Welcome, ' + sessionStorage.username;
         }
     }
 
@@ -68,12 +68,15 @@ function handleResponse(response) {
     for (let i =0; i < 20; i++) {
         let postObject = new Post(reverseArray[i].postId, reverseArray[i].title, reverseArray[i].description, reverseArray[i].user.username);
         let newPost = document.createElement('div');
+
         newPost.setAttribute('class', 'postDiv');
-        newPost.setAttribute('data-id', reverseArray[i].postId)
-        newPost.innerHTML = `<h2>Post Title: ${postObject.postTitle}</h2> <h5>Id: ${postObject.postId}</h5> Post Description: ${postObject.postDescription} <h5>User: ${postObject.postUser}</h5> <button type="button" class="deletePostClass" data-id="${response[i].postId}">Delete</button>`;
+        newPost.setAttribute('class', "card border-info mb-3" );
+        newPost.setAttribute('data-id', reverseArray[i].postId);
+        newPost.innerHTML = `<h2 class="card-header">Post Title: ${postObject.postTitle}</h2> <h5>Id: ${postObject.postId}</h5> Post Description: ${postObject.postDescription} <h5>User: ${postObject.postUser}</h5> <button type="button" class="deletePostClass" data-id="${response[i].postId}">Delete</button>`;
         postDiv.appendChild(newPost);
         //adding below lines of code for future use when delete Post API is functional
         let deletePostButton = document.getElementsByClassName('deletePostClass').item(i);
+        deletePostButton.setAttribute("class", "btn btn-primary");
         deletePostButton.addEventListener('click', deletePost);
     }
 }

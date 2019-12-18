@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function(e){
         if(sessionStorage.username == undefined){
             loggedInUsername.innerHTML = 'Hi Guest';
         } else {
-            loggedInUsername.innerHTML = 'Hi ' + sessionStorage.username;
+            loggedInUsername.innerHTML = 'Welcome, ' + sessionStorage.username;
         }
     }
 });

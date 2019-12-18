@@ -16,7 +16,7 @@ body {
   }
 
 
-  .postDiv  {
+  /* .postDiv  {
     background-color: azure;
     color: midnightblue;
     border: 2px solid black;
@@ -26,7 +26,7 @@ body {
     margin: 0 auto;
     display: block;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  }
+  } */
 
   .commentDiv {
     background-color: azure;
@@ -43,8 +43,9 @@ body {
 
 
   #usernameDisplay {
-    font-weight: bold;
-    font-size: 30px;
+    /* font-weight: bold; */
+    font-size: 10px;
+    text-align: right;
   }
 
  #createPostButton, #userPostButton, #signupButton, #loginButton, #signOutButton {
@@ -53,9 +54,9 @@ body {
     padding: 8px;
  }
 
-  #usernameDisplay a:link, a:visited{
+  /* #usernameDisplay a:link, a:visited{
     color: black;
-  } 
+  }  */
 
 
   
@@ -102,3 +103,10 @@ body {
     text-align: center;
     margin: 0 auto;
   }
+
+#center-align {
+  text-align: center;
+  margin: 0 auto;
+  width: 50%;
+  padding: 30px;
+}
