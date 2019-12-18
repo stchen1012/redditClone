@@ -59,10 +59,4 @@ Link:   https://www.pivotaltracker.com/n/projects/2400338
 
 ## Wireframes
 Home Page
-![alt text](https://github.com/stchen1012/redditClone/blob/master/image/Home%20page.jpg)
-
-Log in and sign up pages
-![alt text](https://github.com/stchen1012/redditClone/blob/master/image/Log%20in%20and%20Sign%20up.jpg)
-
-Create posts
-![alt text](https://github.com/stchen1012/redditClone/blob/master/image/Create%20Post.jpg)
+![alt text](https://github.com/stchen1012/redditClone/blob/master/HomePage.png)
