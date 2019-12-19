@@ -7,7 +7,7 @@ Welcome to the redditClone! redditClone is a website with similar functionalitie
 * [Technologies Used](#general-approach)
 * [General Approach](#general-approach)
 * [User stories](#user-stories)
-* [Wireframes](#wireframes)
+* [Website](#website)
 
 ## Project Deliverables and Timeline
 
@@ -57,12 +57,7 @@ Once we finished coding the main functionalities, the code was reviewed to remov
 ## User stories
 Link:   https://www.pivotaltracker.com/n/projects/2400338
 
-## Wireframes
+## Website
 Home Page
-![alt text](https://github.com/stchen1012/redditClone/blob/master/image/Home%20page.jpg)
 
-Log in and sign up pages
-![alt text](https://github.com/stchen1012/redditClone/blob/master/image/Log%20in%20and%20Sign%20up.jpg)
-
-Create posts
-![alt text](https://github.com/stchen1012/redditClone/blob/master/image/Create%20Post.jpg)
+![alt text](https://github.com/stchen1012/redditClone/blob/master/HomePage.png)
