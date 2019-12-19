@@ -72,7 +72,7 @@ function handleResponse(response) {
         newPost.setAttribute('class', 'postDiv');
         newPost.setAttribute('class', "card border-light mb-3");
         newPost.setAttribute('data-id', reverseArray[i].postId);
-        newPost.innerHTML = `<div class="card-body" id="postCard"><h3 class="card-header"> ${postObject.postTitle}</h3><div class='card-body'><p class="card-text" id="postIdStyle">Post id: ${postObject.postId}</p> <p class="card-text" id="postedByStyle">Posted by: ${postObject.postUser}</p><p class="card-text"id="postDesc">${postObject.postDescription}</p> <br><button type="submit" class="deletePostClass" class="btn btn-primary" data-id="${response[i].postId}">Delete</button></div></div>`;
+        newPost.innerHTML = `<div class="card-body" id="postCard"><h3 class="card-header"> ${postObject.postTitle}</h3><div class='card-body'><p class="card-text" id="postIdStyle">Post id: ${postObject.postId}</p> <p class="card-text" id="postedByStyle">Posted by: ${postObject.postUser}</p><p class="card-text"id="postDesc">${postObject.postDescription}</p> <br><button type="submit" class="deletePostClass btn btn-primary" data-id="${response[i].postId}">Delete</button></div></div>`;
         postDiv.appendChild(newPost);
         //adding below lines of code for future use when delete Post API is functional
         let deletePostButton = document.getElementsByClassName('deletePostClass').item(i);
@@ -119,7 +119,7 @@ function onCommentResponse(response) {
         let userCommentDiv = document.createElement('div');
         userCommentDiv.setAttribute('class', 'commentDiv');
         userCommentDiv.setAttribute('data-id', response[i].commentId);
-        userCommentDiv.innerHTML = `<div class="card-body"><p class="card-header" id="commentBoxLabel">Comment </p> <p class="card-text" id="commentBy">Comment by: ${sessionStorage.username}</p><div class='card-body'><p class="card-text">${response[i].text}</p><button type="button" class="deleteButtonClass" class="btn btn-primary" data-id="${response[i].commentId}">Delete</button></div></div>`;
+        userCommentDiv.innerHTML = `<div class="card-body"><p class="card-header" id="commentBoxLabel">Comment </p> <p class="card-text" id="commentBy">Comment by: ${sessionStorage.username}</p><div class='card-body'><p class="card-text">${response[i].text}</p><button type="button" class="deleteButtonClass btn btn-primary" data-id="${response[i].commentId}">Delete</button></div></div>`;
         commentPostDiv.appendChild(userCommentDiv);
         let formButton = document.getElementsByClassName('deleteButtonClass').item(i);
         formButton.addEventListener('click', deleteComment);
@@ -144,6 +144,7 @@ function deleteComment(event) {
         console.log(response);
         if(response.httpStatus != "BAD_REQUEST"){
             alert("Comment deleted");
+            location.reload();
         }
         else{
             alert("Try again")
@@ -171,6 +172,7 @@ function deletePost(event) {
      console.log(json);
      if(json.httpStatus != "BAD_REQUEST"){
          alert("Post deleted");
+         location.reload();
      }
      else{
          alert("Try again")

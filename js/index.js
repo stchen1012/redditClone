@@ -143,6 +143,7 @@ function postComment(event) {
         // console.log(json);
         if(json.status != 500){
             alert("Comment created!");
+            location.reload();
         }
         else{
             alert("Comment not created. Please log in or sign up")
