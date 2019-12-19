@@ -65,5 +65,5 @@ Home Page
 Sign Up
 ![alt text](https://github.com/stchen1012/redditClone/blob/master/Sign%20up.png)
 
-See post
+See posts/comments
 ![alt text](https://github.com/stchen1012/redditClone/blob/master/See%20Post.png)
