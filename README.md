@@ -61,3 +61,9 @@ Link:   https://www.pivotaltracker.com/n/projects/2400338
 Home Page
 
 ![alt text](https://github.com/stchen1012/redditClone/blob/master/HomePage.png)
+
+Sign Up
+![alt text](https://github.com/stchen1012/redditClone/blob/master/Sign%20up.png)
+
+See post
+![alt text](https://github.com/stchen1012/redditClone/blob/master/See%20Post.png)
